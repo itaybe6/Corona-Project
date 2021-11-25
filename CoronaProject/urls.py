@@ -22,7 +22,6 @@ from CoronaProject import views
 urlpatterns = [
     url(r'^$', views.homePage),
     path('admin/', admin.site.urls),
-    path('RotemHadad/',include('RotemHadad.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
     path('users/',include('users.urls')),
 
