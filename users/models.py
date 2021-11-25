@@ -12,11 +12,11 @@ class Student(models.Model):
 
 
 class Manager(models.Model):
-    #student = models.ForeignKey(Student,on_delete=models.CASCADE)
-
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     Manager_id = models.CharField(max_length=200,null = True)
     status = models.BooleanField(null= True)
 
     def __str__(self):
         return f'Name: {self.name}, ID: {self.Manager_id}'
+
