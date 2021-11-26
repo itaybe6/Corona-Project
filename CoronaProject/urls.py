@@ -20,10 +20,12 @@ from django.conf.urls import url
 from CoronaProject import views
 
 urlpatterns = [
-    url(r'^$', views.homePage),
+    
+    url(r'^$', views.homePage_main),
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     path('users/',include('users.urls')),
+    path('homepage/',include('homepage.urls')),
 
 
 

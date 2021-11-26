@@ -3,6 +3,6 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-def homePage_main(request):
-    return HttpResponse('main home page1 check!')
+def get_homePage(request):
+    return render(request,'homepage.html') #use html file
     
