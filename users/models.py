@@ -8,7 +8,7 @@ class Manager(models.Model):
     user_id = models.CharField(max_length=200,null = True)
     status = models.BooleanField(null= True)
     def __str__(self):
-        return f'Name: {self.name}, ID: {self.Manager_id}'
+        return f'Name: {self.name}, ID: {self.user_id}'
 
 class Teacher(models.Model):
     name = models.CharField(max_length=200, null=True)
@@ -16,7 +16,7 @@ class Teacher(models.Model):
     status = models.BooleanField(null= True)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE)
     def __str__(self):
-        return f'Name: {self.name}, ID: {self.Teacher_id}'
+        return f'Name: {self.name}, ID: {self.user_id}'
 
 class Student(models.Model):
     name = models.CharField(max_length=200, null = True)
@@ -25,4 +25,4 @@ class Student(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE)
     def __str__(self):
-        return f'Name: {self.name}, ID: {self.student_id}'
+        return f'Name: {self.name}, ID: {self.user_id}'
