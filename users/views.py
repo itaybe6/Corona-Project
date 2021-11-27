@@ -6,7 +6,4 @@ def get_index(request):
     return HttpResponse('users index')
     #return render(request,'hello.html')
 
-def get_name(request):
-    #return HttpResponse('The user name: {name} ')
-    return render(request,'hello.html') #use html file
 
