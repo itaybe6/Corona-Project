@@ -21,7 +21,7 @@ from CoronaProject import views
 
 urlpatterns = [
     
-    url(r'^$', views.homePage_main),
+    url(r'^', include('homepage.urls')),
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     path('users/',include('users.urls')),

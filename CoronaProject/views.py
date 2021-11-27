@@ -4,5 +4,5 @@ from django.http import HttpResponse
 
 
 def homePage_main(request):
-    return HttpResponse('main home page1 check!')
+    return render(request,'index.html') #use html file -the first home page
     

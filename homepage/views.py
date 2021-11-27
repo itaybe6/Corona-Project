@@ -4,5 +4,5 @@ from django.http import HttpResponse
 
 
 def get_homePage(request):
-    return render(request,'homepage.html') #use html file
+    return render(request,'index.html') #use html file
     
