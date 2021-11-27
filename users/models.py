@@ -7,6 +7,10 @@ class Manager(models.Model):
     name = models.CharField(max_length=200, null = True)
     user_id = models.CharField(max_length=200,null = True)
     status = models.BooleanField(null= True)
+    phone_number = models.CharField(max_length=200, null=True)
+    password = models.CharField(max_length=200, null=True)
+    school = models.CharField(max_length=200, null=True)
+
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
 
@@ -15,6 +19,10 @@ class Teacher(models.Model):
     user_id = models.CharField(max_length=200, null = True)
     status = models.BooleanField(null= True)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE)
+    my_class= models.CharField(max_length=200, null=True)
+    class_num = models.IntegerField(null=True)
+    phone_number = models.CharField(max_length=200, null=True)
+    password = models.CharField(max_length=200, null=True)
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
 
@@ -24,5 +32,7 @@ class Student(models.Model):
     status = models.BooleanField(null= True)
     teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE)
+    phone_number = models.CharField(max_length=200, null=True)
+    password = models.CharField(max_length=200, null=True)
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
