@@ -54,9 +54,9 @@ hr {
   <center>  <h1> דף הרשמה למנהל בית הספר</h1> </center>  
   <hr>
 
-    <form class = "user-submit" action= 'users:submit_manager' mathod ="post" >
+    <form action = "{% url 'users:submit_Manager' %}" method= "post">
+
         {% csrf_token %}
-       
         <label><b>תעודת זהות</b></label>
         <input type="text" name="user_id" id = "user_id" placeholder="הכנס תעודת זהות" size="9" required />
 
@@ -69,10 +69,10 @@ hr {
         <label for="school"><b>שם בית הספר</b></label>  
         <input type="text" placeholder="הכנס שם בית ספר" name="school" id = "school" required>  
           
-        <label for="psw"> <b>    סיסמה </b> </label>  
-        <input type="password" placeholder="הכנס סיסמה" name="psw" id ="psw" required>  
+        <label for="password"> <b>    סיסמה </b> </label>  
+        <input type="password" placeholder="הכנס סיסמה" name="password" id ="password" required>  
           
-          <button type="submit_manager" >הירשם</button>  	
+          <button type="submit_Manager" >הירשם</button>  	
     </form>  
 </body>  
 </html>  

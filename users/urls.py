@@ -13,8 +13,8 @@ urlpatterns = [
     path('chooseprofile',views.get_chooseprofile, name = 'chooseprofile'),
     path('student/signup',views.get_student_signup, name = 'student_signup'),
     path('teacher/signup',views.get_teacher_signup,name = 'teacher_signup'),
-    path('manager/signup',views.get_manager_signup, name = 'manager_signup'),
-    path('submitManager',views.signup_manager, name = 'submit_manager')
+    path(r'manager/signup',views.get_manager_signup, name = 'manager_signup'),
+    path(r'submitManager',views.submit_Manager, name = 'submit_Manager')
 
 
 
