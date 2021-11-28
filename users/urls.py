@@ -3,11 +3,12 @@ from . import views
 from django.conf.urls import url
 
 
-appname = 'user'
+appname = 'users'
 
 urlpatterns = [
     path(r'', views.get_index), # ----/users/
-    path('manager/login',views.login_manager, name = 'login-manager')
+    path('manager/sign-up',views.signup_manager, name = 'sign-up-manager'),
+    path('chooseprofile',views.get_chooseprofile, name = 'chooseprofile'),
 
 
 ]
