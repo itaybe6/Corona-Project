@@ -8,10 +8,13 @@ def get_index(request):
     #return render(request,'hello.html')
 
 def get_student_signup(request):
-    return render(request,'student/sign-up.html')
+    return render(request,'student/signup.html')
 
 def get_teacher_signup(request):
-    return render(request,'sign-up.html')    
+    return render(request,'teacher/signup.html')    
+
+def get_manager_signup(request):
+    return render(request,'manager/signup.html') 
 
 def signup_manager(request):
     user_id = request.Post['user_id']
