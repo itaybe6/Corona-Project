@@ -8,7 +8,7 @@ def get_index(request):
     #return render(request,'hello.html')
 
 
-def login_manager(request):
+def signup_manager(request):
     user_id = request.Post['user_id']
     try :
         manager = Manager.objects.get(user_id = user_id) 
@@ -25,3 +25,6 @@ def login_manager(request):
     return render(request,'homepage/index.html')
 
 
+
+def get_chooseprofile(request):
+    return render(request,'chooseprofile.html')
