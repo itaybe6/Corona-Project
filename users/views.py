@@ -7,6 +7,11 @@ def get_index(request):
     return HttpResponse('users index')
     #return render(request,'hello.html')
 
+def get_student_signup(request):
+    return render(request,'sign-up.html')
+
+def get_teacher_signup(request):
+    return render(request,'sign-up.html')    
 
 def signup_manager(request):
     user_id = request.Post['user_id']
