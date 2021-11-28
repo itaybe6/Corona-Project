@@ -1,0 +1,72 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  background-image: url('course.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+}  
+.container {  
+    padding: 50px;  
+  background-color: rgb(252, 230, 242);  
+}  
+  
+input[type=text], input[type=password], textarea {  
+  width: 100%;  
+  padding: 15px;  
+  margin: 5px 0 22px 0;  
+  display: inline-block;  
+  border: none;  
+  background: #f1f1f1;  
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color: rgb(255, 249, 197);  
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: #2b2b2b;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 100%;  
+  opacity: 0.9;  
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+</style>  
+</head>  
+<body dir="rtl">  
+<form>  
+  <div class="container">  
+  <center>  <h1> דף הרשמה למנהל בית הספר</h1> </center>  
+  <hr>
+ <label><b>תעודת זהות</b></label>
+ <input type="text" name="user_id" placeholder="הכנס תעודת זהות" size="9" required />
+ <label><b>שם המנהל</b> </label>  
+<input type="text" name="name" placeholder= "הכנס שם מלא" size="20" required />   
+<label><b> מספר פלאפון</b></label>  
+<input type="text" name="phone_number" placeholder="מספר פלאפון" size="10"/ required>   
+ 
+ <label for="school"><b>שם בית הספר</b></label>  
+ <input type="text" placeholder="הכנס שם בית ספר" name="school" required>  
+  
+    <label for="psw"> <b>    סיסמה </b> </label>  
+    <input type="password" placeholder="הכנס סיסמה" name="psw" required>  
+  
+    <a href="/homepage\templates\index.html"> <button type="submit" class="registerbtn">הירשם</button></a>   	
+</form>  
+</body>  
+</html>  
