@@ -25,3 +25,6 @@ def signup_manager(request):
     return render(request,'homepage/index.html')
 
 
+
+def get_chooseprofile(request):
+    return render(request,'chooseprofile.html')
