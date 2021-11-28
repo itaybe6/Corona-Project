@@ -8,7 +8,7 @@ def get_index(request):
     #return render(request,'hello.html')
 
 def get_student_signup(request):
-    return render(request,'sign-up.html')
+    return render(request,'student/sign-up.html')
 
 def get_teacher_signup(request):
     return render(request,'sign-up.html')    
