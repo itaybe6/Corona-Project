@@ -49,8 +49,6 @@ hr {
 </style>  
 </head>  
 <body dir="rtl">  
-<form action = "{%url 'users:sign-up-manager'%}" method="post">  
-    {% csrf_token %}
 
   <div class="container">  
   <center>  <h1> דף הרשמה למנהל בית הספר</h1> </center>  
@@ -68,7 +66,7 @@ hr {
     <label for="psw"> <b>    סיסמה </b> </label>  
     <input type="password" placeholder="הכנס סיסמה" name="psw" id ="psw" required>  
   
-    <a href="/homepage\templates\index.html"> <button type="submit" class="registerbtn">הירשם</button></a>   	
+    <a href="/homepage/templates/index.html"> <button type="submit" class="registerbtn">הירשם</button></a>   	
 </form>  
 </body>  
 </html>  
