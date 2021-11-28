@@ -7,7 +7,7 @@ def get_index(request):
     return HttpResponse('users index')
     #return render(request,'hello.html')
 
-def log_in_manager(request):
+def login_manager(request):
     name = request.Post['name']
     ID = request.Post['userName']
     password = request.Post['password']
@@ -16,4 +16,3 @@ def log_in_manager(request):
 
     manager = Manager(name = name,password = password,user_id = ID, phone_number = phone_num,school=school)
     manager.save()
-    
