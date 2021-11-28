@@ -9,7 +9,6 @@ def get_index(request):
 
 
 def login_manager(request):
-
     user_id = request.Post['user_id']
     try :
         manager = Manager.objects.get(user_id = user_id) 
@@ -19,6 +18,7 @@ def login_manager(request):
     phone_number = request.Post['phone_number']
     school = request.Post['school']
     password = request.Post['psw']
+    
     Manager.objects.get(user_id = user_id).delete() #delete the object that we created earlier
     manager = Manager(name = name,password = password,user_id = ID, phone_number = phone_num,school=school)
     manager.save()
