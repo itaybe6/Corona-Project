@@ -1,11 +1,12 @@
 from django.urls import path
-from . import views
-#from users import views
-#from django.conf.urls import url
+#from .viwes import NAME_FUNCTIONS....
+from django.conf.urls import url
 
+app name = 'user'
 
 urlpatterns = [
     path(r'', views.get_index), # ----/users/
+    path('manager/login.html',log_in_manager,name ='login-manager')
 
 
 ]
