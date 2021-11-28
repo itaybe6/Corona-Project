@@ -7,7 +7,7 @@ appname = 'user'
 
 urlpatterns = [
     path(r'', views.get_index), # ----/users/
-    path('manager/login',views.log_in_manager)
+    path('manager/login',views.login_manager, name = 'login-manager')
 
 
 ]
