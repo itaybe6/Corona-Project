@@ -1,6 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse ,Http404
 from users.models import Manager,Teacher,Student
+from homepage import views
+
+
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
+
+
+
 # Create your views here.
 
 def get_index(request):
@@ -30,9 +38,11 @@ def signup_manager(request):
     Manager.objects.get(user_id = user_id).delete() #delete the object that we created earlier
     manager = Manager(name = name,password = password,user_id = ID, phone_number = phone_num,school=school)
     manager.save()
-    return render(request,'homepage/index.html')
+    return render(request,'homepage/index.html',{'users': users})
 
 
 
 def get_chooseprofile(request):
     return render(request,'chooseprofile.html')
+
+

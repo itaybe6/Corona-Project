@@ -50,23 +50,30 @@ hr {
 </head>  
 <body dir="rtl">  
 
-  <div class="container">  
+  <div>  
   <center>  <h1> דף הרשמה למנהל בית הספר</h1> </center>  
   <hr>
- <label><b>תעודת זהות</b></label>
- <input type="text" name="user_id" id = "user_id" placeholder="הכנס תעודת זהות" size="9" required />
- <label><b>שם המנהל</b> </label>  
-<input type="text" name="name" id = "name" placeholder= "הכנס שם מלא" size="20" required />   
-<label><b> מספר פלאפון</b></label>  
-<input type="text" name="phone_number" id = "phone_number" placeholder="מספר פלאפון" size="10" required/>   
- 
- <label for="school"><b>שם בית הספר</b></label>  
- <input type="text" placeholder="הכנס שם בית ספר" name="school" id = "school" required>  
-  
-    <label for="psw"> <b>    סיסמה </b> </label>  
-    <input type="password" placeholder="הכנס סיסמה" name="psw" id ="psw" required>  
-  
-    <a href="/homepage/templates/index.html"> <button type="submit" class="registerbtn">הירשם</button></a>   	
-</form>  
+
+    <form class = "user-submit" action= 'users:submit_manager' mathod ="post" >
+        {% csrf_token %}
+       
+        <label><b>תעודת זהות</b></label>
+        <input type="text" name="user_id" id = "user_id" placeholder="הכנס תעודת זהות" size="9" required />
+
+        <label><b>שם המנהל</b> </label>  
+        <input type="text" name="name" id = "name" placeholder= "הכנס שם מלא" size="20" required />  
+
+        <label><b> מספר פלאפון</b></label>  
+        <input type="text" name="phone_number" id = "phone_number" placeholder="מספר פלאפון" size="10" required/>   
+        
+        <label for="school"><b>שם בית הספר</b></label>  
+        <input type="text" placeholder="הכנס שם בית ספר" name="school" id = "school" required>  
+          
+        <label for="psw"> <b>    סיסמה </b> </label>  
+        <input type="password" placeholder="הכנס סיסמה" name="psw" id ="psw" required>  
+          
+          <button type="submit_manager" >הירשם</button>  	
+    </form>  
 </body>  
 </html>  
+
