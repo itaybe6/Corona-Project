@@ -1,0 +1,6 @@
+body {
+    padding-top: 56px;
+    background-color: #00cc9d;
+    background-image: 
+        repeating-linear-gradient(315deg, rgba(255,255,255,0.3), rgba(255,255,255,0.3) 7%, rgba(255,255,255,0) 7%, rgba(255,255,255,0) 14%);
+}
