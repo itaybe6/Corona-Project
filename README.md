@@ -1,5 +1,5 @@
 # Corona-Project
-This project is a site for schools in the Covid-19 times. In this project we are trying to help students in grade schools that cant go to the school because of the covid-19 disease
+This project is a site for schools in the Covid-19 times. In this project we are trying to help students in grade schools that cant go to the school because of the covid-19 virus.
 
 The authors : Rotem Hadad, Itay Ben Yair, Tal Maimon, Israel Lasry
 
