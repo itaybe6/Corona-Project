@@ -35,7 +35,7 @@ def submit_Manager(request):
     Manager.objects.get(user_id = user_id).delete() #delete the object that we created earlier
     manager = Manager(name = name,password = password,user_id = user_id, phone_number = phone_number,school=school)
     manager.save()
-    return render(request,'manager/signup.html') #'manage/signup.html')#{'users': users})
+    return render(request,'signup_success.html') #'manage/signup.html')#{'users': users})
 
 
 
