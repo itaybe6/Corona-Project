@@ -13,8 +13,9 @@ urlpatterns = [
     path('student/signup',views.get_student_signup, name = 'student_signup'),
     path('teacher/signup',views.get_teacher_signup,name = 'teacher_signup'),
     path(r'manager/signup',views.get_manager_signup, name = 'manager_signup'),
-    path(r'',views.submit_Manager, name = 'submit_Manager'),
-    path(r'', views.get_index), # ----/users/
+    path(r'manager/signup_success',views.submit_Manager, name = 'submit_Manager'),
+    path(r'teacher/signup_success',views.submit_Teacher, name = 'submit_Teacher'),
+
 
 
 
