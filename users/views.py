@@ -1,3 +1,4 @@
+from django.db.models.fields import NullBooleanField
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
 from users.models import Manager,Teacher,Student
@@ -69,11 +70,18 @@ def get_chooseprofile(request):
 
 
 def CheckIfManagerExist(user_id):
-    return Manager.objects.get(user_id =user_id)
+    if(Manager.objects.get(user_id =user_id)!= None):
+        return True
+    return False
+
 
 def CheckIfTeacherExist(user_id):
-    return Teacher.objects.get(user_id =user_id)
+    if (Teacher.objects.get(user_id =user_id) != None):
+        return True
+    return False
 
 def CheckIfStudentExist(user_id):
-    return Student.objects.get(user_id =user_id)
+    if ( Student.objects.get(user_id =user_id) != None):
+        return True
+    return False
 
