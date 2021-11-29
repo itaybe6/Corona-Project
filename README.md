@@ -11,7 +11,7 @@ pip install pipenv
 
 pipenv install django
 
-pipenv install django-debug-toolbar
+pipenv install django-debug_toolbar
 
 run the program : python manage.py runserver
 
