@@ -40,11 +40,27 @@ def submit_Teacher(request):
     phone_number = request.POST['phone_number']
     password = request.POST['password']
     my_class = request.POST['my_class']
-    manager = Teacher.objects.get(user_id= 126).manager
+    manager = Teacher.objects.get(user_id= user_id).manager
     Teacher.objects.get(user_id = user_id).delete() #delete the object that we created earlier
     teacher = Teacher(name = name,password = password,user_id = user_id, phone_number = phone_number,my_class=my_class, manager=manager)
     teacher.save()
     return render(request,'teacher/signup_success.html') 
+
+def submit_Student(request):
+    user_id = request.POST['user_id']
+    try:
+         student = Student.objects.get(user_id = user_id)
+    except  Student.DoesNotExist:
+        raise Http404(f'Student with id {user_id} does not exist')
+    name = request.POST['name']
+    phone_number = request.POST['phone_number']
+    password = request.POST['password']
+    manager = Student.objects.get(user_id= user_id).manager
+    teacher = Student.objects.get(user_id= user_id).teacher
+    Student.objects.get(user_id = user_id).delete() #delete the object that we created earlier
+    student = Student(name = name,password = password,user_id = user_id, phone_number = phone_number,teacher=teacher, manager=manager)
+    student.save()
+    return render(request,'student/signup_success.html')     
 
 def get_chooseprofile(request):
     return render(request,'chooseprofile.html')
