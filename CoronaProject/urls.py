@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^', include('homepage.urls')),
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('users/',include('users.urls')),
+    path(r'users/',include('users.urls')),
     path('homepage/',include('homepage.urls')),
 
 
