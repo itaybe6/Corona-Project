@@ -15,3 +15,12 @@ pip install django-debug-toolbar
 
 run the program : python manage.py runserver
 
+Explain who to register to the site:
+
+First, the manager should buy the site and we need to add his ID to the data base so he can register
+
+we are currently registering a manager with the ID 123456789
+
+and a teachers with the ID 120-125
+
+and a students with the ID 220-222
