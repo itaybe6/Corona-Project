@@ -21,6 +21,6 @@ First, the manager should buy the site and we need to add his ID to the data bas
 
 we are currently registering a manager with the ID 123456789
 
-and a teachers with the ID 120-125
+teachers with the ID 120-125
 
-and a students with the ID 220-222
+students with the ID 220-222
