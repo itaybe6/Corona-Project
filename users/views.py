@@ -15,10 +15,11 @@ def get_teacher_signup(request):
 def get_manager_signup(request):
     return render(request,'manager/signup.html') 
 
+     #manager = Manager.objects.get(user_id = user_id)
+
 def submit_Manager(request):
     user_id = request.POST['user_id']
-    try:
-         manager = Manager.objects.get(user_id = user_id)
+    try: CheckIfManagerExist(user_id)
     except  Manager.DoesNotExist:
         raise Http404(f'Manager with id {user_id} does not exist')
     name = request.POST['name']
@@ -30,10 +31,11 @@ def submit_Manager(request):
     manager.save()
     return render(request,'manager/signup_success.html') 
 
+#teacher = Teacher.objects.get(user_id = user_id)
 def submit_Teacher(request):
     user_id = request.POST['user_id']
     try:
-         teacher = Teacher.objects.get(user_id = user_id)
+        CheckIfTeacherExist(user_id)
     except  Teacher.DoesNotExist:
         raise Http404(f'Teacher with id {user_id} does not exist')
     name = request.POST['name']
@@ -49,7 +51,7 @@ def submit_Teacher(request):
 def submit_Student(request):
     user_id = request.POST['user_id']
     try:
-         student = Student.objects.get(user_id = user_id)
+        CheckIfStudentExist(user_id)
     except  Student.DoesNotExist:
         raise Http404(f'Student with id {user_id} does not exist')
     name = request.POST['name']
@@ -65,4 +67,13 @@ def submit_Student(request):
 def get_chooseprofile(request):
     return render(request,'chooseprofile.html')
 
+
+def CheckIfManagerExist(user_id):
+    return Manager.objects.get(user_id =user_id)
+
+def CheckIfTeacherExist(user_id):
+    return Teacher.objects.get(user_id =user_id)
+
+def CheckIfStudentExist(user_id):
+    return Student.objects.get(user_id =user_id)
 
