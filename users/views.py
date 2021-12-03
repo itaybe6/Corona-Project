@@ -121,7 +121,7 @@ def Conect(request):
     user_id = request.POST['user_id']
     password = request.POST['password']
 
-    if Conect_Man(user_id,password):    
+    if Conect_Man(user_id,password):             # Chack all the users
        return render(request,'manager/Home.html')
        
     elif Conect_Stu(user_id,password):
