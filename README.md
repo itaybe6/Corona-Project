@@ -19,4 +19,4 @@ Explain who to register to the site:
 
 First, the manager should buy the site and we need to add his ID to the data base so he can register
 
-we are currently registering a manager with the ID 123456789, teachers with the ID 120-125, students with the ID 220-222
+we are currently registering a manager with the ID 123456789, teachers with the ID 120-129, students with the ID 220-229

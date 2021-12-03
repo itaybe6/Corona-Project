@@ -135,31 +135,29 @@
 
     
 
-
-    <form action="logo.php" method="post">
+    
       <div class="imgcontainer">
-       
-                              
-         
-          
-       
-      </div>
 
-      <div class="container">
+      </div>
+      <form  class="container" action = " {% url 'users:Conect' %} " method = "post">
+
+        {% csrf_token %}
+
         <label for="id"><b>שם משתמש </b> </label>
 
-        <input type="id" placeholder="הכנס תעודת זהות" name="id" required />
+        <input type="user_id" placeholder="הכנס תעודת זהות" name="user_id" required />
 
-        <label for="psw"><b>סיסמה</b></label>
-        <input type="password" placeholder="הכנס סיסמה" name="psw" required />
+        <label for="password"><b>סיסמה</b></label>
+        <input type="password" placeholder="הכנס סיסמה" name="password" required />
 
-        <button type="submit">התחבר</button>
+        <button type="Conect">התחבר</button>
         <label>
           <input type="checkbox" checked="checked" name="remember" /> זכור אותי
         </label>
-      </div>
+      
 
       <a href="users/chooseprofile" id="id2" target="_self">הירשם</a>
-    </form>
+      </form>
+    
   </body>
 </html>
