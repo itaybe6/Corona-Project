@@ -95,3 +95,49 @@ def CheckIfStudentExist(user_id):
             return True
     return False
 
+
+
+def Conect_Man(user_id,password):  #Checks the username and password of an managerr
+    for i in Manager.objects.all():
+        if i.user_id == user_id and i.password == password:
+           return True
+    return False
+
+
+def Conect_Tec(user_id,password):  #Checks the username and password of an Teacher
+    for i in Teacher.objects.all():
+        if i.user_id == user_id and i.password == password:
+           return True
+    return False
+
+def Conect_Stu(user_id,password):  #Checks the username and password of an Student
+    for i in Student.objects.all():
+        if i.user_id == user_id and i.password == password:
+           return True
+    return False
+
+
+def Conect(request):
+    user_id = request.POST['user_id']
+    password = request.POST['password']
+
+    if Conect_Man(user_id,password):    
+       return render(request,'manager/Home.html')
+       
+    elif Conect_Stu(user_id,password):
+        return render(request,'student/Home.html')
+        
+    elif Conect_Tec(user_id,password):
+        return render(request,'teacher/Home.html')
+        
+    else:
+        return render(request,'homepage/index.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
+    
+    
+
+
+
+
+
+
+#<form action="logo.php" method="post"> - :הורדתי מהדף של ההתחברות צריך להוסיף כדי לסדר את העיצובex
