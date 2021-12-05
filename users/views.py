@@ -131,7 +131,7 @@ def Conect(request):
         return render(request,'teacher/Home.html')
         
     else:
-        return render(request,'homepage/index.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
+        return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
 
