@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.fields import NullBooleanField
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
@@ -134,6 +135,12 @@ def Conect(request):
         return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
+def get_student_by_id(request,user_id):
+    try:
+        student=Student.objects.get(user_id=user_id)
+    except Student.DoesNotExist:
+        raise Http404('לא קיים סטודנט עם תעודת זהות {user_id}')
+    return render(request,'student/Home.html', {'student':student})     
 
 
 
