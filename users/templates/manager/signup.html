@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">  
 <style>  
 body{  
-  background-image: url("logo.png");
+    background-color:rgb(228, 220, 221);
             height: 900px;
             background-position:center;
             background-repeat:no-repeat;
@@ -14,7 +14,18 @@ body{
     padding: 50px;  
   background-color: rgb(252, 230, 242);  
 }  
-  
+        p{
+            background-color:rgb(231,231,231);
+            padding-top:0.1rem;
+            padding-bottom:0.1rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 7px #ccc;
+            text-align:center;
+            letter-spacing: 0.2rem;
+            margin: 1rem auto;
+
+
+        }  
 input[type=text], input[type=password], textarea {  
   width: 100%;  
   padding: 15px;  
@@ -53,6 +64,8 @@ hr {
 
   <div>  
   <center>  <h1> דף הרשמה למנהל בית הספר</h1> </center>  
+  <center>   <p><h3>הישאר מעודכן ושמור על עצמך</h3> </p></center>
+
   <hr>
 
     <form action = "{% url 'users:submit_Manager' %}" method= "post">
