@@ -13,6 +13,4 @@ urlpatterns = [
     path(r'users/',include('users.urls')),
     path('homepage/',include('homepage.urls')),
 
-
-
 ]

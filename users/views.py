@@ -95,3 +95,56 @@ def CheckIfStudentExist(user_id):
             return True
     return False
 
+
+
+def Conect_Man(user_id,password):  #Checks the username and password of an managerr
+    for i in Manager.objects.all():
+        if i.user_id == user_id and i.password == password:
+           return True
+    return False
+
+
+def Conect_Tec(user_id,password):  #Checks the username and password of an Teacher
+    for i in Teacher.objects.all():
+        if i.user_id == user_id and i.password == password:
+           return True
+    return False
+
+
+def Conect_Stu(user_id,password):  #Checks the username and password of an Student
+    for i in Student.objects.all():
+        if i.user_id == user_id and i.password == password:
+           return True
+    return False
+
+
+def Conect(request):
+    user_id = request.POST['user_id']
+    password = request.POST['password']
+
+    if Conect_Man(user_id,password):             # Chack all the users
+       manager = Manager.objects.get(user_id = user_id)
+       return render(request,'manager/Home.html',{'manager':manager})
+       
+    elif Conect_Stu(user_id,password):
+        student = Student.objects.get(user_id = user_id)
+        return render(request,'student/Home.html',{'student':student})
+        
+    elif Conect_Tec(user_id,password):
+        teacher = Teacher.objects.get(user_id=user_id)
+        return render(request,'teacher/Home.html',{'teacher':teacher})
+        
+    else:
+        return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
+    
+    
+#def PhonesPage(request,user_id):
+    #students = Student.objects.filter(teacher.user_id = user_id) # get all the students of the teacher
+    #return render(request,'teacher/PhoneStu.html', {'students' : students})
+
+
+    
+
+
+
+#<form action="logo.php" method="post"> - :הורדתי מהדף של ההתחברות צריך להוסיף כדי לסדר את העיצובex
