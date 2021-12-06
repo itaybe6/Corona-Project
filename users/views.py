@@ -123,13 +123,16 @@ def Conect(request):
     password = request.POST['password']
 
     if Conect_Man(user_id,password):             # Chack all the users
-       return render(request,'manager/Home.html')
+       manager = Manager.objects.get(user_id = user_id)
+       return render(request,'manager/Home.html',{'manager':manager})
        
     elif Conect_Stu(user_id,password):
-        return render(request,'student/Home.html')
+        student = Student.objects.get(user_id = user_id)
+        return render(request,'student/Home.html',{'student':student})
         
     elif Conect_Tec(user_id,password):
-        return render(request,'teacher/Home.html')
+        teacher = Teacher.objects.get(user_id=user_id)
+        return render(request,'teacher/Home.html',{'teacher':teacher})
         
     else:
         return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
