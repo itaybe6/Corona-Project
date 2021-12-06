@@ -18,6 +18,7 @@ urlpatterns = [
     path(r'student/signup_success',views.submit_Student, name = 'submit_Student'),
     
     path(r'manager/Home',views.Conect,name = 'Conect'),
+    path(r'teacher/PhonePage',views.PhonesPage , 'PhonesPage'),
 
 
 

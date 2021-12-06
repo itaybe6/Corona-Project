@@ -111,6 +111,7 @@ def Conect_Tec(user_id,password):  #Checks the username and password of an Teach
            return True
     return False
 
+
 def Conect_Stu(user_id,password):  #Checks the username and password of an Student
     for i in Student.objects.all():
         if i.user_id == user_id and i.password == password:
@@ -123,27 +124,36 @@ def Conect(request):
     password = request.POST['password']
 
     if Conect_Man(user_id,password):             # Chack all the users
-       return render(request,'manager/Home.html')
+       manager = Manager.objects.get(user_id = user_id)
+       return render(request,'manager/Home.html',{'manager':manager})
        
     elif Conect_Stu(user_id,password):
-        return render(request,'student/Home.html')
+        student = Student.objects.get(user_id = user_id)
+        return render(request,'student/Home.html',{'student':student})
         
     elif Conect_Tec(user_id,password):
-        return render(request,'teacher/Home.html')
+        teacher = Teacher.objects.get(user_id=user_id)
+        return render(request,'teacher/Home.html',{'teacher':teacher})
         
     else:
         return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
+<<<<<<< HEAD
 def get_student_by_id(request,user_id):
     try:
         student=Student.objects.get(user_id=user_id)
     except Student.DoesNotExist:
         raise Http404('לא קיים סטודנט עם תעודת זהות {user_id}')
     return render(request,'student/Home.html', {'student':student})     
+=======
+#def PhonesPage(request,user_id):
+    #students = Student.objects.filter(teacher.user_id = user_id) # get all the students of the teacher
+    #return render(request,'teacher/PhoneStu.html', {'students' : students})
+>>>>>>> 07e15cfb76ad5c69172f9d101000544673906c73
 
 
-
+    
 
 
 
