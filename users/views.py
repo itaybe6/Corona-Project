@@ -110,6 +110,7 @@ def Conect_Tec(user_id,password):  #Checks the username and password of an Teach
            return True
     return False
 
+
 def Conect_Stu(user_id,password):  #Checks the username and password of an Student
     for i in Student.objects.all():
         if i.user_id == user_id and i.password == password:
@@ -134,9 +135,12 @@ def Conect(request):
         return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
+#def PhonesPage(request,user_id):
+    #students = Student.objects.filter(teacher.user_id = user_id) # get all the students of the teacher
+    #return render(request,'teacher/PhoneStu.html', {'students' : students})
 
 
-
+    
 
 
 
