@@ -139,18 +139,12 @@ def Conect(request):
         return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
-<<<<<<< HEAD
-def get_student_by_id(request,user_id):
-    try:
-        student=Student.objects.get(user_id=user_id)
-    except Student.DoesNotExist:
-        raise Http404('לא קיים סטודנט עם תעודת זהות {user_id}')
-    return render(request,'student/Home.html', {'student':student})     
-=======
+
+     
+
 #def PhonesPage(request,user_id):
     #students = Student.objects.filter(teacher.user_id = user_id) # get all the students of the teacher
     #return render(request,'teacher/PhoneStu.html', {'students' : students})
->>>>>>> 07e15cfb76ad5c69172f9d101000544673906c73
 
 
     
