@@ -19,6 +19,7 @@ urlpatterns = [
     
     path(r'manager/Home',views.Conect,name = 'Conect'),
     path('manager/Phones/<int:user_id>',views.Phones,name = 'Phones'),
+    path('manager/PhonesT/<int:user_id>',views.PhonesTeacher,name = 'PhonesT')
 
 
 

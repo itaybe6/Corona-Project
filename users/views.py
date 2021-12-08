@@ -17,7 +17,6 @@ def get_teacher_signup(request):
 def get_manager_signup(request):
     return render(request,'manager/signup.html') 
 
-     #manager = Manager.objects.get(user_id = user_id)
 
 def submit_Manager(request):
     user_id = request.POST['user_id']
@@ -33,7 +32,6 @@ def submit_Manager(request):
     manager.save()
     return render(request,'manager/signup_success.html') 
 
-#teacher = Teacher.objects.get(user_id = user_id)
 def submit_Teacher(request):
     user_id = request.POST['user_id']
     try:
@@ -139,20 +137,17 @@ def Conect(request):
         return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
-
-     
-
-def Phones(request,user_id):
+#Phones page for teacher
+def Phones(request,user_id): 
     teacher = Teacher.objects.get(user_id=user_id)
-    #user_id = request.POST['user_id']
-    #teacher = Teacher.objects.get(user_id = user_id)
-    #teacher= Teacher.objects.get('teacher')
-    student = Student.objects.filter(teacher__user_id = '126')
+    student = Student.objects.filter(teacher__user_id = user_id)
     return render(request,'teacher/Phones.html' ,{'teacher':teacher, 'student':student})
 
+#Phones page for manager
+def PhonesTeacher(request,user_id): 
+    manager = Manager.objects.get(user_id=user_id)
+    teacher = Teacher.objects.filter(manager__user_id = user_id)
+    return render(request,'manager/PhonesT.html', {'manager' : manager , 'teacher' : teacher})
 
-    
 
 
-
-#<form action="logo.php" method="post"> - :הורדתי מהדף של ההתחברות צריך להוסיף כדי לסדר את העיצובex
