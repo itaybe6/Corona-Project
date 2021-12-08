@@ -18,7 +18,8 @@ urlpatterns = [
     path(r'student/signup_success',views.submit_Student, name = 'submit_Student'),
     
     path(r'manager/Home',views.Conect,name = 'Conect'),
-    #path(r'teacher/PhonePage',views.PhonesPage , 'PhonesPage'),
+    path('manager/Phones/<int:user_id>',views.Phones,name = 'Phones'),
+    path('manager/PhonesT/<int:user_id>',views.PhonesTeacher,name = 'PhonesT')
 
 
 

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +13,7 @@
       }
 
       .topnav a {
-        float: right;
+        float: left;
         color: #f2f2f2;
         text-align: center;
         padding: 14px 16px;
@@ -31,26 +30,33 @@
         background-color: #aa049c;
         color: white;
       }
-      body {
-        background-image: url("logo.jpg");
-        height: 60% 60% 60% 60%;
-        width: 80% 80%;
-        object-fit: cover;
-      }
     </style>
   </head>
   <body>
     <div class="topnav">
       <a class="active" href="#">דף הבית</a>
-      <a href="#news"> כיתות אדומות</a>
-      <a href="#contact">סטטוס מורים </a>
-      <a class="btn" href="PhonesT/{{manager.user_id}}"
-        >דף קשר מנהלתי{{manager.my_class}}</a
-      >
-      <a href="#contact">שינוי סטטוס </a>
-      <a href="#about">בניית שאלון</a>
-      <a href="#contact">מסרים </a>
+      <a href="#news">עדכון שיעורי בית</a>
+      <a href="#contact">מסר אישי </a>
+      <a class="btn" href="Phones">דף קשר</a>
+      <li>
+        <a href="{%url 'users:Phones'}
+        <a href="#contact">שינוי סטטוס </a>
+        <a href="#about">נוכחות </a>
+        <a href="#about">כיתה אדומה</a>
+        <a href="#contact">מסרים הנהלה </a>
+        <a href="#about">תלמיד חדש </a>
+        <a href="#about">שאלון תלמיד </a>
+      </li>
     </div>
-    <img src="logo.jpg" />
   </body>
 </html>
+
+<h1>teacher with the id {{teacher.user_id}}</h1>
+<h1>teacher with the status {{teacher.status}}</h1>
+
+<div class="student">
+  {% for i in student %}
+
+  <h3>{{i.name}} {{i.phone_number}}</h3>
+</div>
+{% endfor %}

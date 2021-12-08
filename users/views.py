@@ -17,7 +17,6 @@ def get_teacher_signup(request):
 def get_manager_signup(request):
     return render(request,'manager/signup.html') 
 
-     #manager = Manager.objects.get(user_id = user_id)
 
 def submit_Manager(request):
     user_id = request.POST['user_id']
@@ -28,12 +27,14 @@ def submit_Manager(request):
     phone_number = request.POST['phone_number']
     school = request.POST['school']
     password = request.POST['password']
-    Manager.objects.get(user_id = user_id).delete() #delete the object that we created earlier
-    manager = Manager(name = name,password = password,user_id = user_id, phone_number = phone_number,school=school)
+    manager = Manager.objects.get(user_id = user_id) 
+    manager.name = name
+    manager.password = password
+    manager.phone_number = phone_number
+    manager.school=school
     manager.save()
     return render(request,'manager/signup_success.html') 
 
-#teacher = Teacher.objects.get(user_id = user_id)
 def submit_Teacher(request):
     user_id = request.POST['user_id']
     try:
@@ -45,8 +46,13 @@ def submit_Teacher(request):
     password = request.POST['password']
     my_class = request.POST['my_class']
     manager = Teacher.objects.get(user_id= user_id).manager
-    Teacher.objects.get(user_id = user_id).delete() #delete the object that we created earlier
-    teacher = Teacher(name = name,password = password,user_id = user_id, phone_number = phone_number,my_class=my_class, manager=manager)
+    teacher = Teacher.objects.get(user_id = user_id)
+    teacher.manager = manager
+    teacher.name = name
+    teacher.password = password
+    teacher.user_id = user_id
+    teacher.phone_number = phone_number
+    teacher.my_class = my_class
     teacher.save()
     return render(request,'teacher/signup_success.html') 
 
@@ -61,8 +67,13 @@ def submit_Student(request):
     password = request.POST['password']
     manager = Student.objects.get(user_id= user_id).manager
     teacher = Student.objects.get(user_id= user_id).teacher
-    Student.objects.get(user_id = user_id).delete() #delete the object that we created earlier
-    student = Student(name = name,password = password,user_id = user_id, phone_number = phone_number,teacher=teacher, manager=manager)
+    student = Student.objects.get(user_id = user_id)
+    student.name = name
+    student.password = password
+    student.user_id = user_id
+    student.phone_number = phone_number
+    student.teacher=teacher
+    student.manager=manager
     student.save()
     return render(request,'student/signup_success.html')     
 
@@ -139,16 +150,17 @@ def Conect(request):
         return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
+#Phones page for teacher
+def Phones(request,user_id): 
+    teacher = Teacher.objects.get(user_id=user_id)
+    student = Student.objects.filter(teacher__user_id = user_id)
+    return render(request,'teacher/Phones.html' ,{'teacher':teacher, 'student':student})
 
-     
-
-#def PhonesPage(request,user_id):
-    #students = Student.objects.filter(teacher.user_id = user_id) # get all the students of the teacher
-    #return render(request,'teacher/PhoneStu.html', {'students' : students})
-
-
-    
+#Phones page for manager
+def PhonesTeacher(request,user_id): 
+    manager = Manager.objects.get(user_id=user_id)
+    teacher = Teacher.objects.filter(manager__user_id = user_id)
+    return render(request,'manager/PhonesT.html', {'manager' : manager , 'teacher' : teacher})
 
 
 
-#<form action="logo.php" method="post"> - :הורדתי מהדף של ההתחברות צריך להוסיף כדי לסדר את העיצובex
