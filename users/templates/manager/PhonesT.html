@@ -13,7 +13,7 @@
       }
 
       .topnav a {
-        float: left;
+        float: right;
         color: #f2f2f2;
         text-align: center;
         padding: 14px 16px;
@@ -30,9 +30,14 @@
         background-color: #aa049c;
         color: white;
       }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
     </style>
   </head>
-  <body>
+  <body dir="rtl">
     <div class="topnav">
       <a class="active" href="#">דף הבית</a>
       <a href="#news">עדכון שיעורי בית</a>
@@ -48,15 +53,15 @@
         <a href="#about">שאלון תלמיד </a>
       </li>
     </div>
+    <h1>שלום המנהלת הדס{{manager.user_id}}</h1>
+    <h1>סטטוס מנהל מחובר{{manager.status}}</h1>
+    <table style="width: 40%">
+      <tr class="teacher">
+        {% for i in teacher %}
+        <th>שם ומספר פלאפון</th>
+        <td>{{i.name}}:{{i.phone_number}}</td>
+      </tr>
+    </table>
+    {% endfor %}
   </body>
 </html>
-
-<h1>manager with the id {{manager.user_id}}</h1>
-<h1>manager with the status {{manager.status}}</h1>
-
-<div class="teacher">
-  {% for i in teacher %}
-
-  <h3>{{i.name}} {{i.phone_number}}</h3>
-</div>
-{% endfor %}
