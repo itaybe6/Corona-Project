@@ -147,7 +147,7 @@ def Phones(request,user_id):
     #user_id = request.POST['user_id']
     #teacher = Teacher.objects.get(user_id = user_id)
     #teacher= Teacher.objects.get('teacher')
-    student = Student.objects.filter(teacher = teacher)
+    student = Student.objects.filter(teacher__user_id = '126')
     return render(request,'teacher/Phones.html' ,{'teacher':teacher, 'student':student})
 
 
