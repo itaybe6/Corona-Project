@@ -37,14 +37,16 @@
       <a class="active" href="#">דף הבית</a>
       <a href="#news">עדכון שיעורי בית</a>
       <a href="#contact">מסר אישי </a>
-      <a href="{% url 'users:Phones' %}">דף קשר</a>
-      <a href="#contact">שינוי סטטוס </a>
-      <a href="#about">נוכחות </a>
-      <a href="#about">כיתה אדומה</a>
-      <a href="#contact">מסרים הנהלה </a>
-      <a href="#about">תלמיד חדש </a>
-      <a href="#about">שאלון תלמיד </a>
+      <a class="btn" href="Phones/{{teacher.user_id}}">דף קשר בכיתה{{teacher.my_class}}</a>
+
+        <a href="#contact">שינוי סטטוס </a>
+        <a href="#about">נוכחות </a>
+        <a href="#about">כיתה אדומה</a>
+        <a href="#contact">מסרים הנהלה </a>
+        <a href="#about">תלמיד חדש </a>
+        <a href="#about">שאלון תלמיד </a>
+      </li>
     </div>
   </body>
 </html>
-<h1>Student with the id {{teacher.user_id}}</h1>
+<h1>teacher with the id {{teacher.user_id}}</h1>

@@ -142,9 +142,13 @@ def Conect(request):
 
      
 
-def Phones(request):
-    #teacher = Teacher.objects.get(user_id=user_id)
-    return render(request,'teacher/Phones.html' )#{'teacher' : teacher})
+def Phones(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    #user_id = request.POST['user_id']
+    #teacher = Teacher.objects.get(user_id = user_id)
+    #teacher= Teacher.objects.get('teacher')
+    student = Student.objects.filter(teacher = teacher)
+    return render(request,'teacher/Phones.html' ,{'teacher':teacher, 'student':student})
 
 
     
