@@ -34,10 +34,13 @@
   </head>
   <body dir="ltr">
     <div class="topnav">
-      <a class="active" href="#">דף הבית</a>
+      <a class="active" href="/users/Home">דף הבית</a>
       <a href="#news">עדכון שיעורי בית</a>
       <a href="#contact">מסר אישי </a>
-      <a class="btn" href="Phones">דף קשר</a>
+
+      <a class="btn" href="897{{teacher.user_id}}654"
+        >דף קשר {{teacher.my_class}}</a
+      >
       <li>
         <a href="{%url 'users:Phones'}
         <a href="#contact">שינוי סטטוס </a>
