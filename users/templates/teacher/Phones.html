@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      .topnav a {
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #aa049c;
+        color: white;
+      }
+    </style>
+  </head>
+  <body dir="ltr">
+    <div class="topnav">
+      <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+        >דף הבית</a
+      >
+      <a href="#news">עדכון שיעורי בית</a>
+      <a href="#contact">מסר אישי </a>
+
+      <a class="btn" href="/users/Phones/897{{teacher.user_id}}654"
+        >דף קשר {{teacher.my_class}}</a
+      >
+      <li>
+        <a href="#contact">שינוי סטטוס </a>
+        <a href="#about">נוכחות </a>
+        <a href="#about">כיתה אדומה</a>
+        <a href="#contact">מסרים הנהלה </a>
+        <a href="#about">תלמיד חדש </a>
+        <a href="#about">שאלון תלמיד </a>
+      </li>
+    </div>
+
+    <h1>teacher with the id {{teacher.user_id}}</h1>
+    <h1>teacher with the status {{teacher.status}}</h1>
+
+    <div class="student">
+      {% for i in student %}
+
+      <h3>{{i.name}}:{{i.phone_number}}</h3>
+    </div>
+    {% endfor %}
+  </body>
+</html>
