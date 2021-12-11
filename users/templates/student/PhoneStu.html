@@ -38,25 +38,28 @@
       }
     </style>
   </head>
-  <body dir="rtl">
+  <body>
     <div class="topnav">
-      <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+      <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654"
         >דף הבית</a
       >
-      <a href="#news">עדכון שיעורי בית</a>
-      <a href="#contact">מסר אישי </a>
-
-      <a class="btn" href="/users/Phones/897{{teacher.user_id}}654"
-        >דף קשר {{teacher.my_class}}</a
-      >
+      <a href="#news"> שיעורי הבית שלי</a>
+      <a href="/users/PhoneStu/897{{student.user_id}}654">דף קשר הכיתה שלי </a>
       <a href="#contact">שינוי סטטוס </a>
-      <a href="#about">נוכחות </a>
-      <a href="#about">כיתה אדומה</a>
-      <a href="#contact">מסרים הנהלה </a>
-      <a href="#about">תלמיד חדש </a>
+      <a href="#about">מדריך </a>
+      <a href="#contact">מסרים </a>
       <a href="#about">שאלון תלמיד </a>
     </div>
+
+    <h1>Hello {{student.name}} / {{student.user_id}}</h1>
+    <h1>Numbers Phones :</h1>
+
+    <div class="Students">
+      {% for i in Students %}
+      <h3>{{i.name}}:{{i.phone_number}}</h3>
+    </div>
+    {% endfor %}
+
     <img src="logo.jpg" />
   </body>
-  <h1>{{teacher.user_id}}שלום למורה ישראל עם מספר תעודה</h1>
 </html>
