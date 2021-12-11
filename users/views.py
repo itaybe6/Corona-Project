@@ -187,7 +187,28 @@ def ChanageStatusStudent(request,user_id):
     student = Student.objects.get(user_id = user_id)
     if(student.status == True):
         student.status = False
-    else : student.status = True
+        student.save()
+    elif(student.status == False):
+        student.status = True
+        student.save()
     return render(request,'student/Home.html',{'student' :student})
 
+def ChanageStatusTeacher(request,user_id):
+    teacher = Teacher.objects.get(user_id = user_id)
+    if(teacher.status == True):
+        teacher.status = False
+        teacher.save()
+    elif(teacher.status == False):
+        teacher.status = True
+        teacher.save()
+    return render(request,'teacher/Home.html',{'teacher' :teacher})
 
+def ChanageStatusManager(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    if(manager.status == True):
+        manager.status = False
+        manager.save()
+    elif(manager.status == False):
+        manager.status = True
+        manager.save()
+    return render(request,'manager/Home.html',{'manager' :manager})

@@ -30,9 +30,9 @@ urlpatterns = [
     path(r'HomePageStudent/897<int:user_id>654/',views.HomePageBetweenPathStudent, name = 'HomePageStudent'),
 
 
-    path(r'ChanageStatusStudent/897<int:user_id>654/',views.ChanageStatusStudent , name = 'ChanageStatusStudent'),
-
-
+    path('ChanageStatusStudent/897<int:user_id>654/',views.ChanageStatusStudent , name = 'ChanageStatusStudent'),
+    path('ChanageStatusTeacher/897<int:user_id>654/',views.ChanageStatusTeacher , name = 'ChanageStatusTeacher'),
+    path('ChanageStatusManager/897<int:user_id>654/',views.ChanageStatusManager , name = 'ChanageStatusManager'),
 
 
 ]

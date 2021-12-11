@@ -70,9 +70,13 @@
       אין לי או לבני משפחתי המתגוררים עמנו, תסמיני קורונה (חום, שיעול, קושי
       בנשימה או כל תסמין נשימתי אחר).
     </p>
-    
-    my status : {{student.status}} 
-    <a class="active" href="/users/ChanageStatusStudent/897{{student.user_id}}654"
+    {%if student.status == False%}
+    הסטטוס שלי אדום
+    {%endif%}
+        {%if student.status == True%}
+    הסטטוס שלי ירוק
+    {%endif%}
+    <a class="active" href="/users/ChanageStatusStudent/897{{student.user_id}}654/"
         >שנה את הסטטוס שלי</a
 
   </body>
