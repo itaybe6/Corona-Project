@@ -53,15 +53,5 @@
         <a href="#about">שאלון תלמיד </a>
       </li>
     </div>
-    <h1>שלום המנהלת הדס{{manager.user_id}}</h1>
-    <h1>סטטוס מנהל מחובר{{manager.status}}</h1>
-    <table style="width: 40%">
-      <tr class="teacher">
-        {% for i in teacher %}
-        <th>שם ומספר פלאפון</th>
-        <td>{{i.name}}:{{i.phone_number}}</td>
-      </tr>
-    </table>
-    {% endfor %}
   </body>
 </html>
