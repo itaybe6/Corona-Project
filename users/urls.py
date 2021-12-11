@@ -17,12 +17,20 @@ urlpatterns = [
     path(r'teacher/signup_success',views.submit_Teacher, name = 'submit_Teacher'),
     path(r'student/signup_success',views.submit_Student, name = 'submit_Student'),
     
-    path(r'manager/Home',views.Conect,name = 'Conect'),
-    #path(r'teacher/PhonePage',views.PhonesPage , 'PhonesPage'),
+
+    path(r'Home',views.Conect,name = 'Conect'),
+    path('Phones/897<int:user_id>654/',views.Phones),
+    path('PhonesT/897<int:user_id>654',views.PhonesTeacher,name = 'PhonesT'),
+    path('PhoneStu/897<int:user_id>654',views.PhonesStudent, name = 'PhoneStu'),
 
 
+    #Home page between paths on the site
+    path(r'HomePageTeacher/897<int:user_id>654/',views.HomePageBetweenPathTeacher,name = 'HomePageTeacher'),
+    path(r'HomePageManager/897<int:user_id>654/',views.HomePageBetweenPathManager,name = 'HomePageManager'),
+    path(r'HomePageStudent/897<int:user_id>654/',views.HomePageBetweenPathStudent, name = 'HomePageStudent'),
 
 
+    path(r'ChanageStatusStudent/897<int:user_id>654/',views.ChanageStatusStudent , name = 'ChanageStatusStudent'),
 
 
 
