@@ -30,15 +30,9 @@
         background-color: #aa049c;
         color: white;
       }
-      body {
-        background-image: url("logo.jpg");
-        height: 60% 60% 60% 60%;
-        width: 80% 80%;
-        object-fit: cover;
-      }
     </style>
   </head>
-  <body dir="rtl">
+  <body dir="ltr">
     <div class="topnav">
       <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
         >דף הבית</a
@@ -49,14 +43,24 @@
       <a class="btn" href="/users/Phones/897{{teacher.user_id}}654"
         >דף קשר {{teacher.my_class}}</a
       >
-      <a href="#contact">שינוי סטטוס </a>
-      <a href="#about">נוכחות </a>
-      <a href="#about">כיתה אדומה</a>
-      <a href="#contact">מסרים הנהלה </a>
-      <a href="#about">תלמיד חדש </a>
-      <a href="#about">שאלון תלמיד </a>
+      <li>
+        <a href="#contact">שינוי סטטוס </a>
+        <a href="#about">נוכחות </a>
+        <a href="#about">כיתה אדומה</a>
+        <a href="#contact">מסרים הנהלה </a>
+        <a href="#about">תלמיד חדש </a>
+        <a href="#about">שאלון תלמיד </a>
+      </li>
     </div>
-    <img src="logo.jpg" />
+
+    <h1>teacher with the id {{teacher.user_id}}</h1>
+    <h1>teacher with the status {{teacher.status}}</h1>
+
+    <div class="student">
+      {% for i in student %}
+
+      <h3>{{i.name}}:{{i.phone_number}}</h3>
+    </div>
+    {% endfor %}
   </body>
-  <h1>{{teacher.user_id}}שלום למורה ישראל עם מספר תעודה</h1>
 </html>
