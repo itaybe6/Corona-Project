@@ -218,10 +218,22 @@ def ChanageStatusManager(request,user_id):
 
 
 
-
-#for manager
+#graph of status student for manager
 def graphStudentStatus(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     teachers = Teacher.objects.filter(manager__user_id = user_id)
     students = Student.objects.filter(manager__user_id = user_id)
     return render(request,'manager/graphStudents.html',{'manager' :manager ,'students' : students ,'teachers' :teachers})
+
+
+#change all the status of students in class to red
+def changeMyClassToRed(request,user_id):
+    teacher = Teacher.objects.get(user_id = user_id)
+    students = Student.objects.filter(teacher__user_id = user_id)
+    for i in students:
+        i.status = False
+        i.save()
+    return render(request,'teacher/Home.html',{'teacher' :teacher})
+
+    
+
