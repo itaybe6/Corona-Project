@@ -35,4 +35,7 @@ urlpatterns = [
     path('ChanageStatusManager/897<int:user_id>654/',views.ChanageStatusManager , name = 'ChanageStatusManager'),
 
 
+    path('graphStudentStatus/897<int:user_id>654/',views.graphStudentStatus, name = 'graphStudentStatus'),
+
+
 ]

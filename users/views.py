@@ -134,7 +134,8 @@ def Conect(request):
 
     if Conect_Man(user_id,password):             # Chack all the users
        manager = Manager.objects.get(user_id = user_id)
-       return render(request,'manager/Home.html',{'manager':manager})
+       teachers = Teacher.objects.filter(manager__user_id = user_id)
+       return render(request,'manager/Home.html',{'manager':manager ,'teachers' :teachers})
        
     elif Conect_Stu(user_id,password):
         student = Student.objects.get(user_id = user_id)
@@ -176,7 +177,8 @@ def HomePageBetweenPathTeacher(request,user_id):
 
 def HomePageBetweenPathManager(request,user_id):
     manager = Manager.objects.get(user_id=user_id)
-    return render(request,'manager/Home.html',{'manager' :manager})
+    teachers = Teacher.objects.filter(manager__user_id = user_id)
+    return render(request,'manager/Home.html',{'manager' :manager ,'teachers' : teachers})
 
 def HomePageBetweenPathStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
@@ -212,3 +214,14 @@ def ChanageStatusManager(request,user_id):
         manager.status = True
         manager.save()
     return render(request,'manager/Home.html',{'manager' :manager})
+
+
+
+
+
+#for manager
+def graphStudentStatus(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    teachers = Teacher.objects.filter(manager__user_id = user_id)
+    students = Student.objects.filter(manager__user_id = user_id)
+    return render(request,'manager/graphStudents.html',{'manager' :manager ,'students' : students ,'teachers' :teachers})
