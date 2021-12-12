@@ -36,3 +36,7 @@ class Student(models.Model):
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
+
+
+class Message(models.Model):
+      author =
