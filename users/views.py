@@ -136,7 +136,8 @@ def Conect(request):
 
     if Conect_Man(user_id,password):             # Chack all the users
        manager = Manager.objects.get(user_id = user_id)
-       return render(request,'manager/Home.html',{'manager':manager})
+       teachers = Teacher.objects.filter(manager__user_id = user_id)
+       return render(request,'manager/Home.html',{'manager':manager ,'teachers' :teachers})
        
     elif Conect_Stu(user_id,password):
         student = Student.objects.get(user_id = user_id)
@@ -164,3 +165,63 @@ def PhonesTeacher(request,user_id):
 
 
 
+<<<<<<< HEAD
+=======
+
+
+# 3 functions for path on the site
+def HomePageBetweenPathTeacher(request,user_id):
+    teacher = Teacher.objects.get(user_id = user_id)
+    return render(request,'teacher/Home.html', {'teacher' : teacher})
+
+def HomePageBetweenPathManager(request,user_id):
+    manager = Manager.objects.get(user_id=user_id)
+    teachers = Teacher.objects.filter(manager__user_id = user_id)
+    return render(request,'manager/Home.html',{'manager' :manager ,'teachers' : teachers})
+
+def HomePageBetweenPathStudent(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    return render(request,'student/Home.html',{'student' :student})
+
+#שינוי סטטוס של תלמיד לפי הצהרת בריאות
+def ChanageStatusStudent(request,user_id):
+    student = Student.objects.get(user_id = user_id)
+    if(student.status == True):
+        student.status = False
+        student.save()
+    elif(student.status == False):
+        student.status = True
+        student.save()
+    return render(request,'student/Home.html',{'student' :student})
+
+def ChanageStatusTeacher(request,user_id):
+    teacher = Teacher.objects.get(user_id = user_id)
+    if(teacher.status == True):
+        teacher.status = False
+        teacher.save()
+    elif(teacher.status == False):
+        teacher.status = True
+        teacher.save()
+    return render(request,'teacher/Home.html',{'teacher' :teacher})
+
+def ChanageStatusManager(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    if(manager.status == True):
+        manager.status = False
+        manager.save()
+    elif(manager.status == False):
+        manager.status = True
+        manager.save()
+    return render(request,'manager/Home.html',{'manager' :manager})
+
+
+
+
+
+#for manager
+def graphStudentStatus(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    teachers = Teacher.objects.filter(manager__user_id = user_id)
+    students = Student.objects.filter(manager__user_id = user_id)
+    return render(request,'manager/graphStudents.html',{'manager' :manager ,'students' : students ,'teachers' :teachers})
+>>>>>>> 8ff905a541094895e208d8acafb3ba20d8b86d12

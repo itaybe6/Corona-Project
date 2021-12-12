@@ -28,4 +28,7 @@ urlpatterns = [
 
 
 
+    path('graphStudentStatus/897<int:user_id>654/',views.graphStudentStatus, name = 'graphStudentStatus'),
+
+
 ]
