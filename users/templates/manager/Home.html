@@ -41,14 +41,69 @@
   </head>
   <body>
     <div class="topnav">
+<<<<<<< HEAD
       <a class="active" href="#">דף הבית</a>
       <a href="#news"> כיתות אדומות</a>
       <a href="#contact">סטטוס מורים </a>
       <a class="btn" href="PhonesT/{{manager.user_id}}">דף קשר מנהלתי</a>
       <a href="#contact">שינוי סטטוס </a>
+=======
+      <a class="active" href="/users/HomePageManager/897{{manager.user_id}}654"
+        >דף הבית</a
+      >
+      <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654"
+        >דף קשר מנהלתי</a
+      >
+      <a href = "/users/graphStudentStatus/897{{manager.user_id}}654"> מדגם תלמידים אדומים </a>
+>>>>>>> 18e6f65f93eface58a7340394e1aa570ec93976d
       <a href="#about">בניית שאלון</a>
       <a href="#contact">מסרים </a>
     </div>
     <img src="logo.jpg" />
   </body>
+<<<<<<< HEAD
+=======
+    <h1>{{manager.user_id}}שלום למנהל {{manager.name}} עם מספר תעודה</h1>
+        <h2> שינוי סטטוס לפי הצהרת בריאות </h2>
+     <p>
+     אם אינך מרגיש טוב/היה לך חום ב24 שעות האחרונות/נכנסת לבידוד (ע"פ הנחיות משרד הבריאות) 
+     אנא החלף את הסטטוס שלך לאדום בכפתור הבא:
+      <p>
+
+     אם הינך בסטטוס אדום ורוצה להחזיר לסטטוס ירוק לחץ על כפתור זה
+    </p>
+    </p>
+    
+        {%if manager.status == False%}
+    הסטטוס שלי אדום
+    {%endif%}
+        {%if manager.status == True%}
+    הסטטוס שלי ירוק
+    {%endif%}
+    <a class="active" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
+        >שנה את הסטטוס שלי</a>
+
+
+    
+    <h1><br><br><br> סטטוס מורים </h1>
+        <tr class="teachers">
+        {% for teacher in teachers %}
+              
+           שם : {{teacher.name}}  
+           {% if teacher.status %}
+           סטטוס ירוק
+           {% else %} סטטוס אדום
+           {% endif %} 
+        <br>
+        {% endfor %}
+        </tr>
+
+
+
+      
+
+
+
+   
+>>>>>>> 18e6f65f93eface58a7340394e1aa570ec93976d
 </html>

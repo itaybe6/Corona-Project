@@ -49,12 +49,45 @@
       >
       <a href="#contact">שינוי סטטוס </a>
       <a href="#about">נוכחות </a>
-      <a href="#about">כיתה אדומה</a>
       <a href="#contact">מסרים הנהלה </a>
       <a href="#about">תלמיד חדש </a>
       <a href="#about">שאלון תלמיד </a>
     </div>
     <img src="logo.jpg" />
   </body>
+<<<<<<< HEAD
   <h1>{{teacher.user_id}}שלום למורה ישראל עם מספר תעודה</h1>
+=======
+  <h1>{{teacher.user_id}}שלום למורה {{teacher.name}} עם מספר תעודה</h1>
+        <h2> שינוי סטטוס לפי הצהרת בריאות </h2>
+     <p>
+     אם אינך מרגיש טוב/היה לך חום ב24 שעות האחרונות/נכנסת לבידוד (ע"פ הנחיות משרד הבריאות) 
+     אנא החלף את הסטטוס שלך לאדום בכפתור הבא:
+      <p>
+
+     אם הינך בסטטוס אדום ורוצה להחזיר לסטטוס ירוק לחץ על כפתור זה
+    </p>
+    </p>
+    
+        {%if teacher.status == False%}
+    הסטטוס שלי אדום
+    {%endif%}
+        {%if teacher.status == True%}
+    הסטטוס שלי ירוק
+    {%endif%}
+    <a class="active" href="/users/ChanageStatusTeacher/897{{teacher.user_id}}654/"
+        >שנה את הסטטוס שלי</a>
+
+
+
+      <br>  <br>  <br>  <br>  <br>
+      <a class="active" href="/users/changeMyClassToRed/897{{teacher.user_id}}654/"
+        >הפוך את הכיתה שלי לאדומה</a>
+
+
+
+
+    
+
+>>>>>>> 18e6f65f93eface58a7340394e1aa570ec93976d
 </html>
