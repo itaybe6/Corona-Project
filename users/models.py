@@ -43,3 +43,7 @@ class Student(models.Model):
 
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 18e6f65f93eface58a7340394e1aa570ec93976d
