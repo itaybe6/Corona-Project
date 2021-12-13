@@ -236,4 +236,19 @@ def changeMyClassToRed(request,user_id):
     return render(request,'teacher/Home.html',{'teacher' :teacher})
 
     
+def addTeacher(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    teacher_user_id = request.POST['user_id']
+    teacher=Teacher(user_id=teacher_user_id,manager=manager)
+    teacher.save()
+    return render(request,'teacher/Home.html',{'manager' :manager ,'teacher' :teacher})
+
+
+def addStudent(request,user_id):
+    teacher=Teacher.objects.get(user_id = user_id)
+    student_user_id = request.POST['user_id']
+    student=Student(user_id=student_user_id,teacher=teacher)
+    student.save()
+    return render(request,'teacher/Home.html',{'student' :student ,'teacher' :teacher})
+
 
