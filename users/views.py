@@ -204,13 +204,14 @@ def ChanageStatusTeacher(request,user_id):
 
 def ChanageStatusManager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
+    teachers = Teacher.objects.filter(manager__user_id = user_id)
     if(manager.status == True):
         manager.status = False
         manager.save()
     elif(manager.status == False):
         manager.status = True
         manager.save()
-    return render(request,'manager/Home.html',{'manager' :manager})
+    return render(request,'manager/Home.html',{'manager' :manager ,'teachers' :teachers})
 
 
 
