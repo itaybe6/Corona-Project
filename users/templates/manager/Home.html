@@ -7,7 +7,7 @@
       body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
-        background-color: rgb(216, 188, 137);
+       
       }
 
       .topnav {
@@ -117,6 +117,7 @@
           padding-left: 5%;
           padding-top: 5px;
           display: block;
+          color:rgb(79, 122, 119);
 
 
           box-shadow: 0 5px 7px #ccc;
@@ -137,6 +138,7 @@
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+  position: 8% 50%;
 }
 
 a#id1 {
@@ -187,16 +189,20 @@ a#id1:hover {
   
   </body>
   <center>
+   
     <p><h1> {{manager.name}}  :שלום למנהל/ת  </h1></p>
   </center>
 
   
         
    
-    <center>  
-      <a  id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
-      >שנה את הסטטוס שלי</a>
+      <center>
 
+        <a  id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
+        >שנה את הסטטוס שלי</a>
+  
+      <center>
+     
       
       {%if manager.status == False%}
       <p class =red>הסטטוס שלי
@@ -206,22 +212,22 @@ a#id1:hover {
   <p class =green> הסטטוס שלי
   {%endif%}
 
-    </center>
+   
    
     
     <h1><br><br><br> סטטוס מורים </h1>
         <tr class="teachers">
         {% for teacher in teachers %}
               
-           שם : {{teacher.name}}  
+          
            {% if teacher.status %}
-           סטטוס ירוק
-           {% else %} סטטוס אדום
+           שם : {{teacher.name}}  
+           {% else %}  שם : {{teacher.name}}  
            {% endif %} 
         <br>
         {% endfor %}
         </tr>
-
+      </center>
 
 
       
