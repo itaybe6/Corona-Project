@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title> שם משתמש או סיסמא שגויים </title> 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         img{
@@ -134,8 +135,6 @@
     </center>
 
     
-
-    
       <div class="imgcontainer">
 
       </div>
@@ -143,20 +142,22 @@
 
         {% csrf_token %}
 
-        <label for="id"><b>שם משתמש </b> </label>
-
+        <label for="id"><b> שם משתמש </b> </label>
         <input type="id" placeholder="הכנס תעודת זהות" name="user_id" required />
 
-        <label for="password"><b>סיסמה</b></label>
+        <label for="password"><b> סיסמה </b></label>
         <input type="password" placeholder="הכנס סיסמה" name="password" required />
 
         <button type="Conect">התחבר</button>
         <label>
           <input type="checkbox" checked="checked" name="remember" /> זכור אותי
         </label>
+        <label>
+          <h2><b> !שם משתמש או סיסמא שגויים </b> </h2>
+        </label>
       
 
-      <a href="users/chooseprofile" id="id2" target="_self">הירשם</a>
+      <a href="chooseprofile" id="id2" target="_self">הירשם</a>
       </form>
     
   </body>
