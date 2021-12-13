@@ -27,7 +27,6 @@ def submit_Manager(request):
     phone_number = request.POST['phone_number']
     school = request.POST['school']
     password = request.POST['password']
-    #לשרשום תנאי שאם יש למנהל שאנחנו מנסים לרשום סיסמא אז המנהל רשום ולשלוח לדף של משתמש כבר קיים
     manager = Manager.objects.get(user_id = user_id) 
     manager.name = name
     manager.password = password
@@ -90,6 +89,8 @@ def CheckIfManagerExist(user_id):
 
     return False
             
+    
+
 
 def CheckIfTeacherExist(user_id):
     
@@ -105,6 +106,7 @@ def CheckIfStudentExist(user_id):
         if i.user_id == user_id :
             return True
     return False
+
 
 
 def Conect_Man(user_id,password):  #Checks the username and password of an managerr
@@ -146,7 +148,7 @@ def Conect(request):
         return render(request,'teacher/Home.html',{'teacher':teacher})
         
     else:
-        return render(request,'ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
+        return render(request,'Home/ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
     
     
 #Phones page for teacher
@@ -161,11 +163,6 @@ def PhonesTeacher(request,user_id):
     teacher = Teacher.objects.filter(manager__user_id = user_id)
     return render(request,'manager/PhonesT.html', {'manager' : manager , 'teacher' : teacher})
 
-#Phones page for Student
-def PhonesStudent(request,user_id):
-    student = Student.objects.get(user_id = user_id)
-    Students = Student.objects.filter(teacher__user_id = student.teacher.user_id) #list of Student with same teacher
-    return render(request,'student/PhoneStu.html', {'Students' : Students , 'student' : student }) # send to func list of studnet and the student 
 
 
 
