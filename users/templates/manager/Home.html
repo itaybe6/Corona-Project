@@ -117,6 +117,7 @@
           padding-left: 5%;
           padding-top: 5px;
           display: block;
+          color:rgb(79, 122, 119);
 
 
           box-shadow: 0 5px 7px #ccc;
@@ -137,6 +138,7 @@
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+  position: 8% 50%;
 }
 
 a#id1 {
@@ -194,10 +196,13 @@ a#id1:hover {
   
         
    
-    <center>  
-      <a  id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
-      >שנה את הסטטוס שלי</a>
+      <center>
 
+        <a  id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
+        >שנה את הסטטוס שלי</a>
+  
+      <center>
+     
       
       {%if manager.status == False%}
       <p class =red>הסטטוס שלי
@@ -214,10 +219,10 @@ a#id1:hover {
         <tr class="teachers">
         {% for teacher in teachers %}
               
-           שם : {{teacher.name}}  
+          
            {% if teacher.status %}
-           סטטוס ירוק
-           {% else %} סטטוס אדום
+           שם : {{teacher.name}}  
+           {% else %}  שם : {{teacher.name}}  
            {% endif %} 
         <br>
         {% endfor %}
