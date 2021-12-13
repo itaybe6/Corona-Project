@@ -68,67 +68,11 @@
   <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-  .switch {
     
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: GREEN;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: RED;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-  
+
+
+
+
   a{
           padding-top:0.1rem;
           padding-bottom:0.1rem;
@@ -154,33 +98,115 @@
           border-radius: 5px 5px 5px 5px;
           box-shadow:  5px 5px 5px 5px #ccc;
       }
+
+     p{
+          padding-top:0.1rem;
+          padding-bottom:0.1rem;
+          border: 2px solid;
+          border-color: #333333;
+          width: 15%;
+          font-size: 25px;
+          color: #333333;
+
+          text-align: center;
+          margin: 35px;
+          width: 10%;
+          text-decoration: none;
+          padding-right: 5%;
+          padding-left: 5%;
+          padding-top: 5px;
+          display: block;
+
+
+          box-shadow: 0 5px 7px #ccc;
+          text-align:center;
+          letter-spacing: 0.2rem;
+          border-radius: 5px 5px 5px 5px;
+          box-shadow:  5px 5px 5px 5px #ccc;
+      }
+
+      a#id1 {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+a#id1 {
+  background-color: rgb(182, 180, 162); 
+  color: black; 
+  border: 2px rgb(79, 122, 119);
+}
+a#id1:hover {
+  background-color: rgb(79, 122, 119);
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+.green{
+  text-align: center;
+  background-size: 20PX 20PX;
+  border-style: none;
+  font-size: 15px;
+  font-style: oblique;
+
+  background-color: rgb(160, 216, 160);
+}
+.red{
+  text-align: center;
+  background-size: 20PX 20PX;
+  border-style: none;
+  font-size: 15px;
+  font-style: oblique;
+  font:small-caps;
+  background-color: rgb(180, 61, 61);
+}
+
+
+
   </style>
   </head>
   <body>
   
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
-  
   
   </body>
-  </html> 
+  <center>
+    <p><h1> {{manager.name}}  :שלום למנהל/ת  </h1></p>
+  </center>
+
   
-  </body>
-   <p><h1>{{manager.user_id}}שלום למנהל {{manager.name}} עם מספר תעודה</h1></p> 
         
-    
-        {%if manager.status == False%}
-    הסטטוס שלי אדום
-    {%endif%}
-        {%if manager.status == True%}
-    הסטטוס שלי ירוק
-    {%endif%}
-    <a class="active" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
-        >שנה את הסטטוס שלי</a>
+   
+    <center>  
+      <a  id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
+      >שנה את הסטטוס שלי</a>
 
+      
+      {%if manager.status == False%}
+      <p class =red>הסטטוס שלי
+  </p>
+  {%endif%}
+      {%if manager.status == True%}
+  <p class =green> הסטטוס שלי
+  {%endif%}
 
+    </center>
+   
     
     <h1><br><br><br> סטטוס מורים </h1>
         <tr class="teachers">
