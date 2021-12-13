@@ -2,6 +2,66 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
+       body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      .topnav a {
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      a{
+          padding-top:0.1rem;
+          padding-bottom:0.1rem;
+          border: 2px solid;
+          border-color: #333333;
+          width: 15%;
+          font-size: 25px;
+          color: #333333;
+
+          text-align: center;
+          margin: 35px;
+          width: 10%;
+          text-decoration: none;
+          padding-right: 5%;
+          padding-left: 5%;
+          padding-top: 5px;
+          display: block;
+         
+
+
+          box-shadow: 0 5px 7px #ccc;
+          text-align:center;
+          letter-spacing: 0.2rem;
+          border-radius: 5px 5px 5px 5px;
+          box-shadow:  5px 5px 5px 5px #ccc;
+      }
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: rgb(32, 136, 127);
+        color: white;
+      }
+      body {
+        background-image: url("logo.jpg");
+        height: 60% 60% 60% 60%;
+        width: 80% 80%;
+        object-fit: cover;
+
+      }
       body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
@@ -27,7 +87,7 @@
       }
 
       .topnav a.active {
-        background-color: #aa049c;
+        background-color:rgb(32, 136, 127);
         color: white;
       }
       table,
@@ -37,26 +97,16 @@
       }
     </style>
   </head>
+
   <body dir="rtl">
+
+    
     <div class="topnav">
-      <a class="active" href="#">דף הבית</a>
-      <a href="#news">עדכון שיעורי בית</a>
-      <a href="#contact">מסר אישי </a>
-      <a class="btn" href="PhonesT">דף קשר</a>
+      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654"
+        >דף הבית</a
+      >
       <li>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        <a href="{%url 'users:PhonesT'}
-        <a href="#contact">שינוי סטטוס </a>
-        <a href="#about">נוכחות </a>
-        <a href="#about">כיתה אדומה</a>
-        <a href="#contact">מסרים הנהלה </a>
-        <a href="#about">תלמיד חדש </a>
-        <a href="#about">שאלון תלמיד </a>
-=======
->>>>>>> 814aa7dca9e1b42403cbeb63cd8c7326c1958712
-        <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654"
+        <a class="active" href="/users/PhonesT/897{{manager.user_id}}654"
           >דף קשר מנהלתי</a
         >
 
@@ -65,11 +115,17 @@
         </a>
         <a href="#about">בניית שאלון</a>
         <a href="#contact">מסרים </a>
-<<<<<<< HEAD
-=======
->>>>>>> 18e6f65f93eface58a7340394e1aa570ec93976d
->>>>>>> 814aa7dca9e1b42403cbeb63cd8c7326c1958712
       </li>
     </div>
+    <h1>שלום המנהלת {{manager.name}}</h1>
+    <h1>סטטוס מנהל מחובר{{manager.status}}</h1>
+    <table style="width: 40%">
+      <tr class="teacher">
+        {% for i in teacher %}
+        <th>שם ומספר פלאפון</th>
+        <td>{{i.name}}:{{i.phone_number}}</td>
+      </tr>
+    </table>
+    {% endfor %}
   </body>
 </html>
