@@ -252,13 +252,13 @@ def addStudent(request,user_id):
 
 
 
-
+#send massege to teacher from studnet
 def massegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForT.html',{'manager' : manager})
 
 
-
+#send massege to teacher from studnet
 def submitMassegeForTeacher(request):
     user_id = request.POST['user_id']
     manager = Manager.objects.get(user_id = user_id)
@@ -277,3 +277,9 @@ def submitMassegeForTeacher(request):
 
 
     
+
+#massege in teacher
+def massegeFromManagerInTeacher(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    masseges = teacher.masseges.all()
+    return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 

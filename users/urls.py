@@ -44,5 +44,7 @@ urlpatterns = [
     path('submitMassegeForTeacher',views.submitMassegeForTeacher,name = 'submitMassegeForTeacher'),
     
 
+    path('massegesFromManagerInTeacher/897<int:user_id>654/',views.massegeFromManagerInTeacher, name='massegeFromManagerInTeacher'),
+
 
 ]
