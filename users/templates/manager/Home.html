@@ -106,7 +106,7 @@
           border: 2px solid;
           border-color: #333333;
           width: 15%;
-          font-size: 25px;
+          
           color: #333333;
 
           text-align: center;
@@ -125,6 +125,7 @@
           letter-spacing: 0.2rem;
           border-radius: 5px 5px 5px 5px;
           box-shadow:  5px 5px 5px 5px #ccc;
+          margin: 2 px;
       }
 
       a#id1 {
@@ -139,6 +140,7 @@
   transition-duration: 0.4s;
   cursor: pointer;
   position: 8% 50%;
+ 
 }
 
 a#id1 {
@@ -180,7 +182,19 @@ a#id1:hover {
   background-color: rgb(180, 61, 61);
 }
 
+.ha{
+ height: 80px;
+ width: 80%;
+color: black;
+background-color: rgb(185, 224, 224);
+font-style:italic;
+border-radius: none;
 
+}
+
+tr{
+  border-radius: 10px;
+}
 
   </style>
   </head>
@@ -200,7 +214,15 @@ a#id1:hover {
 
         <a  id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/"
         >שנה את הסטטוס שלי</a>
-  
+        <p class=ha >
+          
+          אני מצהיר כדלהלן - עם שינוי הסטטוס שלי לירוק אני מתחייב כי אני 
+                                                   איינני חולה קורונה מאובחן, לא דווח לי כי עליי לשהות בבידוד וככל הידוע לי לא שהייתי בקרבת חולה מאומת. 
+                                                   .כמו כן איני סובל מסימפטומים כגון - חום גבוהה ,שיעול או קשיי נשימה. 
+        
+
+        </p>
+    
       <center>
      
       
@@ -214,15 +236,17 @@ a#id1:hover {
 
    
    
-    
-    <h1><br><br><br> סטטוס מורים </h1>
+  
+    <h1><br><br><br> סטטוס המורים שלי  </h1>
         <tr class="teachers">
         {% for teacher in teachers %}
               
           
            {% if teacher.status %}
-           שם : {{teacher.name}}  
-           {% else %}  שם : {{teacher.name}}  
+            שם המורה הנעדר: {{teacher.name}} 
+           --------------------                          
+          הכיתה בה יש לשבץ מורה מחליף: {{teacher.my_class}}
+           {% else %}  מורים הנמצאים : {{teacher.name}}  
            {% endif %} 
         <br>
         {% endfor %}
