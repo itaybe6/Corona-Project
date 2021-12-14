@@ -40,5 +40,9 @@ urlpatterns = [
     #change all the status of students in class to red
     path('changeMyClassToRed/897<int:user_id>654/',views.changeMyClassToRed,name = 'changeMyClassToRed'),
 
+    path('massegeForTeacher/897<int:user_id>654/',views.massegeForTeacher, name ='massegeForTeacher'),
+    path('submitMassegeForTeacher',views.submitMassegeForTeacher,name = 'submitMassegeForTeacher'),
+    
+
 
 ]

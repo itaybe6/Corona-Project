@@ -2,8 +2,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.fields import NullBooleanField
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student
+from users.models import Manager,Teacher,Student,MassegeT
 from homepage import views
+from datetime import datetime
 
 
 # Create your views here.
@@ -168,8 +169,6 @@ def PhonesStudent(request,user_id):
     return render(request,'student/PhoneStu.html', {'Students' : Students , 'student' : student }) # send to func list of studnet and the student 
 
 
-
-
 # 3 functions for path on the site
 def HomePageBetweenPathTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id = user_id)
@@ -241,15 +240,40 @@ def addTeacher(request,user_id):
     teacher_user_id = request.POST['user_id']
     teacher=Teacher(user_id=teacher_user_id,manager=manager)
     teacher.save()
-    return render(request,'teacher/Home.html',{'manager' :manager ,'teacher' :teacher})
+    return render(request,'manager/Home.html',{'manager' :manager ,'teacher' :teacher})
 
 
 def addStudent(request,user_id):
     teacher=Teacher.objects.get(user_id = user_id)
     student_user_id = request.POST['user_id']
-    student=Student(user_id=student_user_id,teacher=teacher)
+    student=Student(user_id=student_user_id,teacher=teacher) #להוסיף גם את המנהל ליצירה של הסטודנט
     student.save()
     return render(request,'teacher/Home.html',{'student' :student ,'teacher' :teacher})
 
 
 
+
+def massegeForTeacher(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    return render(request,'manager/massegeForT.html',{'manager' : manager})
+
+
+
+def submitMassegeForTeacher(request):
+    user_id = request.POST['user_id']
+    manager = Manager.objects.get(user_id = user_id)
+    author = manager
+    content = request.POST['content']
+    subject = request.POST['subject']
+    date_create = datetime.now()
+    massege = MassegeT(author = author,content = content,subject = subject,date_create = date_create)
+    massege.save()
+
+    for teacher in Teacher.objects.all():
+        teacher.masseges.add(massege)
+        teacher.save()
+
+    return render(request,'manager/Home.html',{'manager' :manager }) #להוסיף הודעה נשלחה בהצלחה
+
+
+    
