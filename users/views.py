@@ -2,8 +2,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.fields import NullBooleanField
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student
+from users.models import Manager,Teacher,Student,MassegeT
 from homepage import views
+from datetime import datetime
 
 
 # Create your views here.
@@ -168,8 +169,6 @@ def PhonesStudent(request,user_id):
     return render(request,'student/PhoneStu.html', {'Students' : Students , 'student' : student }) # send to func list of studnet and the student 
 
 
-
-
 # 3 functions for path on the site
 def HomePageBetweenPathTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id = user_id)
@@ -193,7 +192,7 @@ def ChanageStatusStudent(request,user_id):
     elif(student.status == False):
         student.status = True
         student.save()
-    return render(request,'student/Home.html',{'student' :student})
+    return render(request,'student/changeDoneS.html',{'student' :student})
 
 def ChanageStatusTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id = user_id)
@@ -203,7 +202,7 @@ def ChanageStatusTeacher(request,user_id):
     elif(teacher.status == False):
         teacher.status = True
         teacher.save()
-    return render(request,'teacher/Home.html',{'teacher' :teacher})
+    return render(request,'teacher/changeDoneT.html',{'teacher' :teacher})
 
 def ChanageStatusManager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
@@ -213,7 +212,7 @@ def ChanageStatusManager(request,user_id):
     elif(manager.status == False):
         manager.status = True
         manager.save()
-    return render(request,'manager/Home.html',{'manager' :manager})
+    return render(request,'manager/changeDoneM.html',{'manager' :manager})
 
 
 
@@ -241,14 +240,46 @@ def addTeacher(request,user_id):
     teacher_user_id = request.POST['user_id']
     teacher=Teacher(user_id=teacher_user_id,manager=manager)
     teacher.save()
-    return render(request,'teacher/Home.html',{'manager' :manager ,'teacher' :teacher})
+    return render(request,'manager/Home.html',{'manager' :manager ,'teacher' :teacher})
 
 
 def addStudent(request,user_id):
     teacher=Teacher.objects.get(user_id = user_id)
     student_user_id = request.POST['user_id']
-    student=Student(user_id=student_user_id,teacher=teacher)
+    student=Student(user_id=student_user_id,teacher=teacher) #להוסיף גם את המנהל ליצירה של הסטודנט
     student.save()
     return render(request,'teacher/Home.html',{'student' :student ,'teacher' :teacher})
 
 
+
+#send massege to teacher from studnet
+def massegeForTeacher(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    return render(request,'manager/massegeForT.html',{'manager' : manager})
+
+
+#send massege to teacher from studnet
+def submitMassegeForTeacher(request):
+    user_id = request.POST['user_id']
+    manager = Manager.objects.get(user_id = user_id)
+    author = manager
+    content = request.POST['content']
+    subject = request.POST['subject']
+    date_create = datetime.now()
+    massege = MassegeT(author = author,content = content,subject = subject,date_create = date_create)
+    massege.save()
+
+    for teacher in Teacher.objects.all():
+        teacher.masseges.add(massege)
+        teacher.save()
+
+    return render(request,'manager/Home.html',{'manager' :manager }) #להוסיף הודעה נשלחה בהצלחה
+
+
+    
+
+#massege in teacher
+def massegeFromManagerInTeacher(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    masseges = teacher.masseges.all()
+    return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
