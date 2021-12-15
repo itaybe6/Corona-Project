@@ -123,58 +123,129 @@
       color: white;
   }
   
+  a#id3 {
+      border: none;
+      color: rgb(201, 202, 198);
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 5px 614px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      margin-top: -24px;
+      margin-left: 8%;
+
+
+      float: right;
+  
+  }
+  
+   
+  a#id2 {
+      background-color: rgb(182, 180, 162); 
+      color: black; 
+      border: 1px rgb(79, 122, 119);
+  }
+  a#id2:hover {
+      background-color: rgb(79, 122, 119);
+      color: white;
+  }
+  a#id3 {
+      background-color: rgb(182, 180, 162); 
+      color: black; 
+      border: 2px rgb(79, 122, 119);
+  }
+  a#id3:hover {
+      background-color: rgb(79, 122, 119);
+      color: white;
+  }
+
+
+  a#id2 {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+       font-size: 13px;
+       margin-top: 4%;
+       margin-left: 2px;
+     
+      float: right;
   
   
   
-  
-  
-  
-  
+  }
   
   
   
   .green{
       text-align: center;
-      height: 50px;
-      width: 60px;
+      height: 80px;
+      width: 20px;
       border-style: none;
       font-size: 15px;
       font:small-caps;
-      margin-left: 80%;
-      margin-top: 15%;
+      margin-left: 85%;
+      margin-top: 10%;
       font-style: oblique;
      background-color: rgb(75, 146, 75);
   }
   .red{
       text-align: center;
-      height: 50px;
-      width: 60px;
+      height: 80px;
+      width: 20px;
       border-style: none;
       font-size: 15px;
       font-style: oblique;
       font:small-caps;
-      margin-left: 80%;
-      margin-top: 15%;
+      margin-left: 85%;
+      margin-top: 10%;
       background-color: rgb(124, 22, 22);
   }
   
   .ha{
-  height: 220px;
-  width: 170px;
+  height: 208px;
+  width: 165px;
   color: black;
   background-color: rgb(177, 172, 146);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   border-radius: none;
   float: right;
-  margin-right: 4%;
+  margin-right: 1.5%;
 
 
   
   }
   
-  tr{
-      border-radius: 10px;
+  .table{
+   background-color: azure;
+   height: 150px;
+    width: 200px;
+    margin-inline-start: 11%;
+    margin-block-start: -19.79%;
+   text-align: center;
+
+   
+
+      
   }
+
+  .teac{
+    background-color: rgb(143, 68, 68);
+    border-radius: 1px;
+    text-align: center;
+
+
+  }
+
     </style>
         </head>
 
@@ -216,44 +287,59 @@
           
                                                     אני מצהיר כדלהלן - עם שינוי הסטטוס שלי לירוק אני מתחייב כי אני 
                                                    איינני חולה קורונה מאובחן, לא דווח לי כי עליי לשהות בבידוד וככל הידוע לי לא שהייתי בקרבת חולה מאומת. 
-                                                   .כמו כן איני סובל מסימפטומים כגון - חום גבוהה ,שיעול או קשיי נשימה. 
+                                                   .כמו כן איני סובל מסימפטומים כגון - חום גבוה ,שיעול או קשיי נשימה 
                                                   </center>
 
         </div>
     
+
+ {%if manager.status == False%}
+ <p class =red> </p>
+{%endif%}
+ {%if manager.status == True%}
+<p class =green> </p>
+{%endif%}
+
+
      
-     
+        <div class ="table">
+  
+         <div class= "teac"> 
+        המורים בסטטוס אדום
+
+         </div>
+         
+         
+        
+      
       
      
  
 
- {%if manager.status == False%}
-      <p class =red>הסטטוס שלי
-  </p>
-  {%endif%}
-      {%if manager.status == True%}
-  <p class =green> הסטטוס שלי
-  {%endif%}
+ 
 
    
    
-  
-    <h1><br><br><br> סטטוס המורים שלי  </h1>
-        <tr class="teachers">
+
+        <tr >
+          
         {% for teacher in teachers %}
               
           
            {% if teacher.status %}
-            שם המורה הנעדר: {{teacher.name}} 
-           --------------------                          
-          הכיתה בה יש לשבץ מורה מחליף: {{teacher.my_class}}
+            <th> {{teacher.name}} </th>  
+            <th> סטטוס אדום </th>      
+            <th>  {{teacher.my_class}}</th>     
+         
            {% else %}  מורים הנמצאים : {{teacher.name}}  
            {% endif %} 
         <br>
         {% endfor %}
         </tr>
-     
+      </div>
 
+
+<a href="/" id="id3" target="_self">מורה חדש</a> 
 <a href="/" id="id2" target="_self">התנתקות</a> 
 
       
