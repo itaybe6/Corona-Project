@@ -234,23 +234,36 @@ def changeMyClassToRed(request,user_id):
         i.save()
     return render(request,'teacher/Home.html',{'teacher' :teacher})
 
-    
+
+#manager add teachers
 def addTeacher(request,user_id):
-    manager = Manager.objects.get(user_id = user_id)
-    teacher_user_id = request.POST['user_id']
-    teacher=Teacher(user_id=teacher_user_id,manager=manager)
-    teacher.save()
-    return render(request,'manager/Home.html',{'manager' :manager ,'teacher' :teacher})
+    manager=Manager.objects.get(user_id = user_id)
+    return render(request,'manager/addTeacher.html',{'manager' : manager})
+
+def submitAddTeacher(request,user_id):
+    teacher_user_id = request.POST['teach_user_id']
+    manager=Manager.objects.get(user_id = user_id)
+    new_teacher=Teacher(user_id=teacher_user_id,manager=manager)
+    new_teacher.save()
+    teachers=Teacher.objects.all() #for the print in the html file
+    return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})
 
 
 
-
+#manager add new student
 def addStudent(request,user_id):
     teacher=Teacher.objects.get(user_id = user_id)
-    student_user_id = request.POST['user_id']
-    student=Student(user_id=student_user_id,teacher=teacher) #להוסיף גם את המנהל ליצירה של הסטודנט
+    return render(request,'teacher/addStudent.html',{'teacher' : teacher})
+
+
+def submitAddStudent(request,user_id):
+    student_user_id = request.POST['stu_user_id']
+    teacher=Teacher.objects.get(user_id = user_id)
+    manager=Manager.objects.get(teacher=teacher)
+    student=Student(user_id=student_user_id,teacher=teacher,manager=manager)
     student.save()
-    return render(request,'teacher/Home.html',{'student' :student ,'teacher' :teacher})
+    students=Student.objects.all()
+    return render(request,'teacher/add_success.html',{'students' :students, 'teacher':teacher})
 
 
 
