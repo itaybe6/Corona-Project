@@ -266,9 +266,12 @@
       <a href="#about">בניית שאלון</a>
 
       
-      <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654"
-      >התנתקות</a
+      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654"
+      >מסרים למורים</a
     >
+    
+
+
     >
       
     </div>
@@ -318,12 +321,12 @@
          
          
         
+
         <tr >
           
         {% for teacher in teachers %}
-              
-          
-           {% if teacher.status %}
+            
+           {% if teacher.status%}
             <th> {{teacher.name}} </th>  
             <th> סטטוס אדום </th>      
             <th>  {{teacher.my_class}}</th>     
@@ -336,7 +339,8 @@
       </div>
 
 
-<a id="id3" href="/"  target="_self">מורה חדש</a> 
+<a id="id3" href="/users/addTeacher/{{manager.user_id}}"  target="_self">מורה חדש</a> 
+<a id="id3" href="/"  target="_self">התנתקות</a> 
 
 
       
