@@ -49,7 +49,7 @@
           >דף הבית</a
         >
         <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654"
-          >דף קשר מנהלתי</a
+          >דף קשר צוות</a
         >
         <a href="/users/graphStudentStatus/897{{manager.user_id}}654">
           מדגם תלמידים אדומים
@@ -162,34 +162,39 @@
         </style>
       </head>
     </html>
+
     <form action="{% url 'users:submitMassegeForTeacher' %}" method="post">
       {% csrf_token %}
-      <label><b>תוכן</b></label>
 
+      <h2>הכנס/י בבקשה תעודת זהות</h2>
+      <br />
       <input
         type="text"
         name="user_id"
         id="user_id"
-        placeholder="הכנס תז "
+        placeholder=" תז "
         required
       />
-
-      <input
-        type="text"
-        name="content"
-        id="content"
-        placeholder="הכנס את תוכן ההודעה"
-        required
-      />
-
-      <label><b>נושא</b> </label>
+      <h2>הכנס/י בבקשה את נושא ההודעה</h2>
+      <br />
       <input
         type="text"
         name="subject"
         id="subject"
-        placeholder="הכנס את נושא ההודעה"
+        placeholder="נושא"
         required
       />
+      <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
+      <br />
+      <input
+        type="text"
+        name="content"
+        id="content"
+        placeholder="תוכן"
+        required
+      />
+
+      <br />
 
       <button type="submitMassegeForTeacher">שלח</button>
     </form>

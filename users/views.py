@@ -202,7 +202,7 @@ def ChanageStatusTeacher(request,user_id):
     elif(teacher.status == False):
         teacher.status = True
         teacher.save()
-    return render(request,'teacher/changeDoneT.html',{'teacher' :teacher})
+    return render(request,'teacher/DoneT.html',{'teacher' :teacher})
 
 def ChanageStatusManager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
@@ -212,7 +212,7 @@ def ChanageStatusManager(request,user_id):
     elif(manager.status == False):
         manager.status = True
         manager.save()
-    return render(request,'manager/changeDoneM.html',{'manager' :manager})
+    return render(request,'manager/DoneM.html',{'manager' :manager})
 
 
 
@@ -241,6 +241,8 @@ def addTeacher(request,user_id):
     teacher=Teacher(user_id=teacher_user_id,manager=manager)
     teacher.save()
     return render(request,'manager/Home.html',{'manager' :manager ,'teacher' :teacher})
+
+
 
 
 def addStudent(request,user_id):
@@ -273,7 +275,7 @@ def submitMassegeForTeacher(request):
         teacher.masseges.add(massege)
         teacher.save()
 
-    return render(request,'manager/Home.html',{'manager' :manager }) #להוסיף הודעה נשלחה בהצלחה
+    return render(request,'manager/DoneM.html',{'manager' :manager }) #להוסיף הודעה נשלחה בהצלחה
 
 
     
