@@ -274,8 +274,7 @@ def massegeForTeacher(request,user_id):
 
 
 #send massege to teacher from studnet
-def submitMassegeForTeacher(request):
-    user_id = request.POST['user_id']
+def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
     content = request.POST['content']
@@ -291,7 +290,6 @@ def submitMassegeForTeacher(request):
     return render(request,'manager/DoneM.html',{'manager' :manager }) #להוסיף הודעה נשלחה בהצלחה
 
 
-    
 
 #massege in teacher
 def massegeFromManagerInTeacher(request,user_id):

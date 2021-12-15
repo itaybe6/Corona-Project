@@ -163,18 +163,12 @@
       </head>
     </html>
 
-    <form action="{% url 'users:submitMassegeForTeacher' %}" method="post">
+    <form
+      action="{% url 'users:submitMassegeForTeacher' manager.user_id %}"
+      method="post"
+    >
       {% csrf_token %}
 
-      <h2>הכנס/י בבקשה תעודת זהות</h2>
-      <br />
-      <input
-        type="text"
-        name="user_id"
-        id="user_id"
-        placeholder=" תז "
-        required
-      />
       <h2>הכנס/י בבקשה את נושא ההודעה</h2>
       <br />
       <input
