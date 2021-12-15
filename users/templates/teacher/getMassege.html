@@ -79,6 +79,12 @@
       <a href="#about">שאלון תלמיד </a>
     </div>
 
-    {% for mas in masseges %} {{mas.subject}} {{mas.content}} {% endfor %}
+    <h1>הודעות</h1>
+    {% for mas in masseges %} שם השולח : {{mas.author.name}} <br />
+    תאריך : {{mas.date_create}} <br />
+    נושא : {{mas.subject}} <br />
+    תוכן : {{mas.content}} <br />
+    <br /><br /><br />
+    {% endfor %}
   </body>
 </html>

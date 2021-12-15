@@ -47,4 +47,10 @@ urlpatterns = [
     path('massegesFromManagerInTeacher/897<int:user_id>654/',views.massegeFromManagerInTeacher, name='massegeFromManagerInTeacher'),
 
 
+    path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
+    path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),
+    path('addTeacher/<int:user_id>/',views.addTeacher, name = 'addTeacher'),
+    path('submitAddTeacher/<int:user_id>/',views.submitAddTeacher, name = 'submitAddTeacher'),
+
+
 ]
