@@ -6,18 +6,12 @@
   </style>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-  
 
-  
-
-   
-  
 </head>
 
 
 <body >
   
- 
     <div class="topnav">
       <a class="active" href="/users/HomePageManager/897{{manager.user_id}}654/">דף הבית</a>
       <a class="btn"href="/users/PhonesT/897{{manager.user_id}}654"> דף קשר צוות </a>
@@ -37,7 +31,7 @@
   <center>
 
     <p>
-    <h1> {{manager.name}} :שלום למנהל/ת </h1>
+    <h1>  שלום למנהל/ת: {{manager.name}}</h1>
     </p>
   </center>
 
@@ -82,7 +76,8 @@
 
       {% for teacher in teachers %}
 
-      {% if teacher.status%} 
+      {% if teacher.status %} 
+      {% if teacher.name %}
        
 <div class=linr>
 
@@ -103,6 +98,7 @@
 
 
       {% else %}
+      {% endif %}
       {% endif %}
       <br>
       {% endfor %}
