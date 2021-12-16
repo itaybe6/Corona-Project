@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import manager
 from django.db.models.fields import NullBooleanField
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
@@ -274,8 +275,7 @@ def massegeForTeacher(request,user_id):
 
 
 #send massege to teacher from studnet
-def submitMassegeForTeacher(request):
-    user_id = request.POST['user_id']
+def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
     content = request.POST['content']
@@ -291,10 +291,15 @@ def submitMassegeForTeacher(request):
     return render(request,'manager/DoneM.html',{'manager' :manager }) #להוסיף הודעה נשלחה בהצלחה
 
 
-    
 
 #massege in teacher
 def massegeFromManagerInTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     masseges = teacher.masseges.all()
     return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
+
+
+def quizManager(request,user_id):
+    #need to add
+    manager = Manager.objects.get(user_id=user_id)
+    return render(request,'manager/quizManager.html',{'manager' :manager})
