@@ -1,59 +1,151 @@
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <style></style>
-  
-    {% load static %}
-  
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-    
-  </head>
-  <body dir="rtl">
-    <div class="topnav">
-      <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654"
-        >דף הבית</a
-      >
-      <a href="#news"> שיעורי הבית שלי</a>
-      <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654"
-        >דף קשר הכיתה שלי
-      </a>
-      <a href="#about">מדריך </a>
-      </a>
-      <a href="#contact">מסרים </a>
-      <a href="#about">שאלון תלמיד </a>
-    </div>
 
-    <img src="logo.jpg" />
+<head>
+  <style> 
 
-<img src= "logo.jpg">
-    
-<div class = "header">
-  <h1>ברוכים הבאים {{student.name}} </h1>
-    <h1>Hello {{student.name}} / {{student.user_id}}</h1>
+  </style>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
+
+</head>
 
 
+<body >
+  <div class="topnav">
+    <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654" >דף הבית</a >
+    <a href="#news"> שיעורי הבית שלי</a>
+    <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654"
+      >דף קשר הכיתה שלי
+    </a>
+    <a href="#about">מדריך </a>
+    </a>
+    <a href="#contact">מסרים </a>
+    <a href="#about">שאלון תלמיד </a>
 
+  <center>
 
-
-      <h2> שינוי סטטוס לפי הצהרת בריאות </h2>
-     <p>
-      ביצעתי מדידת חום בבוקר הפעילות ולא היה לי חום מעל 38 מעלות צלזיוס בבוקר או
-      ביומיים הקודמים.<br />
-      איש מבני משפחתי אינו מחויב בבידוד לפי הנחיות משרד הבריאות.<br />
-
-      אין לי או לבני משפחתי המתגוררים עמנו, תסמיני קורונה (חום, שיעול, קושי
-      בנשימה או כל תסמין נשימתי אחר).
+    <p>
+    <h1>  שלום לתלמיד: {{student.name}}</h1>
     </p>
-    {%if student.status == False%}
-    הסטטוס שלי אדום
-    {%endif%}
-        {%if student.status == True%}
-    הסטטוס שלי ירוק
-    {%endif%}
-    <a class="active" href="/users/ChanageStatusStudent/897{{student.user_id}}654/"
-        >שנה את הסטטוס שלי</a
-</div>  
-<a href="/" id="id2" target="_self">התנתקות</a> 
+  </center>
 
+  
+
+
+
+
+  
+    <a id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/">שנה את הסטטוס שלי</a>
+    <div class=ha>
+      <center>
+  
+        ביצעתי מדידת חום בבוקר הפעילות ולא היה לי חום מעל 38 מעלות צלזיוס בבוקר או
+        ביומיים הקודמים.<br />
+        איש מבני משפחתי אינו מחויב בבידוד לפי הנחיות משרד הבריאות.<br />
+  
+        אין לי או לבני משפחתי המתגוררים עמנו, תסמיני קורונה (חום, שיעול, קושי
+        בנשימה או כל תסמין נשימתי אחר).
+      </center>
+  
+    </div>
+  
+  
+    {%if student.status == False%}
+    <p class=red> </p>
+    {%endif%}
+    {%if student.status == True%}
+    <p class=green> </p>
+    {%endif%}
+     
+     
+  
+  </div>
+    <a id="id3" href="/" target="_self">התנתקות</a>
+  
   </body>
-</html>
+  </html>
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+ 

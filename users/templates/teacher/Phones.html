@@ -1,33 +1,31 @@
 <html>
   <head>
-   
+    
+  
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
     
+  
+     
   </head>
-  <body dir="rtl">
+
+  <body >
     <div class="topnav">
       <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654" >דף הבית</a >
-  
-      <a class="active" href="/users/Phones/897{{teacher.user_id}}654">דף קשר {{teacher.my_class}}</a>
-      
-      <a class="btn" href="#contact">  שיעורי בית </a>
-      <a class="btn" href="#about">נוכחות </a>
-      <a class="btn" href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654">מסרים </a>
-      <a href="#about">תלמיד חדש </a>
-      
-      
+    
+        <a class="active" href="/users/Phones/897{{teacher.user_id}}654">דף קשר {{teacher.my_class}}</a>
+        
+        <a class="btn" href="#contact">  שיעורי בית </a>
+        <a class="btn" href="#about">נוכחות </a>
+        <a class="btn" href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654">מסרים </a>
+        <a href="#about">תלמיד חדש </a>
+        
     </div>
+    
 
-    <h1>teacher with the id {{teacher.user_id}}</h1>
-    <h1>teacher with the status {{teacher.status}}</h1>
 
-    <div class="student">
-      {% for i in student %}
 
-      <h3>{{i.name}}:{{i.phone_number}}</h3>
-    </div>
-    {% endfor %}
-    <a href="http://" id="id2" target="_self">התנתקות</a>
+
+ 
   </body>
 </html>
