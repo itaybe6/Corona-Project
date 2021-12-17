@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Manager(models.Model):
     name = models.CharField(max_length=200, null = True, default = None)
-    user_id = models.CharField(max_length=200,null = True)
+    user_id = models.CharField(max_length=200,null = True,unique=True)
     status = models.BooleanField(null= True,default = True)
     phone_number = models.CharField(max_length=200, null=True, default = None)
     password = models.CharField(max_length=200, null=True, default = None)
@@ -28,7 +28,7 @@ class MassegeT(models.Model):
 
 class Teacher(models.Model):
     name = models.CharField(max_length=200, null=True , default = None )
-    user_id = models.CharField(max_length=200, null = True)
+    user_id = models.CharField(max_length=200, null = True,unique=True)
     status = models.BooleanField(null= True,default = True)
     phone_number = models.CharField(max_length=200, null=True,default = None)
     password = models.CharField(max_length=200, null=True,default = None)
@@ -42,7 +42,7 @@ class Teacher(models.Model):
 
 class Student(models.Model):
     name = models.CharField(max_length=200, null = True,default = None)
-    user_id = models.CharField(max_length=200,null = True)
+    user_id = models.CharField(max_length=200,null = True,unique=True)
     status = models.BooleanField(null= True , default = False)
     phone_number = models.CharField(max_length=200, null=True,default = None)
     password = models.CharField(max_length=200, null=True,default = None)

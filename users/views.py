@@ -244,10 +244,13 @@ def addTeacher(request,user_id):
 def submitAddTeacher(request,user_id):
     teacher_user_id = request.POST['teach_user_id']
     manager=Manager.objects.get(user_id = user_id)
-    new_teacher=Teacher(user_id=teacher_user_id,manager=manager)
-    new_teacher.save()
-    teachers=Teacher.objects.all() #for the print in the html file
-    return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})
+    if Teacher.objects.filter(user_id = teacher_user_id) is not None: #A teacher with this id allready exist
+        return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
+    else:
+        new_teacher=Teacher(user_id=teacher_user_id,manager=manager)
+        new_teacher.save()
+        teachers=Teacher.objects.all() #for the print in the html file
+        return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})
 
 
 
@@ -260,11 +263,14 @@ def addStudent(request,user_id):
 def submitAddStudent(request,user_id):
     student_user_id = request.POST['stu_user_id']
     teacher=Teacher.objects.get(user_id = user_id)
-    manager=Manager.objects.get(teacher=teacher)
-    student=Student(user_id=student_user_id,teacher=teacher,manager=manager)
-    student.save()
-    students=Student.objects.all()
-    return render(request,'teacher/add_success.html',{'students' :students, 'teacher':teacher})
+    if Student.objects.filter(user_id = student_user_id) is not None: #A student with this id allready exist
+        return render(request,'teacher/cant_add.html',{'ID' : student_user_id , 'teacher' : teacher})
+    else:
+        manager=Manager.objects.get(teacher=teacher)
+        student=Student(user_id=student_user_id,teacher=teacher,manager=manager)
+        student.save()
+        students=Student.objects.all()
+        return render(request,'teacher/add_success.html',{'students' :students, 'teacher':teacher})
 
 
 
