@@ -1,101 +1,82 @@
+<!DOCTYPE html>
 <html>
+  <title>דף בית מורה</title>
 
-<head>
-  <style> 
-.add {
+  <head>
+    <style> 
+     .add {
+        background-color: rgb(138, 111, 103);
+        margin-top: 29%;
+        margin-left: -13%;
+        height: 14%;
+        width: 128px;
+      }  
+    </style>
+      {% load static %}
+      <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
   
-    background-color: rgb(138, 111, 103);
-    margin-top: 29%;
-    margin-left: -13%;
-    height: 14%;
-    width: 128px;
-
-}
-
-  </style>
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-
-</head>
+  </head>
 
 
-<body >
+  <body >
   
-  <div class="topnav">
-    <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654" >דף הבית</a >
+     <div class="topnav">
+       <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654" >דף הבית</a >
 
-    <a class="btn" href="/users/Phones/897{{teacher.user_id}}654">דף קשר {{teacher.my_class}}</a>
+       <a class="btn" href="/users/Phones/897{{teacher.user_id}}654">דף קשר {{teacher.my_class}}</a>
     
-    <a class="btn" href="#contact">  שיעורי בית </a>
-    <a class="btn" href="#about">נוכחות </a>
-    <a class="btn" href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654">מסרים </a>
-    <a href="#about">תלמיד חדש </a>
+       <a class="btn" href="#contact">  שיעורי בית </a>
+       <a class="btn" href="#about">נוכחות </a>
+       <a class="btn" href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654">מסרים </a>
+       <a href="#about">תלמיד חדש </a>
     
-    
-  </div>
-  <style>
- 
-  </style>
- 
+      </div>
 
 
-
-
-  <center>
-
-    <p>
-    <h1>  שלום למורה: {{teacher.name}}</h1>
-    </p>
-  </center>
-
-  
-   
-  
-
-  
-  
-  
-  
-    <a id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/">שנה את הסטטוס שלי</a>
-    <div class=ha>
       <center>
-  
-        אני מצהיר כדלהלן - עם שינוי הסטטוס שלי לירוק אני מתחייב כי אני
-        איינני חולה קורונה מאובחן, לא דווח לי כי עליי לשהות בבידוד וככל הידוע לי לא שהייתי בקרבת חולה מאומת.
-        .כמו כן איני סובל מסימפטומים כגון - חום גבוה ,שיעול או קשיי נשימה
-      </center>
-  
-    </div>
-  
-  
-    {%if teacher.status == False%}
-    <p class=red> </p>
-    {%endif%}
-    {%if teacher.status == True%}
-    <p class=green> </p>
-    {%endif%}
-  
-  
-    <div class="table">
 
-      <a id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/">כיתה אדומה</a>
-    <div class=add>
+       <p>
+         <h1>  שלום למורה: {{teacher.name}}</h1>
+       </p>
+     </center>
+
+       <a id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/">שנה את הסטטוס שלי</a>
+       <div class=ha>
+          <center>
+  
+            אני מצהיר כדלהלן - עם שינוי הסטטוס שלי לירוק אני מתחייב כי אני
+            איינני חולה קורונה מאובחן, לא דווח לי כי עליי לשהות בבידוד וככל הידוע לי לא שהייתי בקרבת חולה מאומת.
+            .כמו כן איני סובל מסימפטומים כגון - חום גבוה ,שיעול או קשיי נשימה
+         </center>
+  
+        </div>
+  
+  
+       {%if teacher.status == False%}
+       <p class=red> </p>
+       {%endif%}
+       {%if teacher.status == True%}
+       <p class=green> </p>
+       {%endif%}
+  
+  
+      <div class="table">
+
+          <a id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/">כיתה אדומה</a>
+        <div class=add>
      
 
-        במצב בו התגלה חולה קורונה מאומת בכיתה או במצב של סגר לרשותך כפתור "כיתה אדומה" שיהפוך את כל תלמידי הכיתה להיות בעלי סטטוס אדום.
+         במצב בו התגלה חולה קורונה מאומת בכיתה או במצב של סגר לרשותך כפתור "כיתה אדומה" שיהפוך את כל תלמידי הכיתה להיות בעלי סטטוס אדום.
     
      
-    </div>
-       
+        </div>
      
   
-     
-  
-  </div>
-    <a id="id3" href="/" target="_self">התנתקות</a>
+      </div>
+        <a id="id3" href="/" target="_self">התנתקות</a>
   
   </body>
-  </html>
+</html>
   
   
   

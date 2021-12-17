@@ -1,38 +1,30 @@
+<!DOCTYPE html>
+<title>דף בית תלמיד</title>
 <html>
 
-<head>
-  <style> 
+ <head>
+   {% load static %}
+   <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
+   <style> </style>
+  </head>
 
-  </style>
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-
-</head>
-
-
-<body >
-  <div class="topnav">
-    <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654" >דף הבית</a >
-    <a href="#news"> שיעורי הבית שלי</a>
-    <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654" >דף קשר הכיתה שלי</a>
-    <a href="#about">מדריך </a>
-    <a href="#contact">מסרים </a>
-    <a href="#about">שאלון תלמיד </a>
+ <body>
+   <div class="topnav">
+     <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654" >דף הבית</a >
+     <a href="#news"> שיעורי הבית שלי</a>
+     <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654" >דף קשר הכיתה שלי</a>
+     <a href="#about">מדריך </a>
+     <a href="#contact">מסרים </a>
+     <a href="#about">שאלון תלמיד </a>
 
   
-  </div>
-  <center>
-    <p>
-    <h1>  שלום לתלמיד: {{student.name}}</h1>
-    </p>
-  </center>
+    </div>
+   <center>
+     <p>
+     <h1>  שלום לתלמיד: {{student.name}}</h1>
+     </p>
+   </center>
 
-  
-
-
-
-
-  
     <a id="id1" href="/users/ChanageStatusStudent/897{{manager.user_id}}654/">שנה את הסטטוס שלי</a>
     <div class=ha>
       <center>
@@ -55,11 +47,11 @@
      
      
   
-  </div>
+   </div>
     <a id="id3" href="/" target="_self">התנתקות</a>
   
   </body>
-  </html>
+</html>
   
   
   

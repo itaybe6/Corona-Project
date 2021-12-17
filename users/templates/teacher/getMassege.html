@@ -1,25 +1,29 @@
 <html>
+  <title>מסרים</title>
   <head>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    
   </head>
   <body dir="rtl">
-    
-  <div class="topnav">
-    <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654" >דף הבית</a >
+    <div class="topnav">
+      <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+        >דף הבית</a
+      >
 
-    <a class="btn" href="/users/Phones/897{{teacher.user_id}}654">דף קשר {{teacher.my_class}}</a>
-    
-    <a class="btn" href="#contact">  שיעורי בית </a>
-    <a class="btn" href="#about">נוכחות </a>
-    <a class="active" href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654">מסרים </a>
-    <a href="#about">תלמיד חדש </a>
-    
-    
-  </div>
+      <a class="btn" href="/users/Phones/897{{teacher.user_id}}654"
+        >דף קשר {{teacher.my_class}}</a
+      >
+
+      <a class="btn" href="#contact"> שיעורי בית </a>
+      <a class="btn" href="#about">נוכחות </a>
+      <a
+        class="active"
+        href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
+        >מסרים
+      </a>
+      <a href="#about">תלמיד חדש </a>
+    </div>
 
     <h1>הודעות</h1>
     {% for mas in masseges %} שם השולח : {{mas.author.name}} <br />
