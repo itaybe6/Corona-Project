@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
+  <title>הודעה אישית למורה</title>
   <head>
-   <style>
-  </style>
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-  
-
+    {% load static %}
+   <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
+   <style></style>
   </head>
 
   <body>
@@ -33,7 +31,7 @@
     >
       {% csrf_token %}
 <center>
-     <div class=beauty> הכנס/י בבקשה את נושא ההודעה </div>
+     <div class=beauty><h2> הכנס/י בבקשה את נושא ההודעה </h2>
       <br />
       <input
         type="text"

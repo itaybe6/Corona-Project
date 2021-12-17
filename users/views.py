@@ -1,6 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import manager
 from django.db.models.fields import NullBooleanField
+from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
 from users.models import Manager,Teacher,Student,MassegeT
@@ -244,7 +245,7 @@ def addTeacher(request,user_id):
 def submitAddTeacher(request,user_id):
     teacher_user_id = request.POST['teach_user_id']
     manager=Manager.objects.get(user_id = user_id)
-    if Teacher.objects.filter(user_id = teacher_user_id) is not None: #A teacher with this id allready exist
+    if Teacher.objects.filter(user_id = teacher_user_id) is None: #A teacher with this id allready exist
         return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
     else:
         new_teacher=Teacher(user_id=teacher_user_id,manager=manager)
@@ -263,7 +264,7 @@ def addStudent(request,user_id):
 def submitAddStudent(request,user_id):
     student_user_id = request.POST['stu_user_id']
     teacher=Teacher.objects.get(user_id = user_id)
-    if Student.objects.filter(user_id = student_user_id) is not None: #A student with this id allready exist
+    if Student.objects.filter(user_id = student_user_id) is None: #A student with this id allready exist
         return render(request,'teacher/cant_add.html',{'ID' : student_user_id , 'teacher' : teacher})
     else:
         manager=Manager.objects.get(teacher=teacher)

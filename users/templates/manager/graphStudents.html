@@ -1,55 +1,48 @@
-
 <html>
+  <title>מדגם תלמידים אדומים</title>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style> 
-
-    </style>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-    
-  
-
-     
+    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
+    <style></style>
   </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <body>
-    
     <div class="topnav">
-      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/">דף הבית</a>
-      <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654"> דף קשר צוות </a>
-      <a class="active"href="/users/graphStudentStatus/897{{manager.user_id}}654"> מדגם תלמידים אדומים </a>
+      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/"
+        >דף הבית</a
+      >
+      <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654">
+        דף קשר צוות
+      </a>
+      <a
+        class="active"
+        href="/users/graphStudentStatus/897{{manager.user_id}}654"
+      >
+        מדגם תלמידים אדומים
+      </a>
       <a class="btn" href="#about">בניית שאלון</a>
 
-
-      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654">מסרים למורים</a>
-      <a class="btn" href="/users/addTeacher/{{manager.user_id}}" target="_self">מורה חדש</a>
-      
+      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654"
+        >מסרים למורים</a
+      >
+      <a class="btn" href="/users/addTeacher/{{manager.user_id}}" target="_self"
+        >מורה חדש</a
+      >
     </div>
- 
 
-    <h1>  סטטוס תלמידים עדכני </h1>
-        <tr class="students">
-        {% for teacher in teachers %}
-            Name Teacher :  {{teacher.name}}  Class : {{teacher.my_class}} : <br>
-            {% for student in students %}
-              {% if student.teacher == teacher %}
-              name : {{student.name}} 
-              {% if student.status %}
-              status : Green
-              {% else %} status : Red
-              
-              {% endif %}
-              <br>
-           {% endif %} 
-           
-            {% endfor %}
-           
+    <h1>סטטוס תלמידים עדכני</h1>
+    <tr class="students">
+      {% for teacher in teachers %} Name Teacher : {{teacher.name}} Class :
+      {{teacher.my_class}} :
+      <br />
+      {% for student in students %} {% if student.teacher == teacher %} name :
+      {{student.name}} {% if student.status %} status : Green {% else %} status
+      : Red {% endif %}
+      <br />
+      {% endif %} {% endfor %}
 
-        <br><br>
-        {% endfor %}
-
-
-
-        </tr>
-
-    </html>
+      <br /><br />
+      {% endfor %}
+    </tr>
+  </body>
+</html>
