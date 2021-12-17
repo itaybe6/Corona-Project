@@ -3,10 +3,39 @@
   <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
-    <style></style>
+    <style>
+      #tableTecher {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #tableTecher td,
+      #tableTecher th {
+        border: 5px solid;
+        border-color: rgb(32, 136, 127);
+        padding: 10px;
+      }
+
+      #tableTecher tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #tableTecher tr:hover {
+        background-color: #ddd;
+      }
+
+      #tableTecher th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: right;
+        background-color: #353535;
+        color: rgb(32, 136, 127);
+      }
+    </style>
   </head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <body>
+  <body dir="rtl">
     <div class="topnav">
       <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/"
         >דף הבית</a
@@ -29,20 +58,27 @@
         >מורה חדש</a
       >
     </div>
-
-    <h1>סטטוס תלמידים עדכני</h1>
-    <tr class="students">
-      {% for teacher in teachers %} Name Teacher : {{teacher.name}} Class :
-      {{teacher.my_class}} :
-      <br />
-      {% for student in students %} {% if student.teacher == teacher %} name :
-      {{student.name}} {% if student.status %} status : Green {% else %} status
-      : Red {% endif %}
-      <br />
+    <center>
+      <h1>סטטוס תלמידים עדכני</h1>
+    </center>
+    <table id="tableTecher">
+      <tr class="students">
+        {% for teacher in teachers %}
+        <th> Name Teacher: {{teacher.name}}</th>
+        <th>Class: {{teacher.my_class}} </th>
+      </tr>
+    </table>
+    <table id="tableTecher">
+       {% for student in students %} 
+        {% if student.teacher == teacher %}
+       <th>name: {{student.name}}</th>
+        <th> {% if student.status %} status : Green {% else %} status: Red {% endif %}</th>
+        <br />
+    </table>
       {% endif %} {% endfor %}
-
       <br /><br />
       {% endfor %}
     </tr>
   </body>
 </html>
+
