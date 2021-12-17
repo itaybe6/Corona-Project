@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Manager(models.Model):
     name = models.CharField(max_length=200, null = True, default = None)
-    user_id = models.CharField(max_length=200,null = True,unique=True) #unique id
+    user_id = models.CharField(max_length=200,null = True) #unique id
     status = models.BooleanField(null= True,default = True)
     phone_number = models.CharField(max_length=200, null=True, default = None)
     password = models.CharField(max_length=200, null=True, default = None)
@@ -28,7 +28,7 @@ class MassegeT(models.Model):
 
 class Teacher(models.Model):
     name = models.CharField(max_length=200, null=True , default = None )
-    user_id = models.CharField(max_length=200, null = True,unique=True)
+    user_id = models.CharField(max_length=200, null = True)
     status = models.BooleanField(null= True,default = True)
     phone_number = models.CharField(max_length=200, null=True,default = None)
     password = models.CharField(max_length=200, null=True,default = None)
@@ -36,20 +36,35 @@ class Teacher(models.Model):
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     masseges = models.ManyToManyField(MassegeT,default = None)
 
-
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
 
 class Student(models.Model):
     name = models.CharField(max_length=200, null = True,default = None)
-    user_id = models.CharField(max_length=200,null = True,unique=True)
+    user_id = models.CharField(max_length=200,null = True)
     status = models.BooleanField(null= True , default = False)
     phone_number = models.CharField(max_length=200, null=True,default = None)
     password = models.CharField(max_length=200, null=True,default = None)
     teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE,default = None)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
+    present = models.IntegerField(null=True,default=0)    #for attendance
+    absent = models.IntegerField(null=True,default=0)     #for attendance
+
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
+
+        
+class_attendance = (
+    ('Present','Present'),
+    ('Absent','Absent'),
+)
+
+class Attendance(models.Model):
+    student = models.ForeignKey(Student, on_delete = models.CASCADE,null=True,default = None)
+    teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE,null=True,default = None)
+    date = models.DateField()
+    mark_attendance = models.CharField(max_length=50,null=True,default = None, choices=class_attendance)
+
 
 
 

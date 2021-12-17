@@ -4,9 +4,13 @@ from django.db.models.fields import NullBooleanField
 from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student,MassegeT
+from users.models import Manager,Teacher,Student,MassegeT, Attendance
 from homepage import views
 from datetime import datetime
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.forms.formsets import formset_factory
+#from .forms import AttendanceForm
 
 
 # Create your views here.
@@ -20,6 +24,9 @@ def get_teacher_signup(request):
 def get_manager_signup(request):
     return render(request,'manager/signup.html') 
 
+def logout_user(request):
+    logout(request)
+    return redirect('homepage:home')
 
 def submit_Manager(request):
     user_id = request.POST['user_id']
@@ -153,12 +160,14 @@ def Conect(request):
     
     
 #Phones page for teacher
+#@login_required
 def Phones(request,user_id): 
     teacher = Teacher.objects.get(user_id=user_id)
     student = Student.objects.filter(teacher__user_id = user_id)
     return render(request,'teacher/Phones.html' ,{'teacher':teacher, 'student':student})
 
 #Phones page for manager
+#@login_required
 def PhonesTeacher(request,user_id): 
     manager = Manager.objects.get(user_id=user_id)
     teacher = Teacher.objects.filter(manager__user_id = user_id)
@@ -245,13 +254,13 @@ def addTeacher(request,user_id):
 def submitAddTeacher(request,user_id):
     teacher_user_id = request.POST['teach_user_id']
     manager=Manager.objects.get(user_id = user_id)
-    if Teacher.objects.filter(user_id = teacher_user_id) is None: #A teacher with this id allready exist
-        return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
-    else:
+    if list(Teacher.objects.filter(user_id = teacher_user_id)) == []: #A teacher with this id doesnt exist
         new_teacher=Teacher(user_id=teacher_user_id,manager=manager)
         new_teacher.save()
         teachers=Teacher.objects.all() #for the print in the html file
-        return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})
+        return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})    
+    else:
+        return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
 
 
 
@@ -264,14 +273,16 @@ def addStudent(request,user_id):
 def submitAddStudent(request,user_id):
     student_user_id = request.POST['stu_user_id']
     teacher=Teacher.objects.get(user_id = user_id)
-    if Student.objects.filter(user_id = student_user_id) is None: #A student with this id allready exist
-        return render(request,'teacher/cant_add.html',{'ID' : student_user_id , 'teacher' : teacher})
-    else:
+    check = list(Student.objects.filter(user_id = student_user_id)) #check if student with this id allready exist
+    if check == []: #A student with this id doesnt exist
         manager=Manager.objects.get(teacher=teacher)
         student=Student(user_id=student_user_id,teacher=teacher,manager=manager)
         student.save()
         students=Student.objects.all()
         return render(request,'teacher/add_success.html',{'students' :students, 'teacher':teacher})
+    else:
+        return render(request,'teacher/cant_add.html',{'ID' : student_user_id , 'teacher' : teacher})
+       
 
 
 
@@ -310,3 +321,68 @@ def quizManager(request,user_id):
     #need to add
     manager = Manager.objects.get(user_id=user_id)
     return render(request,'manager/quizManager.html',{'manager' :manager})
+
+
+
+
+
+def mark_attendance(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    students = Student.objects.filter(teacher=teacher)
+    count = students.count()
+    
+    attendance_formset = formset_factory(extra=count)
+    date = datetime.today().date().strftime('%d-%m-%Y')
+    #if teacher.user == request.user:
+    if request.method == 'POST':
+        formset = attendance_formset(request.POST)
+        list = zip(students,formset)
+
+        for form, student in zip(formset,students):
+            date = datetime.today()
+            mark = form.cleaned_data['mark_attendance']
+            print(mark)
+            check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student)
+            print(check_attendance)
+    
+            if check_attendance:
+                attendance = Attendance.objects.get(teacher=teacher,date=date,student=student)
+                if attendance.mark_attendance == 'Absent':
+                    student.absent = student.absent - 1
+                elif attendance.mark_attendance == 'Present':
+                    student.present = student.present - 1
+                    attendance.mark_attendance = mark
+                    attendance.save()
+
+            else: 
+                attendance = Attendance()
+                attendance.teacher = teacher
+                attendance.student = student
+                attendance.date = date
+                attendance.mark_attendance = mark
+                attendance.save()
+
+            if mark == 'Absent':
+                student.absent = student.absent + 1
+            if mark == 'Present':
+                student.present = student.present + 1
+            student.save()
+
+
+            context = {
+                'students': students,
+                'teacher': teacher,
+            }
+            # return render(request, 'attendance/profile.html', context)
+            return redirect('teacher/Home.html',{'teacher':teacher})
+        else:
+            error = "Something went wrong"
+            context = {
+                'error': error,
+                'formset': formset,
+                'students': students,
+                'teacher': teacher,
+                'list': list,
+                'date':date,
+            }
+    return render(request, 'teacher/attendance_form.html', context)      

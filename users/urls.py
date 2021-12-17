@@ -9,6 +9,7 @@ from django.contrib.auth import views as auth_views
 app_name = 'users'
 
 urlpatterns = [
+    url(r'^logout/$', views.logout_user, name='logout_user'),
     path('chooseprofile',views.get_chooseprofile, name = 'chooseprofile'),
     path('student/signup',views.get_student_signup, name = 'student_signup'),
     path('teacher/signup',views.get_teacher_signup,name = 'teacher_signup'),

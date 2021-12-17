@@ -7,3 +7,6 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ("name", "user_id", "password","phone_number","school")
+
+#class AttendanceForm(forms.Form):
+#    mark_attendance = forms.ChoiceField(widget=forms.RadioSelect, choices=class_attendance)
