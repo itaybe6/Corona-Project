@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Manager(models.Model):
     name = models.CharField(max_length=200, null = True, default = None)
-    user_id = models.CharField(max_length=200,null = True,unique=True)
+    user_id = models.CharField(max_length=200,null = True,unique=True) #unique id
     status = models.BooleanField(null= True,default = True)
     phone_number = models.CharField(max_length=200, null=True, default = None)
     password = models.CharField(max_length=200, null=True, default = None)
