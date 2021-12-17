@@ -1,4 +1,3 @@
-{% block body %}
 <style>
   .align li {
     list-style: none;
@@ -8,36 +7,31 @@
 </style>
 
 <div class="container">
-  <center><h1>Update Student Attendance:</h1></center>
+  <center><h1>:עידכון נוכחות לתלמידים בכיתה {{teacher.my_class}}</h1></center>
   <center><h3>{{ date }}</h3></center>
   <p></p>
   <br />
-  {% if error %}
-  <p><strong>{{ error }}</strong></p>
-  {% endif %}
 
-  <form method="POST" class="post-form">
+  <form
+    action="{% url 'users:mark_attendance' teacher.user_id %}"
+    method="POST"
+    class="post-form"
+  >
     {{ formset.management_form }} {% csrf_token %}
     <br />
     <table class="table table-bordered table-hover">
       <tr>
-        <th>Roll No</th>
-        <th>Name</th>
-        <th>Mark Attendance</th>
+        <th>:שם התלמיד</th>
+        <th>סמן נוכחות</th>
       </tr>
       {% for student,form in list %}
       <tr>
+        {% if student.name != None%}
         <td>{{ student.name }}</td>
         <td class="align">{% for radio in form %} {{ radio }} {% endfor %}</td>
       </tr>
-      {% endfor %}
+      {% endif %} {% endfor %}
     </table>
-    <button type="submit" class="save btn btn-default" style="cursor: pointer">
-      Save
-    </button>
+    <button type="mark_attendance">שמירה</button>
   </form>
 </div>
-<script>
-  $("input[value=Present]").prop("checked", true);
-</script>
-{% endblock %}

@@ -1,7 +1,9 @@
+from typing import List
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import manager
 from django.db.models.fields import NullBooleanField
 from django.db.models.query import QuerySet
+from django.forms.formsets import formset_factory
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
 from users.models import Manager,Teacher,Student,MassegeT, Attendance
@@ -9,8 +11,7 @@ from homepage import views
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.forms.formsets import formset_factory
-#from .forms import AttendanceForm
+from .forms import AttendanceForm
 
 
 # Create your views here.
@@ -326,55 +327,57 @@ def quizManager(request,user_id):
 
 
 
+
+
+
+
 def mark_attendance(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
     count = students.count()
-    
-    attendance_formset = formset_factory(extra=count)
+    attendance_formset = formset_factory(AttendanceForm, extra=count)
     date = datetime.today().date().strftime('%d-%m-%Y')
-    #if teacher.user == request.user:
+    attendance = None
+
     if request.method == 'POST':
         formset = attendance_formset(request.POST)
-        list = zip(students,formset)
+        lst = zip(formset,students)
 
-        for form, student in zip(formset,students):
-            date = datetime.today()
-            mark = form.cleaned_data['mark_attendance']
-            print(mark)
-            check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student)
-            print(check_attendance)
-    
-            if check_attendance:
-                attendance = Attendance.objects.get(teacher=teacher,date=date,student=student)
-                if attendance.mark_attendance == 'Absent':
-                    student.absent = student.absent - 1
-                elif attendance.mark_attendance == 'Present':
-                    student.present = student.present - 1
+        if formset.is_valid():
+            for form, student in zip(formset,students):
+                date = datetime.today()
+                mark = form.cleaned_data['mark_attendance']
+                print(mark)
+                check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student)
+                print(check_attendance)
+                for i in check_attendance:
+                    attendance = Attendance.objects.get(student=student,teacher=teacher,date=date)
+                    if check_attendance.mark_attendance == 'Absent':
+                        student.absent = student.absent - 1
+                    elif attendance.mark_attendance == 'Present':
+                        student.present = student.present - 1
                     attendance.mark_attendance = mark
                     attendance.save()
+                else: 
+                    check_attendance = Attendance()
+                    check_attendance.teacher = teacher
+                    check_attendance.student = student
+                    check_attendance.date = date
+                    check_attendance.mark_attendance = mark
+                    check_attendance.save()
 
-            else: 
-                attendance = Attendance()
-                attendance.teacher = teacher
-                attendance.student = student
-                attendance.date = date
-                attendance.mark_attendance = mark
-                attendance.save()
-
-            if mark == 'Absent':
-                student.absent = student.absent + 1
-            if mark == 'Present':
-                student.present = student.present + 1
-            student.save()
+                if mark == 'Absent':
+                    student.absent = student.absent + 1
+                if mark == 'Present':
+                    student.present = student.present + 1
+                student.save()
 
 
             context = {
                 'students': students,
                 'teacher': teacher,
             }
-            # return render(request, 'attendance/profile.html', context)
-            return redirect('teacher/Home.html',{'teacher':teacher})
+            return render(request, 'teacher/Home.html', context)
         else:
             error = "Something went wrong"
             context = {
@@ -382,7 +385,20 @@ def mark_attendance(request,user_id):
                 'formset': formset,
                 'students': students,
                 'teacher': teacher,
-                'list': list,
+                'list': lst,
                 'date':date,
             }
-    return render(request, 'teacher/attendance_form.html', context)      
+            return render(request, 'teacher/attendance_form.html', context)
+
+    else:
+        lst = zip(students, attendance_formset())
+        context = {
+            'formset': attendance_formset(),
+            'students': students,
+            'teacher': teacher,
+            'list': lst,
+            'date':date,
+        }
+
+        return render(request, 'teacher/attendance_form.html', context)
+
