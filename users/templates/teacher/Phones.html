@@ -4,10 +4,39 @@
   <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
-    <style></style>
+    <style>
+      #tablestudent {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #tablestudent td,
+      #tablestudent th {
+        border: 5px solid;
+        border-color: rgb(32, 136, 127);
+        padding: 10px;
+      }
+
+      #tablestudent tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #tablestudent tr:hover {
+        background-color: #ddd;
+      }
+
+      #tablestudent th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: right;
+        background-color: #353535;
+        color: rgb(32, 136, 127);
+      }
+    </style>
   </head>
 
-  <body>
+  <body dir="rtl">
     <div class="topnav">
       <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
         >דף הבית</a
@@ -26,5 +55,26 @@
       </a>
       <a href="#about">תלמיד חדש </a>
     </div>
+    <ul>
+      <center>
+        <h1>הנבחרת של הכיתה</h1>
+      </center>
+      <table id="tablestudent">
+        <tr>
+          <th>שם התלמיד</th>
+          <th>מספר פלאפון</th>
+        </tr>
+      </table>
+      {% for student in student %}
+      <table id="tablestudent">
+        <student class="students">
+          <tr>
+            <td>{{student.name}}</td>
+            <td>{{student.phone_number}}</td>
+          </tr>
+        </student>
+      </table>
+      {% endfor %}
+    </ul>
   </body>
 </html>

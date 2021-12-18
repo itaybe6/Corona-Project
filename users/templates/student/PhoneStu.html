@@ -2,7 +2,36 @@
 <html>
   <title>דף קשר לתלמיד</title>
   <head>
-    <style></style>
+    <style>
+      #tablestudent {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #tablestudent td,
+      #tablestudent th {
+        border: 5px solid;
+        border-color: rgb(32, 136, 127);
+        padding: 10px;
+      }
+
+      #tablestudent tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #tablestudent tr:hover {
+        background-color: #ddd;
+      }
+
+      #tablestudent th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: right;
+        background-color: #353535;
+        color: rgb(32, 136, 127);
+      }
+    </style>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
   </head>
@@ -20,5 +49,26 @@
       <a class="btn" href="#contact">מסרים </a>
       <a class="btn" href="#about">שאלון תלמיד </a>
     </div>
+    <ul>
+      <center>
+        <h1>הנבחרת של הכיתה</h1>
+      </center>
+      <table id="tablestudent">
+        <tr>
+          <th>שם התלמיד</th>
+          <th>מספר פלאפון</th>
+        </tr>
+      </table>
+      {% for students in students %}
+      <table id="tablestudent">
+        <students class="student">
+          <tr>
+            <td>{{students.name}}</td>
+            <td>{{students.phone_number}}</td>
+          </tr>
+        </students>
+      </table>
+      {% endfor %}
+    </ul>
   </body>
 </html>
