@@ -4,11 +4,33 @@
   <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
-    <style></style>
+    <style>
+      .button2 {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      .button2 {
+        background-color: rgb(32, 136, 127);
+        color: rgb(245, 245, 245);
+        border: 2px solid rgb(201, 202, 198);
+      }
+
+      .button2:hover {
+        background-color: rgb(201, 202, 198);
+        color: white;
+      }
+    </style>
   </head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <body>
+  <body dir="rtl">
     <div class="topnav">
       <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/"
         >דף הבית</a
@@ -38,7 +60,7 @@
       >
         {% csrf_token %}
 
-        <h2>הכנס בבקשה את ת"ז של המורה החדש</h2>
+        <h2>הכנס/י בבקשה את ת"ז של המורה החדש</h2>
         <br />
         <input
           type="text"
@@ -50,7 +72,7 @@
 
         <br />
 
-        <button type="submitAddTeacher">שלח</button>
+        <button type="submitAddTeacher" class="button button2">שלח</button>
       </form>
     </center>
   </body>

@@ -236,3 +236,8 @@ a#id2 {
   border-width: 2px;
   background-size: 2%;
 }
+.linrr {
+  background-color: rgb(175, 108, 7);
+  margin: 0%;
+  font-size: 15;
+}

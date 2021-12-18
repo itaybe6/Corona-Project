@@ -64,16 +64,17 @@
     <table id="tableTecher">
       <tr class="students">
         {% for teacher in teachers %}
-        <th> Name Teacher: {{teacher.name}}</th>
-        <th>Class: {{teacher.my_class}} </th>
+        <th> שם המורה: {{teacher.name}}</th>
+        <th>כיתץ לימוד: {{teacher.my_class}} </th>
       </tr>
-    </table>
-    <table id="tableTecher">
-       {% for student in students %} 
-        {% if student.teacher == teacher %}
-       <th>name: {{student.name}}</th>
-        <th> {% if student.status %} status : Green {% else %} status: Red {% endif %}</th>
-        <br />
+       {% for student in students %}
+       <div class=linrr>
+         {% if student.teacher == teacher %}
+         <th>שם התלמיד: {{student.name}}</th>
+         <th> {% if student.status %} סטטוס : Green 
+          {% else %} סטטוס: Red {% endif %}</th>
+         <br />
+       </div> 
     </table>
       {% endif %} {% endfor %}
       <br /><br />

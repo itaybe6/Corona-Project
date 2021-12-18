@@ -4,7 +4,30 @@
   <head>
     {% load static %}
    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-   <style></style>
+   <style>
+     .button2 {
+       border: none;
+       color: white;
+       padding: 15px 32px;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 16px;
+       margin: 4px 2px;
+       cursor: pointer;
+     }
+     .button2 {
+       background-color: rgb(32, 136, 127); 
+       color: rgb(245, 245, 245); 
+       border: 2px solid rgb(201, 202, 198);
+     }
+
+     .button2:hover {
+       background-color: rgb(201, 202, 198);
+       color: white;
+     }
+      
+   </style>
   </head>
 
   <body dir="rtl">
@@ -27,20 +50,20 @@
 
     <form
       action="{% url 'users:submitMassegeForTeacher' manager.user_id %}"
-      method="post"
-    >
+      method="post">
       {% csrf_token %}
-<center>
-     <div class=beauty><h2> הכנס/י בבקשה את נושא ההודעה </h2>
-      <br />
-      <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />
-      <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
-      <br />
-      <textarea rows="15" cols="60" name="content" id="content" placeholder="תוכן ההודעה שתרצה לשלוח"></textarea>
+      <center>
+     <div class=beauty>
+       <h2> הכנס/י בבקשה את נושא ההודעה </h2>
+       <br />
+       <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />
+       <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
+       <br />
+       <textarea rows="15" cols="65" name="content" id="content" placeholder="תוכן ההודעה שתרצה לשלוח"></textarea>
 
-      <br />
-
-      <button type="submitMassegeForTeacher">שלח</button>
+       <br />
+       <button type="submitMassegeForTeacher" class="button button2">שלח</button>
+     </div>
 
     </form>
     </center>
