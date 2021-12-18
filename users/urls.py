@@ -41,12 +41,18 @@ urlpatterns = [
     #change all the status of students in class to red
     path('changeMyClassToRed/897<int:user_id>654/',views.changeMyClassToRed,name = 'changeMyClassToRed'),
 
-    path('massegeForTeacher/897<int:user_id>654/',views.massegeForTeacher, name ='massegeForTeacher'),
+    #send massege to teacher from manager
+    path('massegeForTeacher/897<int:user_id>654/',views.massegeForTeacher, name ='massegeForTeacher'), 
     path('submitMassegeForTeacher/897<int:user_id>654/',views.submitMassegeForTeacher,name = 'submitMassegeForTeacher'),
     
+    #send massege to student from manager
+    path('massegeForStudentManager/897<int:user_id>654/',views.massegeForStudent_Manager,name = 'massegeForStudentManager' ),
+    path('submitMassegeForStudent_Manager/897<int:user_id>654/',views.submitMassegeForStudent_Manager , name = 'submitMassegeForStudent_Manager' ),
 
+    #get massege from manager in teacher
     path('massegesFromManagerInTeacher/897<int:user_id>654/',views.massegeFromManagerInTeacher, name='massegeFromManagerInTeacher'),
 
+    path('massegesFromManagerInStudent/897<int:user_id>654/',views.massegeFromManagerInStudent,name = 'massegesFromManagerInStudent'),
 
     path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
     path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),

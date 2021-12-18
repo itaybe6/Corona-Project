@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <title>הודעה למורה</title>
+  <title>הודעה לתלמיד</title>
   <head>
     {% load static %}
    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
@@ -15,10 +15,10 @@
       <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654"> דף קשר צוות </a>
       <a class="btn"href="/users/graphStudentStatus/897{{manager.user_id}}654"> מדגם תלמידים אדומים </a>
       <a class="btn" href="#about">בניית שאלון</a>
+      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654">מסרים למורים</a>
 
-      
-      <a class="active" href="/users/massegeForTeacher/897{{manager.user_id}}654">מסרים למורים</a>
-      <a class="btn" href="/users/massegeForStudentManager/897{{manager.user_id}}654">מסרים לתלמידים</a>
+
+      <a class="active" href="/users/massegeForStudentManager/897{{manager.user_id}}654">מסרים לתלמידים</a>
       <a class="btn" href="/users/addTeacher/{{manager.user_id}}" target="_self">מורה חדש</a>
       
     </div>
@@ -27,7 +27,7 @@
 
 
     <form
-      action="{% url 'users:submitMassegeForTeacher' manager.user_id %}"
+      action="{% url 'users:submitMassegeForStudent_Manager' manager.user_id %}"
       method="post"
     >
       {% csrf_token %}
@@ -41,7 +41,7 @@
 
       <br />
 
-      <button type="submitMassegeForTeacher">שלח</button>
+      <button type="submitMassegeForStudent_Manager">שלח</button>
 
     </form>
     </center>
