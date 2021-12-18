@@ -1,3 +1,4 @@
+{% block title %}{{ teacher.name }} | נוכחות{% endblock %}
 <style>
   .align li {
     list-style: none;
@@ -22,16 +23,30 @@
     <table class="table table-bordered table-hover">
       <tr>
         <th>:שם התלמיד</th>
+        <th>:סטטוס התלמיד</th>
         <th>סמן נוכחות</th>
       </tr>
       {% for student,form in list %}
       <tr>
-        {% if student.name != None%}
+        {% if student.name%}
         <td>{{ student.name }}</td>
-        <td class="align">{% for radio in form %} {{ radio }} {% endfor %}</td>
+        {% else %}
+        <td>{{ student.user_id }}</td>
+        {% endif %} {% if student.status == False%}
+        <td>סטטוס אדום</td>
+        {% else %}
+        <td>סטטוס ירוק</td>
+        {% endif %}
+        <td class="center">{% for i in form %} {{ i }} {% endfor %}</td>
       </tr>
-      {% endif %} {% endfor %}
+      {% endfor %}
     </table>
     <button type="mark_attendance">שמירה</button>
   </form>
+  <a
+    href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+    class="w3-bar-item w3-button"
+  >
+    חזרה לדף הבית ללא שמירה</a
+  >
 </div>
