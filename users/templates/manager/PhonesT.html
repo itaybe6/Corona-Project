@@ -11,10 +11,10 @@
       }
 
       #tableTecher td,
-      #tableTecher th {
-        border: 5px solid;
+      th {
+        border: 3px solid;
         border-color: rgb(32, 136, 127);
-        padding: 10px;
+        padding: 15px;
       }
 
       #tableTecher tr:nth-child(even) {
@@ -68,13 +68,11 @@
       </table>
       {% for teacher in teacher %}
       <table id="tableTecher">
-        <teacher class="teacher">
-          <tr>
-            <td>{{teacher.name}}</td>
-            <td>{{teacher.my_class}}</td>
-            <td>{{teacher.phone_number}}</td>
-          </tr>
-        </teacher>
+        <tr class="teacher">
+          <td>{{teacher.name}}</td>
+          <td>{{teacher.my_class}}</td>
+          <td>{{teacher.phone_number}}</td>
+        </tr>
       </table>
       {% endfor %}
     </ul>
