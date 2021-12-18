@@ -6,8 +6,8 @@ from .models import Manager,Teacher,Student,Attendance
 
 
 class_attendance = (
-    ('Present','Present'),
-    ('Absent','Absent'),
+    ('Present','נוכח'),
+    ('Absent','לא נוכח'),
 )
 
 class AttendanceForm(forms.Form):

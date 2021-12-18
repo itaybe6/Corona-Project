@@ -27,7 +27,7 @@ def get_manager_signup(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('homepage:home')
+    return redirect('/')
 
 def submit_Manager(request):
     user_id = request.POST['user_id']
@@ -244,7 +244,7 @@ def changeMyClassToRed(request,user_id):
     for i in students:
         i.status = False
         i.save()
-    return render(request,'teacher/Home.html',{'teacher' :teacher})
+    return render(request,'teacher/DoneT.html',{'teacher' :teacher})
 
 
 #manager add teachers
@@ -326,15 +326,10 @@ def quizManager(request,user_id):
 
 
 
-
-
-
-
-
 def mark_attendance(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
-    count = students.count()
+    count = students.count() #how many students
     attendance_formset = formset_factory(AttendanceForm, extra=count)
     date = datetime.today().date().strftime('%d-%m-%Y')
     attendance = None
@@ -343,22 +338,20 @@ def mark_attendance(request,user_id):
         formset = attendance_formset(request.POST)
         lst = zip(formset,students)
 
-        if formset.is_valid():
-            for form, student in zip(formset,students):
+        if formset.is_valid(): #for cleaned_data func
+            for form, student in zip(formset,students): #form->formset, student->students
                 date = datetime.today()
-                mark = form.cleaned_data['mark_attendance']
-                print(mark)
-                check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student)
-                print(check_attendance)
-                for i in check_attendance:
+                mark = form.cleaned_data['mark_attendance'] 
+                check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student) #if checked
+                if check_attendance:
                     attendance = Attendance.objects.get(student=student,teacher=teacher,date=date)
-                    if check_attendance.mark_attendance == 'Absent':
+                    if attendance.mark_attendance == 'Absent':
                         student.absent = student.absent - 1
                     elif attendance.mark_attendance == 'Present':
                         student.present = student.present - 1
                     attendance.mark_attendance = mark
                     attendance.save()
-                else: 
+                else:  #if not check (check_attendance is QuarySet)->The student acsent and present wont change
                     check_attendance = Attendance()
                     check_attendance.teacher = teacher
                     check_attendance.student = student
@@ -377,11 +370,9 @@ def mark_attendance(request,user_id):
                 'students': students,
                 'teacher': teacher,
             }
-            return render(request, 'teacher/Home.html', context)
-        else:
-            error = "Something went wrong"
+            return render(request, 'teacher/attendance_success.html', context) #attendance suuccess
+        else: #formset is not vaid->something went wrong (need to do the attendance again)
             context = {
-                'error': error,
                 'formset': formset,
                 'students': students,
                 'teacher': teacher,
@@ -390,7 +381,7 @@ def mark_attendance(request,user_id):
             }
             return render(request, 'teacher/attendance_form.html', context)
 
-    else:
+    else: #the user want to start the attendance check (when press the attendance bottum)
         lst = zip(students, attendance_formset())
         context = {
             'formset': attendance_formset(),
