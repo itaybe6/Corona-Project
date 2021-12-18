@@ -8,7 +8,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse ,Http404
 from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager
 from homepage import views
-from datetime import datetime
+from datetime import datetime,timedelta,date
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import AttendanceForm
@@ -161,14 +161,12 @@ def Conect(request):
     
     
 #Phones page for teacher
-#@login_required
 def Phones(request,user_id): 
     teacher = Teacher.objects.get(user_id=user_id)
     student = Student.objects.filter(teacher__user_id = user_id)
     return render(request,'teacher/Phones.html' ,{'teacher':teacher, 'student':student})
 
 #Phones page for manager
-#@login_required
 def PhonesTeacher(request,user_id): 
     manager = Manager.objects.get(user_id=user_id)
     teacher = Teacher.objects.filter(manager__user_id = user_id)
@@ -255,10 +253,13 @@ def addTeacher(request,user_id):
 def submitAddTeacher(request,user_id):
     teacher_user_id = request.POST['teach_user_id']
     manager=Manager.objects.get(user_id = user_id)
-    if list(Teacher.objects.filter(user_id = teacher_user_id)) == []: #A teacher with this id doesnt exist
+    check1 = list(Student.objects.filter(user_id = teacher_user_id)) #check if student with this id allready exist
+    check2 = list(Teacher.objects.filter(user_id = teacher_user_id)) #check for Teacher
+    check3 = list(Manager.objects.filter(user_id = teacher_user_id)) #check for Manager
+    if check1 == [] and check2 == [] and check3 == []: #A user with this id doesnt exist
         new_teacher=Teacher(user_id=teacher_user_id,manager=manager)
         new_teacher.save()
-        teachers=Teacher.objects.all() #for the print in the html file
+        teachers=Teacher.objects.filter(manager=manager) #for the print in the html file
         return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})    
     else:
         return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
@@ -274,12 +275,14 @@ def addStudent(request,user_id):
 def submitAddStudent(request,user_id):
     student_user_id = request.POST['stu_user_id']
     teacher=Teacher.objects.get(user_id = user_id)
-    check = list(Student.objects.filter(user_id = student_user_id)) #check if student with this id allready exist
-    if check == []: #A student with this id doesnt exist
+    check1 = list(Student.objects.filter(user_id = student_user_id)) #check if student with this id allready exist
+    check2 = list(Teacher.objects.filter(user_id = student_user_id)) #check for Teacher
+    check3 = list(Manager.objects.filter(user_id = student_user_id)) #check for Manager
+    if check1 == [] and check2 == [] and check3 == []: #A user with this id doesnt exist
         manager=Manager.objects.get(teacher=teacher)
         student=Student(user_id=student_user_id,teacher=teacher,manager=manager)
         student.save()
-        students=Student.objects.all()
+        students=Student.objects.filter(teacher=teacher)
         return render(request,'teacher/add_success.html',{'students' :students, 'teacher':teacher})
     else:
         return render(request,'teacher/cant_add.html',{'ID' : student_user_id , 'teacher' : teacher})
@@ -416,4 +419,21 @@ def mark_attendance(request,user_id):
         }
 
         return render(request, 'teacher/attendance_form.html', context)
+
+def whoNeedToGetQuiz(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    students = Student.objects.filter(teacher=teacher)
+    today = datetime.today().date().strftime('%d-%m-%Y')
+    yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
+    the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
+    lst = []
+
+    
+    for student in students:
+        check1 = Attendance.objects.filter(teacher=teacher,date=today,student=student)
+        check2 = Attendance.objects.filter(teacher=teacher,date=yesterday,student=student)
+        check3 = Attendance.objects.filter(teacher=teacher,date=the_day_before_yesterday,student=student)
+        if check1 and check2 and check3: #not a quarySet
+            if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
+                lst.append(student.user_id) #all the users id that need to get a quiz
 
