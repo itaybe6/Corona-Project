@@ -9,7 +9,7 @@
   </head>
 
 
-<body >
+  <body >
   
     <div class="topnav">
       <a class="active" href="/users/HomePageManager/897{{manager.user_id}}654/">דף הבית</a>
@@ -28,86 +28,86 @@
 
 
 
-  <center>
+   <center>
 
-    <p>
-    <h1>  שלום למנהל/ת: {{manager.name}}</h1>
-    </p>
-  </center>
-
-
+     <p>
+     <h1>  שלום למנהל/ת: {{manager.name}}</h1>
+     </p>
+   </center>
 
 
 
 
-  <a id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/">שנה את הסטטוס שלי</a>
-  <div class=ha>
-    <center>
-
-      אני מצהיר כדלהלן - עם שינוי הסטטוס שלי לירוק אני מתחייב כי אני
-      איינני חולה קורונה מאובחן, לא דווח לי כי עליי לשהות בבידוד וככל הידוע לי לא שהייתי בקרבת חולה מאומת.
-      .כמו כן איני סובל מסימפטומים כגון - חום גבוה ,שיעול או קשיי נשימה
-    </center>
-
-  </div>
 
 
-  {%if manager.status == False%}
-  <p class=red> </p>
-  {%endif%}
-  {%if manager.status == True%}
-  <p class=green> </p>
-  {%endif%}
+   <a id="id1" href="/users/ChanageStatusManager/897{{manager.user_id}}654/">שנה את הסטטוס שלי</a>
+   <div class=ha>
+     <center>
 
-
-
-  <div class="table">
-
-    <div class="teac">
-     
-      המורים הנעדרים בשל סטטוס אדום
+       אני מצהיר כדלהלן - עם שינוי הסטטוס שלי לירוק אני מתחייב כי אני
+       איינני חולה קורונה מאובחן, לא דווח לי כי עליי לשהות בבידוד וככל הידוע לי לא שהייתי בקרבת חולה מאומת.
+       .כמו כן איני סובל מסימפטומים כגון - חום גבוה ,שיעול או קשיי נשימה
+     </center>
 
     </div>
 
 
+   {%if manager.status == False%}
+   <p class=red> </p>
+   {%endif%}
+   {%if manager.status == True%}
+   <p class=green> </p>
+   {%endif%}
 
 
-    <tr>
 
-      {% for teacher in teachers %}
+    <div class="table">
 
-      {% if teacher.status %} 
-      {% if teacher.name %}
+      <div class="teac">
+     
+       המורים הנעדרים בשל סטטוס אדום
+
+      </div>
+
+
+
+
+      <tr>
+
+        {% for teacher in teachers %}
+
+        {% if teacher.status %} 
+        {% if teacher.name %}
        
-<div class=linr>
+        <div class=linr>
 
-  <th> {{teacher.name}} </th>
+         <th> {{teacher.name}} </th>
 
 
 
-  </mark>
+         </mark>
 
-</div>
+        </div>
 
         
         
 
 
-      </mark>   
+          </mark>   
 
 
 
-      {% else %}
-      {% endif %}
-      {% endif %}
-      <br>
-      {% endfor %}
-    </tr>
-  </div>
+          {% else %}
+          {% endif %}
+          {% endif %}
+          <br>
+          {% endfor %}
+      </tr>
+   </div>
 
 
-  <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
-
+    <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
+  </body> 
 </html>
 
 
