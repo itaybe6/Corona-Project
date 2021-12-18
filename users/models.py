@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Manager(models.Model):
     name = models.CharField(max_length=200, null = True, default = None)
-    user_id = models.CharField(max_length=200,null = True) #unique id
+    user_id = models.CharField(max_length=200,null = True)
     status = models.BooleanField(null= True,default = True)
     phone_number = models.CharField(max_length=200, null=True, default = None)
     password = models.CharField(max_length=200, null=True, default = None)
@@ -36,8 +36,15 @@ class Teacher(models.Model):
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     masseges = models.ManyToManyField(MassegeT,default = None)
 
+
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
+        
+class Massege_Student_FromManager(models.Model):
+    author = models.ForeignKey(Manager ,on_delete =models.CASCADE,default = None,blank = True)
+    subject = models.CharField(max_length = 255)
+    content = models.TextField(max_length = 2500,null = True)
+    date_create = models.DateTimeField(auto_now_add=True)
 
 class Student(models.Model):
     name = models.CharField(max_length=200, null = True,default = None)
@@ -47,6 +54,7 @@ class Student(models.Model):
     password = models.CharField(max_length=200, null=True,default = None)
     teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE,default = None)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
+    massegeFromManager = models.ManyToManyField(Massege_Student_FromManager,default = None)
     present = models.IntegerField(null=True,default=0)    #for attendance
     absent = models.IntegerField(null=True,default=0)     #for attendance
 

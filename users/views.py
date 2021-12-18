@@ -6,7 +6,7 @@ from django.db.models.query import QuerySet
 from django.forms.formsets import formset_factory
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student,MassegeT, Attendance
+from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager
 from homepage import views
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
@@ -287,13 +287,12 @@ def submitAddStudent(request,user_id):
 
 
 
-#send massege to teacher from studnet
+#send massege to teacher from manager
 def massegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForT.html',{'manager' : manager})
 
-
-#send massege to teacher from studnet
+#send massege to teacher from Manager
 def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
@@ -307,8 +306,30 @@ def submitMassegeForTeacher(request,user_id):
         teacher.masseges.add(massege)
         teacher.save()
 
-    return render(request,'manager/DoneM.html',{'manager' :manager }) #להוסיף הודעה נשלחה בהצלחה
+    return render(request,'manager/DoneM.html',{'manager' :manager })    
 
+
+
+#send massege to student from manager
+def massegeForStudent_Manager(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    return render(request,'manager/massegeForS.html',{'manager' : manager})
+
+#send massege to student from manager
+def submitMassegeForStudent_Manager(request,user_id):
+    manager = Manager.objects.get(user_id = user_id)
+    author = manager
+    content = request.POST['content']
+    subject = request.POST['subject']
+    date_create = datetime.now()
+    massege = Massege_Student_FromManager(author = author,content = content,subject = subject,date_create = date_create)
+    massege.save()
+
+    for student in Student.objects.all():
+        student.massegeFromManager.add(massege)
+        student.save()
+
+    return render(request,'manager/DoneM.html',{'manager' :manager })    
 
 
 #massege in teacher
@@ -318,13 +339,16 @@ def massegeFromManagerInTeacher(request,user_id):
     return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
 
 
+def massegeFromManagerInStudent(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    masseges = student.massegeFromManager.all()
+    return render(request,'student/masFromMan.html',{'student' :student , 'masseges' : masseges})
+
+
 def quizManager(request,user_id):
     #need to add
     manager = Manager.objects.get(user_id=user_id)
     return render(request,'manager/quizManager.html',{'manager' :manager})
-
-
-
 
 def mark_attendance(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
