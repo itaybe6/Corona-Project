@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <title>הודעה לתלמיד</title>
+  <head>
+    {% load static %}
+   <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
+   <style></style>
+  </head>
+
+  <body dir="rtl">
+
+     
+    <div class="topnav">
+      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/">דף הבית</a>
+      <a class="btn" href="/users/PhonesT/897{{manager.user_id}}654"> דף קשר צוות </a>
+      <a class="btn"href="/users/graphStudentStatus/897{{manager.user_id}}654"> מדגם תלמידים אדומים </a>
+      <a class="btn" href="#about">בניית שאלון</a>
+      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654">מסרים למורים</a>
+
+
+      <a class="active" href="/users/massegeForStudentManager/897{{manager.user_id}}654">מסרים לתלמידים</a>
+      <a class="btn" href="/users/addTeacher/{{manager.user_id}}" target="_self">מורה חדש</a>
+      
+    </div>
+ 
+
+
+
+    <form
+      action="{% url 'users:submitMassegeForStudent_Manager' manager.user_id %}"
+      method="post"
+    >
+      {% csrf_token %}
+<center>
+     <div class=beauty><h2> הכנס/י בבקשה את נושא ההודעה </h2>
+      <br />
+      <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />
+      <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
+      <br />
+      <textarea rows="15" cols="60" name="content" id="content" placeholder="תוכן ההודעה שתרצה לשלוח"></textarea>
+
+      <br />
+
+      <button type="submitMassegeForStudent_Manager">שלח</button>
+
+    </form>
+    </center>
+  </body>
+</html>
