@@ -4,7 +4,8 @@
   <head>
     <style></style>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
+    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    <style> </style>
   </head>
 
   <body>

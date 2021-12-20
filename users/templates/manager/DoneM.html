@@ -3,8 +3,8 @@
   <title>שינוי סטטוס בוצע בהצלחה</title>
   <head>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
-    <style></style>
+      <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+      <style> </style>
   </head>
 
   <meta charset="UTF-8" />

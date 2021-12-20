@@ -4,7 +4,9 @@
 
   <head>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    <style> </style>
     <style> 
      .add {
         background-color: rgb(138, 111, 103);

@@ -1,4 +1,10 @@
-
+body {
+  background-image: url("images/logo.jpg");
+  height: 900px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .topnav {
   overflow: hidden;
   background-color: #333333;
@@ -16,15 +22,16 @@
   margin: 0;
   padding: 0;
 }
-
 .topnav a {
   float: right;
   color: #f2f2f2;
   text-align: center;
-  margin: 1px;
+  margin: 14px;
+  width: 11%;
+  height: 6%;
   padding: 1px 1px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 15px;
 }
 .topnav a:hover {
   background-color: #ddd;
@@ -91,15 +98,14 @@ p {
 a#id1 {
   border: none;
   color: white;
-  padding: 16px 32px;
+  padding: 12px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-
   float: right;
 }
 
@@ -168,30 +174,29 @@ a#id2 {
 
   float: right;
 }
-
 .green {
   text-align: center;
-  height: 80px;
-  width: 20px;
-  border-style: none;
-  font-size: 15px;
-  font: small-caps;
-  margin-left: 85%;
-  margin-top: 10%;
-  font-style: oblique;
+    height: 80px;
+    width: 20px;
+    border-style: none;
+    font-size: 15px;
+    font: small-caps;
+    margin-left: 86%;
+    margin-top: 10%;
+    font-style: oblique;
   background-color: rgb(75, 146, 75);
 }
 
 .red {
   text-align: center;
-  height: 80px;
-  width: 20px;
-  border-style: none;
-  font-size: 15px;
-  font-style: oblique;
-  font: small-caps;
-  margin-left: 85%;
-  margin-top: 10%;
+    height: 80px;
+    width: 20px;
+    border-style: none;
+    font-size: 15px;
+    font: small-caps;
+    margin-left: 86%;
+    margin-top: 10%;
+    font-style: oblique;
   background-color: rgb(124, 22, 22);
 }
 
@@ -216,9 +221,10 @@ a#id2 {
 
 .linr {
   background-color: blanchedalmond;
-  margin: 0%;
+  margin: 3%;
   font-size: 10;
 }
+
 
 .teac {
   background-color: rgb(206, 148, 82);

@@ -3,7 +3,8 @@
   <title>הוספת תלמיד</title>
   <head>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
+    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    <style> </style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       .button2 {
