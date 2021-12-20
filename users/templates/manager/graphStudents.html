@@ -61,27 +61,18 @@
       >
     </div>
     <center>
-      <h1>סטטוס תלמידים עדכני</h1>
+      <h1>מדגם תלמידים לפי כיתות</h1>
     </center>
     <table id="tableTecher">
       <tr class="students">
         {% for teacher in teachers %}
         <th> שם המורה: {{teacher.name}}</th>
         <th>כיתת לימוד: {{teacher.my_class}} </th>
+        <th>מספר האדומים בכיתה : {{teacher.count_red}} </th>
+        <th>מספר הירוקים בכיתה : {{teacher.count_green}} </th>
+
       </tr>
-       {% for student in students %}
-       <div class=linrr>
-         {% if student.teacher == teacher %}
-         <th>שם התלמיד: {{student.name}}</th>
-         <th> {% if student.status %} סטטוס : Green 
-          {% else %} סטטוס: Red {% endif %}</th>
-         <br />
-       </div> 
-    </table>
-      {% endif %} {% endfor %}
-      <br /><br />
       {% endfor %}
-    </tr>
   </body>
 </html>
 
