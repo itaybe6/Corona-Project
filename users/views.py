@@ -6,7 +6,7 @@ from django.db.models.query import QuerySet
 from django.forms.formsets import formset_factory
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager
+from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher
 from homepage import views
 from datetime import datetime,timedelta,date
 from django.contrib.auth import authenticate, login, logout
@@ -355,11 +355,31 @@ def massegeFromManagerInTeacher(request,user_id):
     return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
 
 
-def massegeFromManagerInStudent(request,user_id):
+def massege_InStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
-    masseges = student.massegeFromManager.all()
-    return render(request,'student/masFromMan.html',{'student' :student , 'masseges' : masseges})
+    masseges_FromManager = student.massegeFromManager.all()
+    masseges_FromTeacher = student.massegeFromTeacher.all()
+    return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})
 
+#massege for all class from teacher
+def massegeForStudent_Teacher(request,user_id):
+    teacher = Teacher.objects.get(user_id = user_id)
+    return render(request,'teacher/massegeForS.html',{'teacher' : teacher})
+
+def submitMassegeForStudent_Teacher(request,user_id):
+    teacher = Teacher.objects.get(user_id = user_id)
+    author = teacher
+    content = request.POST['content']
+    subject = request.POST['subject']
+    date_create = datetime.now()
+    massege = Massege_Student_FromTeacher(author = author,content = content,subject = subject,date_create = date_create)
+    massege.save()
+
+    for student in Student.objects.filter(teacher = teacher):
+        student.massegeFromTeacher.add(massege)
+        student.save()
+
+    return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
 
 def quizManager(request,user_id):
     #need to add
