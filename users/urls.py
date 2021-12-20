@@ -59,6 +59,17 @@ urlpatterns = [
     #get massege from teacher and mangager in student
     path('massege_InStudent/897<int:user_id>654/',views.massege_InStudent,name = 'massege_InStudent'),
 
+
+    #send home work to student from teacher
+    path('homework_Teacher/897<int:user_id>654/',views.homework_Teacher,name='homework_Teacher'),
+    path('submit_homeworkTeacher/897<int:user_id>654/' ,views.submit_homeworkTeacher,name = 'submit_homeworkTeacher'),
+
+
+    path('homework_Student/897<int:user_id>654/',views.homework_Student,name = 'homework_Student'),
+
+
+
+
     path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
     path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),
     path('addTeacher/<int:user_id>/',views.addTeacher, name = 'addTeacher'),

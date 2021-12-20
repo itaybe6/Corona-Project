@@ -53,6 +53,14 @@ class Massege_Student_FromTeacher(models.Model):
     content = models.TextField(max_length = 2500,null = True)
     date_create = models.DateTimeField(auto_now_add=True)
 
+class Homework(models.Model):
+    book = models.CharField(max_length=200, null = True,default = None)
+    pages = models.CharField(max_length=200, null = True,default = None)
+    remark = models.CharField(max_length=200, null = True,default = None)
+    date_create = models.DateTimeField(auto_now_add=True)
+    date_ToDone = models.CharField(max_length=200, null = True,default = None)
+
+
 class Student(models.Model):
     name = models.CharField(max_length=200, null = True,default = None)
     user_id = models.CharField(max_length=200,null = True)
@@ -62,7 +70,8 @@ class Student(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE,default = None)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     massegeFromManager = models.ManyToManyField(Massege_Student_FromManager,default = None)
-    massegeFromTeacher = models.ManyToManyField(Massege_Student_FromTeacher,default = None)
+    massegeFromTeacher = models.ManyToManyField(Massege_Student_FromTeacher,default = None) 
+    homework =  models.ManyToManyField(Homework,default = None)   
     present = models.IntegerField(null=True,default=0)    #for attendance
     absent = models.IntegerField(null=True,default=0)     #for attendance
 
