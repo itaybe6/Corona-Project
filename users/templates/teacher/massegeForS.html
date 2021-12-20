@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <title>מסר לכיתה</title>
+
+  <head>
+    {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'man.css' %}?{% now "U" %}'>
+    <style></style>
+    <style>
+      .add {
+        background-color: rgb(138, 111, 103);
+        margin-top: 29%;
+        margin-left: -13%;
+        height: 14%;
+        width: 128px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="topnav">
+      <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+        >דף הבית</a
+      >
+
+      <a class="btn" href="/users/Phones/897{{teacher.user_id}}654"
+        >דף קשר {{teacher.my_class}}</a
+      >
+
+      <a class="btn" href="#contact"> שיעורי בית </a>
+      <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
+        >נוכחות
+      </a>
+      <a
+        class="btn"
+        href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
+        >מסרים
+      </a>
+      <a class="btn" href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654">מסר לכיתה </a>
+      <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
+    </div>
+  </body>
+</html>
+
+ <form
+      action="{% url 'users:submitMassegeForStudent_Teacher' teacher.user_id %}"
+      method="post"
+    >
+      {% csrf_token %}
+<center>
+     <div class=beauty><h2> הכנס/י בבקשה את נושא ההודעה </h2>
+      <br />
+      <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />
+      <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
+      <br />
+      <textarea rows="15" cols="65" name="content" id="content" placeholder="תוכן ההודעה שתרצה לשלוח"></textarea>
+
+      <br />
+
+      <button type="submitMassegeForStudent_Teacher" class="button button2">שלח</button>
+
+    </form>
+    </center>
+  </body>
+</html>

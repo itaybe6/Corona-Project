@@ -49,10 +49,15 @@ urlpatterns = [
     path('massegeForStudentManager/897<int:user_id>654/',views.massegeForStudent_Manager,name = 'massegeForStudentManager' ),
     path('submitMassegeForStudent_Manager/897<int:user_id>654/',views.submitMassegeForStudent_Manager , name = 'submitMassegeForStudent_Manager' ),
 
+    #send massege to class from teacher
+    path('massegeForStudentTeacher/897<int:user_id>654/',views.massegeForStudent_Teacher,name='massegeForStudentTeacher'),
+    path('submitMassegeForStudent_Teacher/897<int:user_id>654/',views.submitMassegeForStudent_Teacher,name= 'submitMassegeForStudent_Teacher'),
+
     #get massege from manager in teacher
     path('massegesFromManagerInTeacher/897<int:user_id>654/',views.massegeFromManagerInTeacher, name='massegeFromManagerInTeacher'),
 
-    path('massegesFromManagerInStudent/897<int:user_id>654/',views.massegeFromManagerInStudent,name = 'massegesFromManagerInStudent'),
+    #get massege from teacher and mangager in student
+    path('massege_InStudent/897<int:user_id>654/',views.massege_InStudent,name = 'massege_InStudent'),
 
     path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
     path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),
