@@ -3,8 +3,9 @@
   <title>דף קשר למורה</title>
   <head>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}" />
-    <style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    <style> </style>
       #tablestudent {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;

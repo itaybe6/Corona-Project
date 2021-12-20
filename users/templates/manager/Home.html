@@ -2,9 +2,9 @@
 <html>
   <title>דף בית מנהל</title>
   <head>
-      {% load static %}
-      <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
-      <style> </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    <style> </style>
 
   </head>
 
@@ -83,10 +83,6 @@
 
          <th> {{teacher.name}} </th>
 
-
-
-         </mark>
-
         </div>
 
         
@@ -100,7 +96,7 @@
           {% else %}
           {% endif %}
           {% endif %}
-          <br>
+          
           {% endfor %}
       </tr>
    </div>
