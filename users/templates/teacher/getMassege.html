@@ -1,10 +1,9 @@
 <html>
   <title>מסרים</title>
   <head>
-    {% load static %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-    <style> </style>
+    {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'man.css' %}?{% now "U" %}'>
+    <style></style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       #tableTecher {
@@ -47,7 +46,9 @@
         >דף קשר {{teacher.my_class}}</a
       >
 
-      <a class="btn" href="#contact"> שיעורי בית </a>
+      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654">
+        שיעורי בית
+      </a>
       <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
         >נוכחות
       </a>

@@ -2,9 +2,9 @@
 <html>
   <title>שיעורי בית</title>
   <head>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-    <style> </style>
+    {% load static %} <link rel="stylesheet" type="text/css" href='{% static
+    'man.css' %}?{% now "U" %}'>
+    <style></style>
     <div class="topnav">
       <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
         >דף הבית</a
@@ -14,7 +14,7 @@
         >דף קשר {{teacher.my_class}}</a
       >
 
-      <a class="active" href="#contact"> שיעורי בית </a>
+      <a class="active" href="/users/homework_Teacher/897{{teacher.user_id}}654"> שיעורי בית </a>
       <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
         >נוכחות
       </a>
@@ -26,4 +26,47 @@
       <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
     </div>
   </head>
+
+
+
+
+ <form class="container" action=" {% url 'users:submit_homeworkTeacher' teacher.user_id %} " method="post">
+    {% csrf_token %}
+
+    <label for="book"><b>ספר הלימוד </b> </label>
+
+    <input type="book" placeholder="הכנס את ספר הלימוד" name="book" required />
+
+    <label for="pages"><b>עמודים</b></label>
+    <input
+      type="pages"
+      placeholder="הכנס עמודים (1-100)"
+      name="pages"
+      required
+    />
+
+    <label for="remark"><b>הערות</b></label>
+    <input type="remark" placeholder="הכנס הערות" name="remark" required />
+
+    <label for="date_ToDone"><b>תאריך סיום המטלה</b></label>
+    <input
+      type="date_ToDone"
+      placeholder="הכנס תאריך סיום המטלה"
+      name="date_ToDone"
+      required
+    />
+
+    <button type="submit_homeworkTeacher">שלח</button>
+    <label>
+     
+
+  </form>
+
+
+
+
+
+
+
+
 </html>
