@@ -232,6 +232,19 @@ def graphStudentStatus(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     teachers = Teacher.objects.filter(manager__user_id = user_id)
     students = Student.objects.filter(manager__user_id = user_id)
+
+    for teacher in teachers:
+        count_red=0
+        count_green=0
+        students_in_class = Student.objects.filter(teacher__user_id = teacher.user_id)
+        for j in students_in_class:
+            if j.status == False:
+                count_red = count_red+1
+            elif j.status == True:
+                count_green=count_green+1
+        teacher.count_red = count_red
+        teacher.count_green = count_green
+
     return render(request,'manager/graphStudents.html',{'manager' :manager ,'students' : students ,'teachers' :teachers})
 
 
@@ -353,6 +366,7 @@ def quizManager(request,user_id):
     manager = Manager.objects.get(user_id=user_id)
     return render(request,'manager/quizManager.html',{'manager' :manager})
 
+
 def mark_attendance(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
@@ -374,23 +388,26 @@ def mark_attendance(request,user_id):
                     attendance = Attendance.objects.get(student=student,teacher=teacher,date=date)
                     if attendance.mark_attendance == 'Absent':
                         student.absent = student.absent - 1
+                        student.save()
                     elif attendance.mark_attendance == 'Present':
                         student.present = student.present - 1
+                        student.save()
                     attendance.mark_attendance = mark
                     attendance.save()
                 else:  #if not check (check_attendance is QuarySet)->The student acsent and present wont change
-                    check_attendance = Attendance()
-                    check_attendance.teacher = teacher
-                    check_attendance.student = student
-                    check_attendance.date = date
-                    check_attendance.mark_attendance = mark
-                    check_attendance.save()
+                    attendance = Attendance()
+                    attendance.teacher = teacher
+                    attendance.student = student
+                    attendance.date = date
+                    attendance.mark_attendance = mark
+                    attendance.save()
 
                 if mark == 'Absent':
                     student.absent = student.absent + 1
+                    student.save()
                 if mark == 'Present':
                     student.present = student.present + 1
-                student.save()
+                    student.save()
 
 
             context = {
@@ -437,3 +454,4 @@ def whoNeedToGetQuiz(request,user_id):
             if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
                 lst.append(student.user_id) #all the users id that need to get a quiz
 
+    

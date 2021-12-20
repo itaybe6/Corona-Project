@@ -1,44 +1,16 @@
 <html>
   <title>דף קשר צוות מורים</title>
   <head>
-   
-    <style> 
-      #tableTecher {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      #tableTecher td,
-      th {
-        border: 3px solid;
-        border-color: rgb(32, 136, 127);
-        padding: 15px;
-      }
-      #tableTecher tr:hover {
-        background-color: #ddd;
-      }
-
-      #tableTecher th {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: right;
-        background-color: #353535;
-        color: rgb(32, 136, 127);
-      }
-    </style>
-     {% load static %}
-     <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    
+    
   </head>
 
   <body dir="rtl">
     <div class="topnav">
-      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/"
-        >דף הבית</a
-      >
-      <a class="active" href="/users/PhonesT/897{{manager.user_id}}654">
-        דף קשר צוות
-      </a>
+      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/">דף הבית</a >
+      <a class="active" href="/users/PhonesT/897{{manager.user_id}}654">דף קשר צוות</a>
       <a class="btn" href="/users/graphStudentStatus/897{{manager.user_id}}654">
         מדגם תלמידים אדומים
       </a>
@@ -75,8 +47,9 @@
       {% for teacher in teacher %}
       <table id="tableTecher">
         <tr class="teacher">
-          <td>{{teacher.name}}</td>
-          <td>{{teacher.my_class}}</td>
+          
+          <th>{{teacher.name}}</th>
+          <th>{{teacher.my_class}}</td>
           <td>{{teacher.phone_number}}</td>
         </tr>
       </table>
@@ -84,3 +57,17 @@
     </ul>
   </body>
 </html>
+
+
+
+<table id="tableTecher">
+  <tr class="students">
+    {% for teacher in teachers %}
+
+    <th> שם המורה: {{teacher.name}}</th>
+    <th>כיתת לימוד: {{teacher.my_class}} </th>
+    <th>מספר האדומים בכיתה : {{teacher.count_red}} </th>
+    <th>מספר הירוקים בכיתה : {{teacher.count_green}} </th>
+
+  </tr>
+  {% endfor %}

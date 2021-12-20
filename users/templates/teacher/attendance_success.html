@@ -37,9 +37,11 @@
             {% for student in students %}
             <tr>
             {% if student.name%}
-              <center> <h2>{{ student.name }}: סהכ&nbsp;נוכח: {{ student.present }} סהכ&nbsp;החסיר: {{ student.absent }}</h2>
+              <center> <h2>{{ student.name }}: סהכ&nbsp;נוכח: {{ student.present }}</h2>
+              <center> <h2>סהכ&nbsp;החסיר: {{ student.absent }}</h2>
             {% else %}
-               <center> <h2>{{ student.user_id }}: סהכ&nbsp;נוכח: {{ student.present }} סהכ&nbsp;החסיר: {{ student.absent }}</h2>
+               <center> <h2>{{ student.user_id }}: סהכ&nbsp;נוכח: {{ student.present }}</h2>
+               <center> <h2>סהכ&nbsp;החסיר: {{ student.absent }}</h2>
             {% endif %}
             {% endfor %}
             </tr>

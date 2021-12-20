@@ -10,6 +10,36 @@ body {
   background-color: #333333;
 }
 
+
+      #tableTecher {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #tableTecher td,
+      th {
+        border: 3px solid;
+        border-color: rgb(32, 136, 127);
+        padding: 15px;
+      }
+      #tableTecher tr:hover {
+        background-color: #ddd;
+      }
+
+      #tableTecher th {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: right;
+        background-color: #353535;
+        color: rgb(32, 136, 127);
+      }
+    
+
+
+
+
+
 .beauty {
   top: 1.58635px;
   left: 72.9504px;
