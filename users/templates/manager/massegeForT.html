@@ -4,7 +4,17 @@
   <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-    <style> </style>
+    <style> 
+    p {
+    font-size: 114%;
+    width: 36%;
+    height: 66%;
+    background-color: bisque;
+    color: black;
+    margin-top: 3%;
+    float: right 0%;
+}
+    </style>
    <style>
      .button2 {
        border: none;
@@ -47,7 +57,11 @@
       
     </div>
  
-
+    <div class=beauty>
+      <center>
+      מנהל יקר ,באפשרותך לשלוח הודעות למורים בבית ספרך
+      </center>
+    </div>
 
 
     <form
@@ -55,17 +69,17 @@
       method="post">
       {% csrf_token %}
       <center>
-     <div class=beauty>
-       <h2> הכנס/י בבקשה את נושא ההודעה </h2>
+     
+       <p> הכנס/י בבקשה את נושא ההודעה  </p>
        <br />
        <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />
-       <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
+       <p>הכנס/י בבקשה את תוכן ההודעה</p>
        <br />
        <textarea rows="15" cols="65" name="content" id="content" placeholder="תוכן ההודעה שתרצה לשלוח"></textarea>
 
        <br />
        <button type="submitMassegeForTeacher" class="button button2">שלח</button>
-     </div>
+     
 
     </form>
     </center>
