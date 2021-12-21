@@ -10,44 +10,34 @@ body {
   background-color: #333333;
 }
 
-<<<<<<< HEAD
-=======
+#tableTecher {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-      #tableTecher {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
+#tableTecher td,
+th {
+  border: 3px solid;
+  border-color: rgb(7, 8, 8);
+  padding: 15px;
+  width: 30%;
+  background-color: beige;
+  float: right;
+  text-align: center;
+}
+#tableTecher tr:hover {
+  background-color: #ddd;
+}
 
-      #tableTecher td, th {
-        border: 3px solid;
-        border-color: rgb(7, 8, 8);
-        padding: 15px;
-        width: 30%;
-        background-color: beige;
-        float: right;
-        text-align: center;
-       
-      }    
-      #tableTecher tr:hover {
-        background-color: #ddd;
+#tableTecher th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #d4c677;
+  color: rgb(12, 14, 13);
+}
 
-      }
-
-      #tableTecher th {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: center;
-        background-color: #d4c677;
-        color: rgb(12, 14, 13);
-    }
-    
-
-
-
-
-
->>>>>>> 2859fb307f3919968bd0086bff6d39dbb8ab6b91
 .beauty {
   top: 1.58635px;
   left: 72.9504px;
@@ -214,39 +204,34 @@ a#id2 {
 }
 .green {
   text-align: center;
-    height: 80px;
-    width: 20px;
-    border-style: none;
-    font-size: 15px;
-    font: small-caps;
-    margin-left: 86%;
-    margin-top: 10%;
-    font-style: oblique;
+  height: 80px;
+  width: 20px;
+  border-style: none;
+  font-size: 15px;
+  font: small-caps;
+  margin-left: 86%;
+  margin-top: 10%;
+  font-style: oblique;
   background-color: rgb(75, 146, 75);
 }
 
 .red {
   text-align: center;
-    height: 80px;
-    width: 20px;
-    border-style: none;
-    font-size: 15px;
-    font: small-caps;
-    margin-left: 86%;
-    margin-top: 10%;
-    font-style: oblique;
+  height: 80px;
+  width: 20px;
+  border-style: none;
+  font-size: 15px;
+  font: small-caps;
+  margin-left: 86%;
+  margin-top: 10%;
+  font-style: oblique;
   background-color: rgb(124, 22, 22);
 }
 
 .ha {
-<<<<<<< HEAD
-  height: 208px;
-  width: 165px;
-=======
   height: 174px;
   width: 176px;
   font-size: 16px;
->>>>>>> 2859fb307f3919968bd0086bff6d39dbb8ab6b91
   color: black;
   background-color: rgb(177, 172, 146);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -268,7 +253,6 @@ a#id2 {
   margin: 3%;
   font-size: 10;
 }
-
 
 .teac {
   background-color: rgb(206, 148, 82);
