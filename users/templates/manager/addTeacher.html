@@ -6,6 +6,15 @@
       <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
       <style> </style>
     <style>
+      p {
+    font-size: 114%;
+    width: 36%;
+    height: 66%;
+    background-color: bisque;
+    color: black;
+    margin-top: 6%;
+    float: right 0%;
+}
       .button2 {
         border: none;
         color: white;
@@ -63,13 +72,18 @@
       >
     </div>
     <center>
+      <div class=beauty>
+        <center>
+        מנהל יקר, במידה וקלטת מורה חדש לבית ספרך בהכנסת ת"ז שלו לשדה זה המערכת תאפשר לו להירשם ולהשתייך באופן אוטומטי לבית הספר.
+        </center>
+      </div>
       <form
         action="{% url 'users:submitAddTeacher' manager.user_id %}"
         method="post"
       >
         {% csrf_token %}
 
-        <h2>הכנס/י בבקשה את ת"ז של המורה החדש</h2>
+        <P>הכנס/י בבקשה את ת"ז של המורה החדש</P>
         <br />
         <input
           type="text"

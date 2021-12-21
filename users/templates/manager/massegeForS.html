@@ -27,6 +27,16 @@
        background-color: rgb(201, 202, 198);
        color: white;
      }
+
+     p {
+      font-size: 114%;
+      width: 36%;
+      height: 66%;
+      background-color: bisque;
+      color: black;
+      margin-top: 3%;
+      float: right 0%;
+     }
       
    </style>
   </head>
@@ -56,10 +66,16 @@
     >
       {% csrf_token %}
 <center>
-     <div class=beauty><h2> הכנס/י בבקשה את נושא ההודעה </h2>
+  <div class=beauty>
+    <center>
+    מנהל יקר ,באפשרותך לשלוח הודעות לתלמידים בבית ספרך
+    </center>
+  </div>
+
+     <p> הכנס/י בבקשה את נושא ההודעה </p>
       <br />
       <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />
-      <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
+      <p>הכנס/י בבקשה את תוכן ההודעה</p>
       <br />
       <textarea rows="15" cols="65" name="content" id="content" placeholder="תוכן ההודעה שתרצה לשלוח"></textarea>
 
