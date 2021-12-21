@@ -2,13 +2,14 @@
 <html>
   <title>דף נוכחות</title>
   <head>
-    {% load static %} <link rel="stylesheet" type="text/css" href='{% static
-    'tech.css' %}?{% now "U" %}'>
+    {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'tech.css' %}?{% now "U" %}'>
+
     <style></style>
   </head>
   <body dir="rtl">
     <div class="topnav">
-      <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+      <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
         >דף הבית</a
       >
 
@@ -16,8 +17,10 @@
         >דף קשר {{teacher.my_class}}</a
       >
 
-      <a class="btn" href="#contact"> שיעורי בית </a>
-      <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
+      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654">
+        שיעורי בית
+      </a>
+      <a class="active" href="/users/mark_attendance/{{teacher.user_id}}"
         >נוכחות
       </a>
       <a
@@ -25,59 +28,55 @@
         href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
         >מסרים
       </a>
+      <a
+        class="btn"
+        href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654"
+        >מסר לכיתה
+      </a>
       <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
     </div>
     <div class="container">
       <center>
-        <h1>:עידכון נוכחות לתלמידים בכיתה {{teacher.my_class}}</h1>
-      </center>
-      <center><h3>{{ date }}</h3></center>
-      <p></p>
-      <br />
+        <p><h1>עידכון נוכחות לתלמידים בכיתה: {{teacher.my_class}}</h1></p>
+        <center><h3>{{ date }}</h3></center>
 
-      <form
-        action="{% url 'users:mark_attendance' teacher.user_id %}"
-        method="POST"
-        class="post-form"
-      >
-        {{ formset.management_form }} {% csrf_token %}
-        <br />
-        <table class="table table-bordered table-hover">
-          <tr>
-            <th>:שם התלמיד</th>
-            <th>:סטטוס התלמיד</th>
-            <th>סמן נוכחות</th>
-          </tr>
-          {% for student,form in list %}
-          <tr>
-            {% if student.name%}
-            <td>{{ student.name }}</td>
-            {% else %}
-            <td>{{ student.user_id }}</td>
-            {% endif %} {% if student.status == False%}
-            <td>סטטוס אדום</td>
-            {% else %}
-            <td>סטטוס ירוק</td>
-            {% endif %}
-            <td class="center">{% for i in form %} {{ i }} {% endfor %}</td>
-          </tr>
-          {% endfor %}
-        </table>
-        <button type="mark_attendance">שמירה</button>
-      </form>
-      <a
-        href="/users/HomePageTeacher/897{{teacher.user_id}}654"
-        class="w3-bar-item w3-button"
-      >
-        חזרה לדף הבית ללא שמירה</a
-      >
+        <form
+          action="{% url 'users:mark_attendance' teacher.user_id %}"
+          method="POST"
+          class="post-form"
+        >
+          {{ formset.management_form }} {% csrf_token %}
+          <br />
+          <table class="tableTecher">
+            <tr>
+              <th>:שם התלמיד</th>
+              <th>:סטטוס התלמיד</th>
+              <th>סמן נוכחות</th>
+            </tr>
+            {% for student,form in list %}
+            <tr>
+              {% if student.name%}
+              <td>{{ student.name }}</td>
+              {% else %}
+              <td>{{ student.user_id }}</td>
+              {% endif %} {% if student.status == False%}
+              <td>סטטוס אדום</td>
+              {% else %}
+              <td>סטטוס ירוק</td>
+              {% endif %}
+              <td class="center">{% for i in form %} {{ i }} {% endfor %}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          <button type="mark_attendance">שמירה</button>
+        </form>
+        <a
+          href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+          class="w3-bar-item w3-button"
+        >
+          חזרה לדף הבית ללא שמירה</a
+        >
+      </center>
     </div>
   </body>
 </html>
-<style>
-  .align li {
-    list-style: none;
-    float: left;
-    margin-right: 20px;
-  }
-</style>
