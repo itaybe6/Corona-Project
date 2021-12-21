@@ -9,6 +9,7 @@ from django.contrib.auth import views as auth_views
 app_name = 'users'
 
 urlpatterns = [
+    url(r'^logout/$', views.logout_user, name='logout_user'),
     path('chooseprofile',views.get_chooseprofile, name = 'chooseprofile'),
     path('student/signup',views.get_student_signup, name = 'student_signup'),
     path('teacher/signup',views.get_teacher_signup,name = 'teacher_signup'),
@@ -39,6 +40,42 @@ urlpatterns = [
 
     #change all the status of students in class to red
     path('changeMyClassToRed/897<int:user_id>654/',views.changeMyClassToRed,name = 'changeMyClassToRed'),
+
+    #send massege to teacher from manager
+    path('massegeForTeacher/897<int:user_id>654/',views.massegeForTeacher, name ='massegeForTeacher'), 
+    path('submitMassegeForTeacher/897<int:user_id>654/',views.submitMassegeForTeacher,name = 'submitMassegeForTeacher'),
+    
+    #send massege to student from manager
+    path('massegeForStudentManager/897<int:user_id>654/',views.massegeForStudent_Manager,name = 'massegeForStudentManager' ),
+    path('submitMassegeForStudent_Manager/897<int:user_id>654/',views.submitMassegeForStudent_Manager , name = 'submitMassegeForStudent_Manager' ),
+
+    #send massege to class from teacher
+    path('massegeForStudentTeacher/897<int:user_id>654/',views.massegeForStudent_Teacher,name='massegeForStudentTeacher'),
+    path('submitMassegeForStudent_Teacher/897<int:user_id>654/',views.submitMassegeForStudent_Teacher,name= 'submitMassegeForStudent_Teacher'),
+
+    #get massege from manager in teacher
+    path('massegesFromManagerInTeacher/897<int:user_id>654/',views.massegeFromManagerInTeacher, name='massegeFromManagerInTeacher'),
+
+    #get massege from teacher and mangager in student
+    path('massege_InStudent/897<int:user_id>654/',views.massege_InStudent,name = 'massege_InStudent'),
+
+
+    #send home work to student from teacher
+    path('homework_Teacher/897<int:user_id>654/',views.homework_Teacher,name='homework_Teacher'),
+    path('submit_homeworkTeacher/897<int:user_id>654/' ,views.submit_homeworkTeacher,name = 'submit_homeworkTeacher'),
+
+
+    path('homework_Student/897<int:user_id>654/',views.homework_Student,name = 'homework_Student'),
+
+
+
+
+    path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
+    path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),
+    path('addTeacher/<int:user_id>/',views.addTeacher, name = 'addTeacher'),
+    path('submitAddTeacher/<int:user_id>/',views.submitAddTeacher, name = 'submitAddTeacher'),
+    path('quizManager/<int:user_id>/',views.quizManager, name = 'quizManager'),
+    path('mark_attendance/<int:user_id>/',views.mark_attendance, name='mark_attendance'),
 
 
 ]
