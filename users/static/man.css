@@ -18,26 +18,27 @@ body {
         width: 100%;
       }
 
-      #tableTecher td,
-      th {
+      #tableTecher td, th {
         border: 3px solid;
-        border-color: rgb(32, 136, 127);
+        border-color: rgb(7, 8, 8);
         padding: 15px;
         width: 12%;
-      
-      
         background-color: beige;
-      }
+        float: right;
+        text-align: center;
+       
+      }    
       #tableTecher tr:hover {
         background-color: #ddd;
+
       }
 
       #tableTecher th {
         padding-top: 10px;
         padding-bottom: 10px;
-        text-align: right;
-        background-color: #353535;
-        color: rgb(32, 136, 127);
+        text-align: center;
+        background-color: #d4c677;
+        color: rgb(12, 14, 13);
     }
     
 
@@ -236,9 +237,9 @@ a#id2 {
 }
 
 .ha {
-  height: 169px;
+  height: 174px;
   width: 176px;
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   background-color: rgb(177, 172, 146);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
