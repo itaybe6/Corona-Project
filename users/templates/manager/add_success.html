@@ -5,7 +5,32 @@
     {% load static %}
       <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
     
-    <style></style>
+    <style>
+
+p {
+    width: 52%;
+    height: 0%;
+    margin-top: 3%;
+    margin-left: 23%;
+    color: black;
+    background-color: cadetblue;
+}
+.w3-bar .w3-bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+    background-color: bisque;
+}
+.w3-padding-32 {
+    padding-top: 32px!important;
+    padding-bottom: 32px!important;
+    background-color: rgb(194, 173, 150);
+}
+
+    </style>
   </head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,11 +45,13 @@
     <div class="w3-content" style="max-width: 1500px">
       <header class="w3-panel w3-center w3-opacity" style="padding: 128px 16px">
         <h1>ההוספה בוצעה בהצלחה</h1>
-        <div class="teachers">
-          {% for i in teachers %}
-          <h3>{{i.name}}:{{i.user_id}}</h3>
+        <p>:תעודות זהות הקיימות במערכת</p>
+        {% for i in teachers %}
+        <div class=beauty>
+         {{i.user_id}}
         </div>
         {% endfor %}
+     
         <div class="w3-padding-32">
           <div class="w3-bar w3-border">
             <a
