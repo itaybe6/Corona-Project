@@ -411,7 +411,7 @@ def submit_homeworkTeacher(request,user_id):
 def homework_Student(request,user_id):
     student = Student.objects.get(user_id=user_id)
     homework = student.homework.all()
-    return render(request,'student/homework.html',{'student' :Student , 'homework' :homework})
+    return render(request,'student/homework.html',{'student' :student , 'homework' :homework})
     
 
 
