@@ -2,10 +2,9 @@
 <html>
   <title>דף קשר למורה</title>
   <head>
-    {% load static %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href='{% static 'tech.css' %}?{% now "U" %}'>
-    <style> </style>
+    {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'tech.css' %}?{% now "U" %}'>
+    <style>
       #tablestudent {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -47,7 +46,9 @@
         >דף קשר {{teacher.my_class}}</a
       >
 
-      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654"> שיעורי בית </a>
+      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654">
+        שיעורי בית
+      </a>
       <a class="btn" href="#about">נוכחות </a>
       <a
         class="btn"
