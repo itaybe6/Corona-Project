@@ -40,16 +40,47 @@
   </head>
   <body>
     <div class="topnav">
-      <a class="active" href="#">דף הבית</a>
+      <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654"
+        >דף הבית</a
+      >
       <a href="#news"> שיעורי הבית שלי</a>
-      <a href="#contact">דף קשר הכיתה שלי </a>
-      <a href="#about">דף קשר מנהלתי</a>
-      <a href="#contact">שינוי סטטוס </a>
+      <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654"
+        >דף קשר הכיתה שלי
+      </a>
       <a href="#about">מדריך </a>
+      </a>
       <a href="#contact">מסרים </a>
       <a href="#about">שאלון תלמיד </a>
     </div>
 
     <img src="logo.jpg" />
+
+<img src= "logo.jpg">
+<div class = "header">
+  <h1>ברוכים הבאים {{student.name}} </h1>
+    <h1>Hello {{student.name}} / {{student.user_id}}</h1>
+
+
+
+
+
+      <h2> שינוי סטטוס לפי הצהרת בריאות </h2>
+     <p>
+      ביצעתי מדידת חום בבוקר הפעילות ולא היה לי חום מעל 38 מעלות צלזיוס בבוקר או
+      ביומיים הקודמים.<br />
+      איש מבני משפחתי אינו מחויב בבידוד לפי הנחיות משרד הבריאות.<br />
+
+      אין לי או לבני משפחתי המתגוררים עמנו, תסמיני קורונה (חום, שיעול, קושי
+      בנשימה או כל תסמין נשימתי אחר).
+    </p>
+    {%if student.status == False%}
+    הסטטוס שלי אדום
+    {%endif%}
+        {%if student.status == True%}
+    הסטטוס שלי ירוק
+    {%endif%}
+    <a class="active" href="/users/ChanageStatusStudent/897{{student.user_id}}654/"
+        >שנה את הסטטוס שלי</a
+
   </body>
 </html>
