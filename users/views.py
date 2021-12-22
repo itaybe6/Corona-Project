@@ -319,6 +319,7 @@ def submitMassegeForTeacher(request,user_id):
 
     for teacher in Teacher.objects.all():
         teacher.masseges.add(massege)
+        teacher.read = False
         teacher.save()
 
     return render(request,'manager/DoneM.html',{'manager' :manager })    
@@ -491,6 +492,7 @@ def mark_attendance(request,user_id):
 
         return render(request, 'teacher/attendance_form.html', context)
 
+#adad
 def whoNeedToGetQuiz(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
@@ -508,4 +510,11 @@ def whoNeedToGetQuiz(request,user_id):
             if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
                 lst.append(student.user_id) #all the users id that need to get a quiz
 
+
+def changeToRead_Teacher(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    masseges = teacher.masseges.all()
+    teacher.read = True
+    teacher.save()
+    return render(request, 'teacher/getMassege.html', {'teacher': teacher, 'masseges': masseges})
     

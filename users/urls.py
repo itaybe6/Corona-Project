@@ -64,10 +64,11 @@ urlpatterns = [
     path('homework_Teacher/897<int:user_id>654/',views.homework_Teacher,name='homework_Teacher'),
     path('submit_homeworkTeacher/897<int:user_id>654/' ,views.submit_homeworkTeacher,name = 'submit_homeworkTeacher'),
 
-
+    #get home work from teacher in student
     path('homework_Student/897<int:user_id>654/',views.homework_Student,name = 'homework_Student'),
 
-
+    #change the massege from the manager in teacher to read
+    path('changeToRead_Teacher/897<int:user_id>654/',views.changeToRead_Teacher,name = 'changeToRead_Teacher'),
 
 
     path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
