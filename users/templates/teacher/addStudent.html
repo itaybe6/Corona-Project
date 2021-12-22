@@ -28,6 +28,15 @@
         background-color: rgb(201, 202, 198);
         color: white;
       }
+      p {
+        font-size: 114%;
+        width: 16%;
+        height: 30%;
+        background-color: bisque;
+        color: black;
+        margin-top: 2%;
+        float: right 0%;
+      }
     </style>
   </head>
 
@@ -63,19 +72,20 @@
     </div>
 
     <center>
-      <div class=beautyy>
+      <div class="beautyy">
         <center>
-        מורה יקר, במידה ותלמיד חדש נקלט לכיתתך בהכנסת ת"ז שלו לשדה זה המערכת תאפשר לו להירשם ולהשתייך באופן אוטומטי לכיתה
+          מורה יקר, במידה ותלמיד חדש נקלט לכיתתך בהכנסת ת"ז שלו לשדה זה המערכת
+          תאפשר לו להירשם ולהשתייך באופן אוטומטי לכיתה
         </center>
-      </div> 
-      <p style="color:white;"><h1>תלמיד חדש</h1></p>
+      </div>
+      <h1>תלמיד חדש</h1>
       <form
         action="{% url 'users:submitAddStudent' teacher.user_id %}"
         method="post"
       >
         {% csrf_token %}
 
-        <p></p><h2>הכנס/י בבקשה את ת"ז של התלמיד החדש</h2>
+        <p>הכנס/י בבקשה את ת"ז של התלמיד החדש</p>
         <br />
         <input
           type="text"

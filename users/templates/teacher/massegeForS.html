@@ -13,6 +13,15 @@
         height: 14%;
         width: 128px;
       }
+      p {
+        font-size: 114%;
+        width: 36%;
+        height: 66%;
+        background-color: bisque;
+        color: black;
+        margin-top: 3%;
+        float: right 0%;
+      }
     </style>
   </head>
 
@@ -26,7 +35,9 @@
         >דף קשר {{teacher.my_class}}</a
       >
 
-      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654"> שיעורי בית </a>
+      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654">
+        שיעורי בית
+      </a>
       <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
         >נוכחות
       </a>
@@ -35,31 +46,51 @@
         href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
         >מסרים
       </a>
-      <a class="active" href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654">מסר לכיתה </a>
+      <a
+        class="active"
+        href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654"
+        >מסר לכיתה
+      </a>
       <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
     </div>
-  </body>
-</html>
 
- <form
-      action="{% url 'users:submitMassegeForStudent_Teacher' teacher.user_id %}"
-      method="post"
-    >
-      {% csrf_token %}
-<center>
-     <p style="color:white;"><h1>מסר לתלמידים</h1></p>
-     <div class=beauty><h2> הכנס/י בבקשה את נושא ההודעה </h2>
-      <br />
-      <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />
-      <h2>הכנס/י בבקשה את תוכן ההודעה</h2>
-      <br />
-      <textarea rows="15" cols="65" name="content" id="content" placeholder="תוכן ההודעה שתרצה לשלוח"></textarea>
+    <center>
+      <div class="beautyy">
+        מורה יקר ,באפשרותך לשלוח הודעות לתלמידים שבכיתתך
+      </div>
+      <form
+        action="{% url 'users:submitMassegeForStudent_Teacher' teacher.user_id %}"
+        method="post"
+      >
+        {% csrf_token %}
 
-      <br />
+        <h1>מסר לתלמידים</h1>
 
-      <button type="submitMassegeForStudent_Teacher" class="button button2">שלח</button>
+        <p>הכנס/י בבקשה את נושא ההודעה</p>
+        <br />
+        <input
+          type="text"
+          name="subject"
+          id="subject"
+          placeholder="נושא ההודעה"
+          required
+        />
+        <p>הכנס/י בבקשה את תוכן ההודעה</p>
+        <br />
+        <textarea
+          rows="15"
+          cols="65"
+          name="content"
+          id="content"
+          placeholder="תוכן ההודעה שתרצה לשלוח"
+        ></textarea>
 
-    </form>
+        <br />
+
+        <button type="submitMassegeForStudent_Teacher" class="button button2">
+          שלח
+        </button>
+      </form>
     </center>
   </body>
 </html>

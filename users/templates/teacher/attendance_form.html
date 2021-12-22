@@ -5,7 +5,44 @@
     {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
     href='{% static 'tech.css' %}?{% now "U" %}'>
 
-    <style></style>
+    <style>
+      p {
+        font-size: 114%;
+        width: 16%;
+        height: 30%;
+        background-color: bisque;
+        color: black;
+        margin-top: 2%;
+        float: right 0%;
+      }
+      #tableTecher {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 40%;
+      }
+
+      #tableAtten td,
+      th {
+        border: 3px solid;
+        border-color: rgb(7, 8, 8);
+        padding: 3px;
+        width: 12%;
+        background-color: beige;
+        float: center;
+        text-align: center;
+      }
+      #tableAtten tr:hover {
+        background-color: #ddd;
+      }
+
+      #tableAtten th {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        background-color: #d4c677;
+        color: rgb(12, 14, 13);
+      }
+    </style>
   </head>
   <body dir="rtl">
     <div class="topnav">
@@ -37,8 +74,12 @@
     </div>
     <div class="container">
       <center>
-        <p><h1>עידכון נוכחות לתלמידים בכיתה: {{teacher.my_class}}</h1></p>
-        <center><h3>{{ date }}</h3></center>
+        <div class="beautyy">
+          מורה יקר ,באפשרותך למלא נוכחות של תלמידי כיתתך ולראות מי בסטטוס
+          אדום/ירוק
+        </div>
+        <h1>עידכון נוכחות לתלמידים בכיתה: {{teacher.my_class}}</h1>
+        <h3>{{ date }}</h3>
 
         <form
           action="{% url 'users:mark_attendance' teacher.user_id %}"
@@ -47,13 +88,15 @@
         >
           {{ formset.management_form }} {% csrf_token %}
           <br />
-          <table class="tableTecher">
+          <table class="tableAtten">
             <tr>
-              <th>:שם התלמיד</th>
-              <th>:סטטוס התלמיד</th>
-              <th>סמן נוכחות</th>
+              <th>שם התלמיד:</th>
+              <th>סטטוס התלמיד:</th>
+              <th>סמן נוכחות:</th>
             </tr>
-            {% for student,form in list %}
+          </table>
+          {% for student,form in list %}
+          <table id="tableAtten">
             <tr>
               {% if student.name%}
               <td>{{ student.name }}</td>
@@ -68,14 +111,14 @@
             </tr>
             {% endfor %}
           </table>
-          <button type="mark_attendance">שמירה</button>
+          <button type="mark_attendance" class="botton button2">שמירה</button>
         </form>
         <a
           href="/users/HomePageTeacher/897{{teacher.user_id}}654"
-          class="w3-bar-item w3-button"
+          class="botton button2"
         >
-          חזרה לדף הבית ללא שמירה</a
-        >
+          חזרה לדף הבית ללא שמירה
+        </a>
       </center>
     </div>
   </body>

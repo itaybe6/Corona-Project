@@ -28,12 +28,17 @@
     </div>
 
     <center>
+      <div class="beautyy">
+        תלמיד יקר ,בעמוד זה תקבל הודעות מהמורה ומהמנהלת 
+      </div>
       <p style="color:white;"><h1>מסרים</h1></p>
       <table id="tableTecher">
         <tr>
           <th>הודעות הנהלה</th>
           <th>הודעות מהמורה</th>
         </tr>
+     </table>
+     <table id="tableTecher">
         <tr>
           <td>
             {% for mas in masseges_FromManager %} שם השולח : {{mas.author.name}}

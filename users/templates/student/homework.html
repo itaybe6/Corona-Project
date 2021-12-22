@@ -7,7 +7,7 @@
     <style></style>
   </head>
 
-  <body>
+  <body dir="rtl">
     <div class="topnav">
       <a class="btn" href="/users/HomePageStudent/897{{student.user_id}}654"
         >דף הבית</a
@@ -22,14 +22,34 @@
       </a>
       <a class="btn" href="#about">שאלון תלמיד </a>
     </div>
+    <center>
+      <div class="beautyy">
+        תלמיד יקר ,בעמוד זה תוכל לראות את שיעורי הבית שקיבלת 
+      </div>
+      <p><h1>שיעורי הבית שלי</h1></p>
+      <table id="tableTecher">
+        <tr>
+          <th>שיעורי הבית שלי</th>
+        </tr>
+        <tr>
+          <td>
+            {% for hw in homework %} ספר : {{hw.book}}
+            <br />
+            עמודים : {{hw.pages}}
+            <br />
+            הערות : {{hw.remark}}
+            <br />
+            תאריך הגשה : {{hw.date_ToDone}}
+            <br /><br /><br /><br />
 
-    {% for hw in homework %} ספר : {{hw.book}} <br />
-    עמודים : {{hw.pages}} <br />
-    הערות : {{hw.remark}} <br />
-    תאריך הגשה : {{hw.date_ToDone}}
+            {% endfor %}
+          </td>
+        </tr>
+      </table>
+    </center>
 
-    <br /><br /><br /><br />
-
-    {% endfor %}
+    {% if student.read_homework == False %}
+      <a id="id4" href="/users/changeToRead_Student_Homework/897{{student.user_id}}654/">סמן כנקרא</a>
+    {% endif %}
   </body>
 </html>

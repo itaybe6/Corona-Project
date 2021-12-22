@@ -36,6 +36,9 @@
       <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
     </div>
     <center>
+      <div class="beautyy">
+        מורה יקר ,בעמוד זה תקבל הודעות ממנהל בית הספר
+      </div>
       <p style="color:white;"><h1>מסרים</h1></p>
       <table id="tableTecher">
         <tr>
@@ -57,5 +60,11 @@
         </tr>
       </table>
     </center>
+
+
+
+     {% if teacher.read == False %}
+        <a id="id4" href="/users/changeToRead_Teacher/897{{teacher.user_id}}654/">סמן כנקרא</a>
+      {% endif %}
   </body>
 </html>

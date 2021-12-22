@@ -35,6 +35,7 @@ class Teacher(models.Model):
     my_class= models.CharField(max_length=200, null=True,default = None)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     masseges = models.ManyToManyField(MassegeT,default = None)
+    read = models.BooleanField(null= True,default = True)
 
 
     def __str__(self):
@@ -74,6 +75,8 @@ class Student(models.Model):
     homework =  models.ManyToManyField(Homework,default = None)   
     present = models.IntegerField(null=True,default=0)    #for attendance
     absent = models.IntegerField(null=True,default=0)     #for attendance
+    read_homework = models.BooleanField(null= True,default = True)
+
 
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'

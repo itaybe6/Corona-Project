@@ -74,6 +74,10 @@
      
         </div>
      
+
+        {% if teacher.read == False %}
+            <h2> {{teacher.name}} קיבלת הודעות מהנהל , אנא פתח את תיבת המסרים </h2>
+        {% endif %}
   
       </div>
       <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
