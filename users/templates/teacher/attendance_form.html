@@ -10,10 +10,37 @@
         font-size: 114%;
         width: 16%;
         height: 30%;
-        background-color: rgb(255, 228, 196);
+        background-color: bisque;
         color: black;
         margin-top: 2%;
         float: right 0%;
+      }
+      #tableTecher {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 40%;
+      }
+
+      #tableAtten td,
+      th {
+        border: 3px solid;
+        border-color: rgb(7, 8, 8);
+        padding: 3px;
+        width: 12%;
+        background-color: beige;
+        float: center;
+        text-align: center;
+      }
+      #tableAtten tr:hover {
+        background-color: #ddd;
+      }
+
+      #tableAtten th {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        background-color: #d4c677;
+        color: rgb(12, 14, 13);
       }
     </style>
   </head>
@@ -61,13 +88,15 @@
         >
           {{ formset.management_form }} {% csrf_token %}
           <br />
-          <table class="tableTecher">
+          <table class="tableAtten">
             <tr>
               <th>שם התלמיד:</th>
               <th>סטטוס התלמיד:</th>
               <th>סמן נוכחות:</th>
             </tr>
-            {% for student,form in list %}
+          </table>
+          {% for student,form in list %}
+          <table id="tableAtten">
             <tr>
               {% if student.name%}
               <td>{{ student.name }}</td>
