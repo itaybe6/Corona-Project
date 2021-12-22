@@ -10,6 +10,5 @@
     "python.testing.unittestEnabled": true,
     "python.testing.pytestArgs": [
         "users"
-    ],
-    "liveServer.settings.port": 5501
+    ]
 }

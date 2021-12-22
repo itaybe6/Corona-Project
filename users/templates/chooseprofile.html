@@ -1,15 +1,8 @@
-<!DOCTYPE html>
 <html>
- <title>בחירת פרופיל משתמש</title>
+ 
+<html>
   <head>
       <style type= "text/css">
-          body {
-            background-image: url("images/logo.jpg");
-            height: 900px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
           body{
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
               background: rgb(228, 220, 221);
@@ -53,20 +46,17 @@
           box-shadow:  5px 5px 5px 5px #ccc;
       }
       
-        </style>
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-        <style> </style>
-    </head>
+  </style>
+  </head>
   <body>
       <center>
-       <p><h2>הישאר מעודכן ושמור על עצמך</h2> </p>
+      <p><h2>הישאר מעודכן ושמור על עצמך</h2> </p>
       
-       <p id="id2">אנא בחר את המשתמש שלך</p>
+      <p id="id2">אנא בחר את המשתמש שלך</p>
 
-       <a href="manager/signup" id="id1" target="_self">מנהל</a>
-       <a href="teacher/signup" id="id1" target="_self">מורה</a>
-       <a href="student/signup" id="id1" target="_self">תלמיד</a>
-      </center>
+      <a href="manager/signup" id="id1" target="_self">מנהל</a>
+      <a href="teacher/signup" id="id1" target="_self">מורה</a>
+      <a href="student/signup" id="id1" target="_self">תלמיד</a>
+  </center>
   </body>
 </html>
