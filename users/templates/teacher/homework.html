@@ -32,6 +32,15 @@
      h2{
       text-decoration: underline;
      }
+     p {
+        font-size: 114%;
+        width: 16%;
+        height: 30%;
+        background-color: bisque;
+        color: black;
+        margin-top: 2%;
+        float: right 0%;
+      }
     </style>
   </head>
   <body dir="rtl">
@@ -49,20 +58,19 @@
     </div>
 
     <center>
-      <p style="color:white;"><h1>שיעורי בית לתלמיד</h1></p>
+      <div class="beautyy">
+        מורה יקר ,באפשרותך להעלות שיעורי בית לתלמידים שבכיתתך
+      </div>
+      <h1>שיעורי בית לתלמיד</h1>
       <form class="container" action=" {% url 'users:submit_homeworkTeacher' teacher.user_id %} " method="post">
         {% csrf_token %}
- 
-        <label for="book"><h2>ספר הלימוד </h2> </label>
+        <p>ספר הלימוד</p>
         <input type="book" placeholder="הכנס את ספר הלימוד" name="book" required />
-         <br />
-        <label for="pages"><h2>עמודים</h2></label>
+         <p>עמודים</p>
         <input type="pages" placeholder="הכנס עמודים (1-100)" name="pages" required />
-        <br />
-        <label for="date_ToDone"><h2>תאריך סיום המטלה</h2></label>
+        <p>תאריך סיום המטלה</p>
         <input type="date_ToDone" placeholder="הכנס תאריך סיום המטלה" name="date_ToDone" required />
-        <label for="remark"><h2>הערות</h2></label>
-        <br />
+        <p>הערות</p>
         <textarea rows="15" cols="65" name="remark" id="remark" placeholder="הכנס הערות"></textarea>
         <br />
         <button type="submit_homeworkTeacher" class="botton button2">שלח</button>
