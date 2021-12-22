@@ -255,7 +255,7 @@ a#id2 {
 #tableTecher {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 50%;
 }
 
 #tableTecher td,
@@ -265,7 +265,7 @@ th {
   padding: 15px;
   width: 45%;
   background-color: beige;
-  float: right;
+  float: center;
   text-align: center;
 }
 #tableTecher tr:hover {
@@ -291,6 +291,16 @@ th {
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
+}
+.beautyy {
+  background-color: rgb(228, 220, 221);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  border-radius: 5px;
+  box-shadow: 0 5px 7px #ccc;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  margin: 1rem auto;
 }
 
 .button2 {

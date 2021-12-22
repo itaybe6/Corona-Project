@@ -63,6 +63,11 @@
     </div>
 
     <center>
+      <div class=beautyy>
+        <center>
+        מורה יקר, במידה ותלמיד חדש נקלט לכיתתך בהכנסת ת"ז שלו לשדה זה המערכת תאפשר לו להירשם ולהשתייך באופן אוטומטי לכיתה
+        </center>
+      </div> 
       <p style="color:white;"><h1>תלמיד חדש</h1></p>
       <form
         action="{% url 'users:submitAddStudent' teacher.user_id %}"
@@ -70,7 +75,7 @@
       >
         {% csrf_token %}
 
-        <h2>הכנס/י בבקשה את ת"ז של התלמיד החדש</h2>
+        <p></p><h2>הכנס/י בבקשה את ת"ז של התלמיד החדש</h2>
         <br />
         <input
           type="text"
