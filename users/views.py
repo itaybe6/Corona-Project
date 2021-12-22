@@ -197,7 +197,7 @@ def PhonesStudent(request, user_id):
 # 3 functions for path on the site
 def HomePageBetweenPathTeacher(request, user_id):
     teacher = Teacher.objects.get(user_id=user_id)
-    return render(request, 'teacher/Home.html', {'teacher': teacher})
+    return render(request, 'teacher/Home.html', {'teacher': teacher })
 
 
 def HomePageBetweenPathManager(request, user_id):
@@ -348,6 +348,7 @@ def submitMassegeForTeacher(request,user_id):
 
     for teacher in Teacher.objects.all():
         teacher.masseges.add(massege)
+        teacher.read = False
         teacher.save()
 
     return render(request, 'manager/DoneM.html', {'manager': manager})
@@ -526,3 +527,14 @@ def whoNeedToGetQuiz(request, user_id):
             if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
                 # all the users id that need to get a quiz
                 lst.append(student.user_id)
+
+
+def changeToRead_Teacher(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    masseges = teacher.masseges.all()
+    teacher.read = True
+    teacher.save()
+    return render(request, 'teacher/getMassege.html', {'teacher': teacher, 'masseges': masseges})
+
+
+  
