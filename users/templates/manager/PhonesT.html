@@ -1,57 +1,89 @@
 <html>
+  <title>דף קשר צוות מורים</title>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        margin: 0;
+   
+    <style> 
+      #tableTecher {
         font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
       }
 
-      .topnav {
-        overflow: hidden;
-        background-color: #333;
+      #tableTecher td,
+      th {
+        border: 3px solid;
+        border-color: rgb(32, 136, 127);
+        padding: 15px;
       }
 
-      .topnav a {
-        float: right;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
+      #tableTecher tr:nth-child(even) {
+        background-color: #f2f2f2;
       }
 
-      .topnav a:hover {
+      #tableTecher tr:hover {
         background-color: #ddd;
-        color: black;
       }
 
-      .topnav a.active {
-        background-color: #aa049c;
-        color: white;
-      }
-      table,
-      th,
-      td {
-        border: 1px solid black;
+      #tableTecher th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: right;
+        background-color: #353535;
+        color: rgb(32, 136, 127);
       }
     </style>
+     {% load static %}
+     <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
   </head>
+
   <body dir="rtl">
     <div class="topnav">
-      <a class="active" href="#">דף הבית</a>
-      <a href="#news">עדכון שיעורי בית</a>
-      <a href="#contact">מסר אישי </a>
-      <a class="btn" href="PhonesT">דף קשר</a>
-      <li>
-        <a href="{%url 'users:PhonesT'}
-        <a href="#contact">שינוי סטטוס </a>
-        <a href="#about">נוכחות </a>
-        <a href="#about">כיתה אדומה</a>
-        <a href="#contact">מסרים הנהלה </a>
-        <a href="#about">תלמיד חדש </a>
-        <a href="#about">שאלון תלמיד </a>
-      </li>
+      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/"
+        >דף הבית</a
+      >
+      <a class="active" href="/users/PhonesT/897{{manager.user_id}}654">
+        דף קשר צוות
+      </a>
+      <a class="btn" href="/users/graphStudentStatus/897{{manager.user_id}}654">
+        מדגם תלמידים אדומים
+      </a>
+      <a class="btn" href="/users/quizManager/{{manager.user_id}}"
+        >בניית שאלון</a
+      >
+
+      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654"
+        >מסרים למורים</a
+      >
+      <a
+        class="btn"
+        href="/users/massegeForStudentManager/897{{manager.user_id}}654"
+        >מסרים לתלמידים</a
+      >
+
+      <a class="btn" href="/users/addTeacher/{{manager.user_id}}" target="_self"
+        >מורה חדש</a
+      >
     </div>
+    <ul>
+      <center>
+        <h1>הנבחרת של בית הספר</h1>
+      </center>
+      <table id="tableTecher">
+        <tr>
+          <th>שם</th>
+          <th>כיתת המורה</th>
+          <th>מספר פלאפון</th>
+        </tr>
+      </table>
+      {% for teacher in teacher %}
+      <table id="tableTecher">
+        <tr class="teacher">
+          <td>{{teacher.name}}</td>
+          <td>{{teacher.my_class}}</td>
+          <td>{{teacher.phone_number}}</td>
+        </tr>
+      </table>
+      {% endfor %}
+    </ul>
   </body>
 </html>

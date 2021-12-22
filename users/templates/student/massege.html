@@ -1,61 +1,42 @@
 <!DOCTYPE html>
+<title>מסרים</title>
 <html>
-  <title>מסרים</title>
   <head>
     {% load static %} <link rel="stylesheet" type="text/css" href='{% static
-    'stud.css' %}?{% now "U" %}'>
+    'man.css' %}?{% now "U" %}'>
     <style></style>
   </head>
 
   <body>
     <div class="topnav">
-      <a class="btn" href="/users/HomePageStudent/897{{student.user_id}}654"
+      <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654"
         >דף הבית</a
       >
-      <a class="btn" href="/users/homework_Student/897{{student.user_id}}654">
+      <a href="/users/homework_Student/897{{student.user_id}}654">
         שיעורי הבית שלי</a
       >
       <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654"
         >דף קשר הכיתה שלי</a
       >
-      <a class="btn" href="#about">מדריך </a>
-      <a
-        class="active"
-        href="/users/massege_InStudent/897{{student.user_id}}654"
-        >מסרים
-      </a>
-      <a class="btn" href="#about">שאלון תלמיד </a>
+      <a href="#about">מדריך </a>
+      <a href="/users/massege_InStudent/897{{student.user_id}}654">מסרים </a>
+      <a href="#about">שאלון תלמיד </a>
     </div>
 
-    <center>
-      <table id="tableTecher">
-        <tr>
-          <th><h1>הודעות הנהלה</h1></th>
-          <th><h1>הודעות מהמורה</h1></th>
-          <td>
-            {% for mas in masseges_FromManager %} שם השולח : {{mas.author.name}}
-            <br />
-            תאריך : {{mas.date_create}}
-            <br />
-            נושא : {{mas.subject}}
-            <br />
-            תוכן : {{mas.content}}
-            <br />
-            <br /><br /><br />
-            {% endfor %}
-          </td>
-          <td>
-            {% for mas in masseges_FromTeacher %} תאריך : {{mas.date_create}}
-            <br />
-            נושא : {{mas.subject}}
-            <br />
-            תוכן : {{mas.content}}
-            <br />
-            <br /><br /><br />
-            {% endfor %}
-          </td>
-        </tr>
-      </table>
-    </center>
+    <h1>הודעות הנהלה</h1>
+    {% for mas in masseges_FromManager %} שם השולח : {{mas.author.name}} <br />
+    תאריך : {{mas.date_create}} <br />
+    נושא : {{mas.subject}} <br />
+    תוכן : {{mas.content}} <br />
+    <br /><br /><br />
+    {% endfor %}
+
+    <h1>הודעות מהמורה</h1>
+    {% for mas in masseges_FromTeacher %} שם השולח : {{mas.author.name}} <br />
+    תאריך : {{mas.date_create}} <br />
+    נושא : {{mas.subject}} <br />
+    תוכן : {{mas.content}} <br />
+    <br /><br /><br />
+    {% endfor %}
   </body>
 </html>

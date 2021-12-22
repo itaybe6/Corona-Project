@@ -4,7 +4,8 @@
 
   <head>
     {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
-    href='{% static 'tech.css' %}?{% now "U" %}'>
+    href='{% static 'man.css' %}?{% now "U" %}'>
+    <style></style>
     <style>
       .add {
         background-color: rgb(138, 111, 103);
@@ -16,9 +17,9 @@
     </style>
   </head>
 
-  <body dir="rtl">
+  <body>
     <div class="topnav">
-      <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+      <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
         >דף הבית</a
       >
 
@@ -35,7 +36,7 @@
         href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
         >מסרים
       </a>
-      <a class="active" href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654">מסר לכיתה </a>
+      <a class="btn" href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654">מסר לכיתה </a>
       <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
     </div>
   </body>
@@ -47,7 +48,6 @@
     >
       {% csrf_token %}
 <center>
-     <p style="color:white;"><h1>מסר לתלמידים</h1></p>
      <div class=beauty><h2> הכנס/י בבקשה את נושא ההודעה </h2>
       <br />
       <input type="text" name="subject" id="subject" placeholder="נושא ההודעה" required />

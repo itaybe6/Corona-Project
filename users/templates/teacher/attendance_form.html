@@ -1,4 +1,79 @@
-{% block title %}{{ teacher.name }} | נוכחות{% endblock %}
+<!DOCTYPE html>
+<html>
+  <title>דף נוכחות</title>
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
+    <style> </style>
+  </head>
+  <body dir="rtl">
+    <div class="topnav">
+      <a class="active" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+        >דף הבית</a
+      >
+
+      <a class="btn" href="/users/Phones/897{{teacher.user_id}}654"
+        >דף קשר {{teacher.my_class}}</a
+      >
+
+      <a class="btn" href="#contact"> שיעורי בית </a>
+      <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
+        >נוכחות
+      </a>
+      <a
+        class="btn"
+        href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
+        >מסרים
+      </a>
+      <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
+    </div>
+    <div class="container">
+      <center>
+        <h1>:עידכון נוכחות לתלמידים בכיתה {{teacher.my_class}}</h1>
+      </center>
+      <center><h3>{{ date }}</h3></center>
+      <p></p>
+      <br />
+
+      <form
+        action="{% url 'users:mark_attendance' teacher.user_id %}"
+        method="POST"
+        class="post-form"
+      >
+        {{ formset.management_form }} {% csrf_token %}
+        <br />
+        <table class="table table-bordered table-hover">
+          <tr>
+            <th>:שם התלמיד</th>
+            <th>:סטטוס התלמיד</th>
+            <th>סמן נוכחות</th>
+          </tr>
+          {% for student,form in list %}
+          <tr>
+            {% if student.name%}
+            <td>{{ student.name }}</td>
+            {% else %}
+            <td>{{ student.user_id }}</td>
+            {% endif %} {% if student.status == False%}
+            <td>סטטוס אדום</td>
+            {% else %}
+            <td>סטטוס ירוק</td>
+            {% endif %}
+            <td class="center">{% for i in form %} {{ i }} {% endfor %}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        <button type="mark_attendance">שמירה</button>
+      </form>
+      <a
+        href="/users/HomePageTeacher/897{{teacher.user_id}}654"
+        class="w3-bar-item w3-button"
+      >
+        חזרה לדף הבית ללא שמירה</a
+      >
+    </div>
+  </body>
+</html>
 <style>
   .align li {
     list-style: none;
@@ -6,50 +81,3 @@
     margin-right: 20px;
   }
 </style>
-<div class="container">
-  <center><h1>:עידכון נוכחות לתלמידים בכיתה {{teacher.my_class}}</h1></center>
-  <center><h3>{{ date }}</h3></center>
-  <p></p>
-  <br />
-  <form
-    action="{% url 'users:mark_attendance' teacher.user_id %}"
-    method="POST"
-    class="post-form"
-  >
-    {{ formset.management_form }} {% csrf_token %}
-    <br />
-    <table class="table table-bordered table-hover">
-      <tr>
-        <th>:שם התלמיד</th>
-        <th>:סטטוס התלמיד</th>
-        <th>סמן נוכחות</th>
-      </tr>
-      {% for student,form in list %}
-      <tr>
-        {% if student.name%}
-            <td>{{ student.name }}</td>
-        {% else %}
-            <td>{{ student.user_id }}</td>
-        {% endif %} 
-        
-        {% if student.status == False%}
-          <td>סטטוס אדום</td>
-        {% else %}
-          <td>סטטוס ירוק</td>
-        {% endif %}
-        <td class="align">
-        {% for i in form %} 
-              {{ i }} 
-        {% endfor %}
-        </td>
-      </tr>
-        {% endfor %}
-    </table>
-    <button type="mark_attendance">שמירה</button>
-  <a
-    href="/users/HomePageTeacher/897{{teacher.user_id}}654"
-    class="w3-bar-item w3-button"
-  >
-    חזרה לדף הבית ללא שמירה</a
-  >
-</div>

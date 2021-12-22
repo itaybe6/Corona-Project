@@ -1,95 +1,91 @@
 <!DOCTYPE html>  
-<html>  
-<title>הרשמה מנהל</title>
-<head>  
-<meta name="viewport" content="width=device-width, initial-scale=1">  
-<style>  
-body{  
-  background-image: url('course.jpeg');
-  background-color:rgb(228, 220, 221);
-  background-repeat: no-repeat;
-  background-attachment: fixed; 
-  background-size: 100% 100%;
-  
-}  
-  p{
-    background-color:rgb(231,231,231);
-    padding-top:0.1rem;
-    padding-bottom:0.1rem;
-    border-radius: 5px;
-    box-shadow: 0 5px 7px #ccc;
-    text-align:center;
-    letter-spacing: 0.2rem;
-    margin: 1rem auto;
+<html>
+  <title>הרשמה כמורה</title>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    {% load static %}
+     <link rel="stylesheet" type="text/css" href="{% static 'man.css' %}"/>
+    <style>
+         
+       p{
+          background-color:rgb(231,231,231);
+          padding-top:0.1rem;
+          padding-bottom:0.1rem;
+          border-radius: 5px;
+          box-shadow: 0 5px 7px #ccc;
+          text-align:center;
+          letter-spacing: 0.2rem;
+          margin: 1rem auto;
 
 
-} 
-.container {  
-    padding: 50px;  
-  background-color: rgb(252, 230, 242);  
-}  
-  
-input[type=text], input[type=password], textarea {  
-  width: 100%;  
-  padding: 15px;  
-  margin: 5px 0 22px 0;  
-  display: inline-block;  
-  border: none;  
-  background: #f1f1f1;  
-}  
-input[type=text]:focus, input[type=password]:focus {  
-  background-color: rgb(255, 249, 197);  
-  outline: none;  
-}  
- div {  
-            padding: 10px 0;  
+        } 
+       .container {  
+           padding: 50px;  
+           background-color: rgb(252, 230, 242);  
          }  
-hr {  
-  border: 1px solid #f1f1f1;  
-  margin-bottom: 25px;  
-}  
-.registerbtn {  
-  background-color: #2b2b2b;  
-  color: white;  
-  padding: 16px 20px;  
-  margin: 8px 0;  
-  border: none;  
-  cursor: pointer;  
-  width: 100%;  
-  opacity: 0.9;  
-}  
-.registerbtn:hover {  
-  opacity: 1;  
-}  
-</style>  
-</head>  
-<body dir="rtl">  
+  
+       input[type=text], input[type=password], textarea {  
+          width: 100%;  
+          padding: 15px;  
+          margin: 5px 0 22px 0;  
+          display: inline-block;  
+          border: none;  
+          background: #f1f1f1;  
+       }  
+       input[type=text]:focus, input[type=password]:focus {  
+         background-color: rgb(255, 249, 197);  
+         outline: none;  
+        }  
+       div {  
+          padding: 10px 0;  
+        }  
+       hr {  
+         border: 1px solid #f1f1f1;  
+         margin-bottom: 25px;  
+       }  
+       .registerbtn {  
+         background-color: #2b2b2b;  
+         color: white;  
+         padding: 16px 20px;  
+         margin: 8px 0;  
+         border: none;  
+         cursor: pointer;  
+         width: 100%;  
+         opacity: 0.9;  
+       }  
+       .registerbtn:hover {  
+         opacity: 1;  
+        }  
+     </style>
+  </head>
+  <body dir="rtl">
+    <div>  
+      <center>  <h1> דף הרשמה למורה בית הספר</h1> </center>
+      <center>   <p><h3>הישאר מעודכן ושמור על עצמך</h3> </p></center>  
+      <hr>
+    
+        <form action = "{% url 'users:submit_Teacher' %}" method= "post">
+    
+            {% csrf_token %}
+            <label><b>תעודת זהות</b></label>
+            <input type="text" name="user_id" id = "user_id" placeholder="הכנס תעודת זהות" size="9" required />
+    
+            <label><b>שם המורה</b> </label>  
+            <input type="text" name="name" id = "name" placeholder= "הכנס שם מלא" size="20" required />  
+    
+            <label><b> מספר פלאפון</b></label>  
+            <input type="text" name="phone_number" id = "phone_number" placeholder="מספר פלאפון" size="10" required/>   
+            
+            <label for="school"><b>שם הכיתה</b></label>  
+            <input type="text" placeholder="הכנס שם כיתה, לדגומה- ה 2" name="my_class" id = "my_class" required>  
+              
+            <label for="password"> <b>    סיסמה </b> </label>  
+            <input type="password" placeholder="הכנס סיסמה" name="password" id ="password" required>  
+              
+              <button type="submit_Teacher" >הירשם</button>  	
+        </form>  
+    
+  </body>
 
-  <div>  
-  <center>  <h1> דף הרשמה למורה בית הספר</h1> </center>
-  <center>   <p><h3>הישאר מעודכן ושמור על עצמך</h3> </p></center>  
-  <hr>
-
-    <form action = "{% url 'users:submit_Teacher' %}" method= "post">
-
-        {% csrf_token %}
-        <label><b>תעודת זהות</b></label>
-        <input type="text" name="user_id" id = "user_id" placeholder="הכנס תעודת זהות" size="9" required />
-
-        <label><b>שם המורה</b> </label>  
-        <input type="text" name="name" id = "name" placeholder= "הכנס שם מלא" size="20" required />  
-
-        <label><b> מספר פלאפון</b></label>  
-        <input type="text" name="phone_number" id = "phone_number" placeholder="מספר פלאפון" size="10" required/>   
-        
-        <label for="school"><b>שם הכיתה</b></label>  
-        <input type="text" placeholder="הכנס שם כיתה, לדגומה- ה 2" name="my_class" id = "my_class" required>  
-          
-        <label for="password"> <b>    סיסמה </b> </label>  
-        <input type="password" placeholder="הכנס סיסמה" name="password" id ="password" required>  
-          
-          <button type="submit_Teacher" >הירשם</button>  	
-    </form>  
-</body>  
-</html>  
+</html> 
 
