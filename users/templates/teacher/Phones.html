@@ -2,39 +2,9 @@
 <html>
   <title>דף קשר למורה</title>
   <head>
-    {% load static %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-    <style> </style>
-      #tablestudent {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      #tablestudent td,
-      #tablestudent th {
-        border: 5px solid;
-        border-color: rgb(32, 136, 127);
-        padding: 10px;
-      }
-
-      #tablestudent tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-
-      #tablestudent tr:hover {
-        background-color: #ddd;
-      }
-
-      #tablestudent th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: right;
-        background-color: #353535;
-        color: rgb(32, 136, 127);
-      }
-    </style>
+    {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'tech.css' %}?{% now "U" %}'>
+    <style></style>
   </head>
 
   <body dir="rtl">
@@ -47,35 +17,45 @@
         >דף קשר {{teacher.my_class}}</a
       >
 
-      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654"> שיעורי בית </a>
-      <a class="btn" href="#about">נוכחות </a>
+      <a class="btn" href="/users/homework_Teacher/897{{teacher.user_id}}654">
+        שיעורי בית
+      </a>
+      <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
+        >נוכחות
+      </a>
       <a
         class="btn"
         href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
         >מסרים
       </a>
-      <a href="#about">תלמיד חדש </a>
+      <a
+        class="btn"
+        href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654"
+        >מסר לכיתה
+      </a>
+      <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
     </div>
-    <ul>
-      <center>
-        <h1>הנבחרת של הכיתה</h1>
-      </center>
-      <table id="tablestudent">
-        <tr>
-          <th>שם התלמיד</th>
-          <th>מספר פלאפון</th>
-        </tr>
-      </table>
-      {% for student in student %}
-      <table id="tablestudent">
-        <student class="students">
+
+    <center>
+      <ul>
+        <p style="color:white;"><h1>הנבחרת של הכיתה</h1></p>
+        <table id="tableTecher">
           <tr>
-            <td>{{student.name}}</td>
-            <td>{{student.phone_number}}</td>
+            <th>שם התלמיד</th>
+            <th>מספר פלאפון</th>
           </tr>
-        </student>
-      </table>
-      {% endfor %}
-    </ul>
+        </table>
+        {% for student in student %}
+        <table id="tableTecher">
+          <student class="students">
+            <tr>
+              <td>{{student.name}}</td>
+              <td>{{student.phone_number}}</td>
+            </tr>
+          </student>
+        </table>
+        {% endfor %}
+      </ul>
+    </center>
   </body>
 </html>

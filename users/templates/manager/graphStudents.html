@@ -1,41 +1,21 @@
-<html>
+<!DOCTYPE html>
+  <html>
   <title>מדגם תלמידים אדומים</title>
   <head>
     {% load static %}
       <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-      <style> </style>
-    <style>
-      #tableTecher {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      #tableTecher td,
+      <style>
       #tableTecher th {
-        border: 5px solid;
-        border-color: rgb(32, 136, 127);
-        padding: 10px;
-      }
+      padding-top: 10px;
+      width: 21%;
+      padding-bottom: 10px;
+      text-align: center;
+      background-color: #c3a9a9;
+      color: rgb(12, 14, 13);
+  } 
+      </style>
 
-      #tableTecher tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-
-      #tableTecher tr:hover {
-        background-color: #ddd;
-      }
-
-      #tableTecher th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: right;
-        background-color: #353535;
-        color: rgb(32, 136, 127);
-      }
-    </style>
   </head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <body dir="rtl">
     <div class="topnav">
       <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/"
@@ -64,16 +44,25 @@
     <center>
       <h1>מדגם תלמידים לפי כיתות</h1>
     </center>
+
+    <table id="tableTecher">
+      <tr>
+        <th>מורה</th>
+        <th>כיתה</th>
+        <th>תלמידים אדומים </th>
+        <th>תלמידים ירוקים </th>
+      </tr>
+    </table>
+
     <table id="tableTecher">
       <tr class="students">
         {% for teacher in teachers %}
-        <th> שם המורה: {{teacher.name}}</th>
-        <th>כיתת לימוד: {{teacher.my_class}} </th>
-        <th>מספר האדומים בכיתה : {{teacher.count_red}} </th>
-        <th>מספר הירוקים בכיתה : {{teacher.count_green}} </th>
+        <th>{{teacher.name}}</th>
+        <th>{{teacher.my_class}} </th>
+        <th>{{teacher.count_red}} </th>
+        <th>{{teacher.count_green}} </th>
 
       </tr>
       {% endfor %}
   </body>
 </html>
-

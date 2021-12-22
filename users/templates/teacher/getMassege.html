@@ -1,40 +1,11 @@
+<!DOCTYPE html>
 <html>
   <title>מסרים</title>
   <head>
     {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
-    href='{% static 'man.css' %}?{% now "U" %}'>
+    href='{% static 'tech.css' %}?{% now "U" %}'>
     <style></style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      #tableTecher {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 40%;
-      }
-
-      #tableTecher td,
-      #tableTecher th {
-        border: 5px solid;
-        border-color: rgb(32, 136, 127);
-        padding: 10px;
-      }
-
-      #tableTecher tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-
-      #tableTecher tr:hover {
-        background-color: #ddd;
-      }
-
-      #tableTecher th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: right;
-        background-color: #353535;
-        color: rgb(32, 136, 127);
-      }
-    </style>
   </head>
   <body dir="rtl">
     <div class="topnav">
@@ -57,12 +28,15 @@
         href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
         >מסרים
       </a>
+      <a
+        class="btn"
+        href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654"
+        >מסר לכיתה
+      </a>
       <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
     </div>
-
     <center>
-      <h1>הודעות</h1>
-
+      <p style="color:white;"><h1>מסרים</h1></p>
       <table id="tableTecher">
         <tr>
           <th>הודעות</th>
