@@ -495,3 +495,9 @@ def whoNeedToGetQuiz(request,user_id):
 
                 
 
+def changeToRead_Teacher(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    masseges = teacher.masseges.all()
+    teacher.read = True
+    teacher.save()
+    return render(request, 'teacher/getMassege.html', {'teacher': teacher, 'masseges': masseges})
