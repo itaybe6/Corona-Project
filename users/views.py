@@ -437,26 +437,9 @@ def mark_attendance(request,user_id):
         if formset.is_valid(): #for cleaned_data func
             for form, student in zip(formset,students): #form->formset, student->students
                 date = datetime.today()
-                mark = form.cleaned_data['mark_attendance'] 
-                check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student) #if checked
-                if check_attendance:
-                    attendance = Attendance.objects.get(student=student,teacher=teacher,date=date)
-                    if attendance.mark_attendance == 'Absent':
-                        student.absent = student.absent - 1
-                        student.save()
-                    elif attendance.mark_attendance == 'Present':
-                        student.present = student.present - 1
-                        student.save()
-                    attendance.mark_attendance = mark
-                    attendance.save()
-                else:  #if not check (check_attendance is QuarySet)->The student acsent and present wont change
-                    attendance = Attendance()
-                    attendance.teacher = teacher
-                    attendance.student = student
-                    attendance.date = date
-                    attendance.mark_attendance = mark
-                    attendance.save()
-
+                mark = form.cleaned_data['mark_attendance']
+                check_attendance = Attendance(student=student, teacher=teacher, date=date,mark_attendance=mark)  # create new Attendance obj
+                check_attendance.save()
                 if mark == 'Absent':
                     student.absent = student.absent + 1
                     student.save()
@@ -503,18 +486,12 @@ def whoNeedToGetQuiz(request,user_id):
 
     
     for student in students:
-        check1 = Attendance.objects.filter(teacher=teacher,date=today,student=student)
-        check2 = Attendance.objects.filter(teacher=teacher,date=yesterday,student=student)
-        check3 = Attendance.objects.filter(teacher=teacher,date=the_day_before_yesterday,student=student)
-        if check1 and check2 and check3: #not a quarySet
+        check1 = Attendance.objects.filter(teacher=teacher, date=today, student=student)
+        check2 = Attendance.objects.filter(teacher=teacher, date=yesterday, student=student)
+        check3 = Attendance.objects.filter(teacher=teacher, date=the_day_before_yesterday, student=student)
+        if check1 and check2 and check3:  # not a quarySet
             if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
-                lst.append(student.user_id) #all the users id that need to get a quiz
+                lst.append(student.user_id) # all the users id that need to get a quiz
 
+                
 
-def changeToRead_Teacher(request,user_id):
-    teacher = Teacher.objects.get(user_id=user_id)
-    masseges = teacher.masseges.all()
-    teacher.read = True
-    teacher.save()
-    return render(request, 'teacher/getMassege.html', {'teacher': teacher, 'masseges': masseges})
-    
