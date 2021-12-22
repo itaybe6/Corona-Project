@@ -39,7 +39,7 @@
       <p style="color:white;"><h1>מסרים</h1></p>
       <table id="tableTecher">
         <tr>
-          <th>הודעות</th>
+          <th>מסרים</th>
         </tr>
         <tr>
           <td>
@@ -57,5 +57,15 @@
         </tr>
       </table>
     </center>
+
+   
+     {% if teacher.read == False %}
+        <a id="id4" href="/users/changeToRead_Teacher/897{{teacher.user_id}}654/">סמן כנקרא</a>
+      {% endif %}
+
+    
+
+
+
   </body>
 </html>

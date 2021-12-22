@@ -35,6 +35,8 @@ class Teacher(models.Model):
     my_class= models.CharField(max_length=200, null=True,default = None)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     masseges = models.ManyToManyField(MassegeT,default = None)
+    read = models.BooleanField(null= True,default = False)
+
 
 
     def __str__(self):
