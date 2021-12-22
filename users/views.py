@@ -468,7 +468,8 @@ def mark_attendance(request, user_id):
             for form, student in zip(formset, students):
                 date = datetime.today()
                 mark = form.cleaned_data['mark_attendance']
-                #check_attendance = Attendance.objects.filter(student=studentObj, teacher=teacher, date=date)  # if checked
+                check_attendance = Attendance(student=student, teacher=teacher, date=date,mark_attendance=mark)  # create new Attendance obj
+                check_attendance.save()
                 if mark == 'Absent':
                     student.absent = student.absent + 1
                     student.save()
@@ -516,13 +517,11 @@ def whoNeedToGetQuiz(request, user_id):
     lst = []
 
     for student in students:
-        check1 = Attendance.objects.filter(
-            teacher=teacher, date=today, student=student)
-        check2 = Attendance.objects.filter(
-            teacher=teacher, date=yesterday, student=student)
-        check3 = Attendance.objects.filter(
-            teacher=teacher, date=the_day_before_yesterday, student=student)
+        check1 = Attendance.objects.filter(teacher=teacher, date=today, student=student)
+        check2 = Attendance.objects.filter(teacher=teacher, date=yesterday, student=student)
+        check3 = Attendance.objects.filter(teacher=teacher, date=the_day_before_yesterday, student=student)
         if check1 and check2 and check3:  # not a quarySet
             if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
-                # all the users id that need to get a quiz
-                lst.append(student.user_id)
+                lst.append(student.user_id) # all the users id that need to get a quiz
+
+                
