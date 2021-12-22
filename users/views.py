@@ -404,6 +404,7 @@ def submit_homeworkTeacher(request,user_id):
 
     for student in students:
         student.homework.add(homeW)
+        student.read_homework = False
         student.save()
     
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
@@ -475,7 +476,7 @@ def mark_attendance(request,user_id):
 
         return render(request, 'teacher/attendance_form.html', context)
 
-#adad
+
 def whoNeedToGetQuiz(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
@@ -494,10 +495,19 @@ def whoNeedToGetQuiz(request,user_id):
                 lst.append(student.user_id) # all the users id that need to get a quiz
 
                 
-
+#change the massege from the manager in teacher to read
 def changeToRead_Teacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     masseges = teacher.masseges.all()
     teacher.read = True
     teacher.save()
     return render(request, 'teacher/getMassege.html', {'teacher': teacher, 'masseges': masseges})
+
+
+#change the home work from teacher in student to read
+def changeToRead_Student_Homework(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    homework = student.homework.all()
+    student.read_homework = True
+    student.save()
+    return render(request,'student/homework.html',{'student' :student , 'homework' :homework})
