@@ -342,6 +342,7 @@ def submitMassegeForStudent_Manager(request,user_id):
 
     for student in Student.objects.all():
         student.massegeFromManager.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'manager/DoneM.html',{'manager' :manager })    
@@ -371,6 +372,7 @@ def submitMassegeForStudent_Teacher(request,user_id):
 
     for student in Student.objects.filter(teacher = teacher):
         student.massegeFromTeacher.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
@@ -511,3 +513,15 @@ def changeToRead_Student_Homework(request,user_id):
     student.read_homework = True
     student.save()
     return render(request,'student/homework.html',{'student' :student , 'homework' :homework})
+
+
+
+
+#change the massege from teacher and manager in student to read
+def changeToRead_Student_Massege(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    masseges_FromManager = student.massegeFromManager.all()
+    masseges_FromTeacher = student.massegeFromTeacher.all()
+    student.read_massege = True
+    student.save()
+    return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})

@@ -76,6 +76,7 @@ class Student(models.Model):
     present = models.IntegerField(null=True,default=0)    #for attendance
     absent = models.IntegerField(null=True,default=0)     #for attendance
     read_homework = models.BooleanField(null= True,default = True)
+    read_massege = models.BooleanField(null= True,default = True)
 
 
     def __str__(self):

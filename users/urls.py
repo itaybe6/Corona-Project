@@ -73,6 +73,9 @@ urlpatterns = [
     #change the homework from teacher in student to read
     path('changeToRead_Student_Homework/897<int:user_id>654/',views.changeToRead_Student_Homework, name = 'changeToRead_Student_Homework'),
 
+    path('changeToRead_Student_Massege/897<int:user_id>654/',views.changeToRead_Student_Massege ,name = 'changeToRead_Student_Massege'),
+
+    
     path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
     path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),
     path('addTeacher/<int:user_id>/',views.addTeacher, name = 'addTeacher'),
