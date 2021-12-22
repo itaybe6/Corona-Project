@@ -4,56 +4,49 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
- 
 }
 .topnav {
   overflow: hidden;
   background-color: #333333;
 }
 
+#tableTecher {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-      #tableTecher {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
+#tableTecher td,
+th {
+  border: 3px solid;
+  border-color: rgb(7, 8, 8);
+  padding: 15px;
+  width: 30%;
+  background-color: beige;
+  float: right;
+  text-align: center;
+}
+#tableTecher tr:hover {
+  background-color: #ddd;
+}
 
-      #tableTecher td, th {
-        border: 3px solid;
-        border-color: rgb(7, 8, 8);
-        padding: 15px;
-        width: 30%;
-        background-color: beige;
-        float: right;
-        text-align: center;
-       
-      }    
-    
-
-      #tableTecher th {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: center;
-        background-color: #d4c677;
-        color: rgb(12, 14, 13);
-    }
-    
-
-
-
-
+#tableTecher th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #d4c677;
+  color: rgb(12, 14, 13);
+}
 
 .beauty {
-  
-    background-color:rgb(228, 220, 221);
-    padding-top:0.1rem;
-    padding-bottom:0.1rem;
-    border-radius: 5px;
-    box-shadow: 0 5px 7px #ccc;
-    text-align:center;
-    letter-spacing: 0.2rem;
-    margin: 1rem auto;
-
+  background-color: rgb(228, 220, 221);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  border-radius: 5px;
+  box-shadow: 0 5px 7px #ccc;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  margin: 1rem auto;
 }
 .topnav a {
   float: right;
@@ -209,27 +202,27 @@ a#id2 {
 }
 .green {
   text-align: center;
-    height: 80px;
-    width: 20px;
-    border-style: none;
-    font-size: 15px;
-    font: small-caps;
-    margin-left: 86%;
-    margin-top: 10%;
-    font-style: oblique;
+  height: 80px;
+  width: 20px;
+  border-style: none;
+  font-size: 15px;
+  font: small-caps;
+  margin-left: 86%;
+  margin-top: 10%;
+  font-style: oblique;
   background-color: rgb(75, 146, 75);
 }
 
 .red {
   text-align: center;
-    height: 80px;
-    width: 20px;
-    border-style: none;
-    font-size: 15px;
-    font: small-caps;
-    margin-left: 86%;
-    margin-top: 10%;
-    font-style: oblique;
+  height: 80px;
+  width: 20px;
+  border-style: none;
+  font-size: 15px;
+  font: small-caps;
+  margin-left: 86%;
+  margin-top: 10%;
+  font-style: oblique;
   background-color: rgb(124, 22, 22);
 }
 
@@ -258,7 +251,6 @@ a#id2 {
   margin: 3%;
   font-size: 10;
 }
-
 
 .teac {
   background-color: rgb(206, 148, 82);

@@ -6,7 +6,7 @@ from django.db.models.query import QuerySet
 from django.forms.formsets import formset_factory
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher
+from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher,Homework
 from homepage import views
 from datetime import datetime,timedelta,date
 from django.contrib.auth import authenticate, login, logout
@@ -308,7 +308,6 @@ def massegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForT.html',{'manager' : manager})
 
-#send massege to teacher from Manager
 def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
@@ -331,7 +330,6 @@ def massegeForStudent_Manager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForS.html',{'manager' : manager})
 
-#send massege to student from manager
 def submitMassegeForStudent_Manager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
@@ -348,18 +346,13 @@ def submitMassegeForStudent_Manager(request,user_id):
     return render(request,'manager/DoneM.html',{'manager' :manager })    
 
 
-#massege in teacher
+#massege in teacher from manager
 def massegeFromManagerInTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     masseges = teacher.masseges.all()
     return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
 
 
-def massege_InStudent(request,user_id):
-    student = Student.objects.get(user_id=user_id)
-    masseges_FromManager = student.massegeFromManager.all()
-    masseges_FromTeacher = student.massegeFromTeacher.all()
-    return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})
 
 #massege for all class from teacher
 def massegeForStudent_Teacher(request,user_id):
@@ -380,6 +373,47 @@ def submitMassegeForStudent_Teacher(request,user_id):
         student.save()
 
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
+
+
+
+#all the massege in student (from mananger and teacher)
+def massege_InStudent(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    masseges_FromManager = student.massegeFromManager.all()
+    masseges_FromTeacher = student.massegeFromTeacher.all()
+    return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})
+
+
+#send homework to a
+def homework_Teacher(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    return render(request,'teacher/homework.html',{'teacher' :teacher })
+
+def submit_homeworkTeacher(request,user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    students = Student.objects.filter(teacher = teacher)
+    students = students.filter(status = False)
+    book = request.POST['book']
+    pages = request.POST['pages']
+    remark = request.POST['remark']
+    date_ToDone = request.POST['date_ToDone']
+    date_create = datetime.now()
+    homeW = Homework(book= book ,pages = pages,remark = remark,date_ToDone = date_ToDone,date_create = date_create)
+    homeW.save()
+
+    for student in students:
+        student.homework.add(homeW)
+        student.save()
+    
+    return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
+
+
+def homework_Student(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    homework = student.homework.all()
+    return render(request,'student/homework.html',{'student' :student , 'homework' :homework})
+    
+
 
 def quizManager(request,user_id):
     #need to add

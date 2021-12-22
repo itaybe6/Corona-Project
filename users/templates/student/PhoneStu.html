@@ -2,38 +2,8 @@
 <html>
   <title>דף קשר לתלמיד</title>
   <head>
-    <style>
-      #tablestudent {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      #tablestudent td,
-      #tablestudent th {
-        border: 5px solid;
-        border-color: rgb(32, 136, 127);
-        padding: 10px;
-      }
-
-      #tablestudent tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-
-      #tablestudent tr:hover {
-        background-color: #ddd;
-      }
-
-      #tablestudent th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: right;
-        background-color: #353535;
-        color: rgb(32, 136, 127);
-      }
-    </style>
-    {% load static %} <link rel="stylesheet" type="text/css" href='{% static
-    'man.css' %}?{% now "U" %}'>
+    {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'stud.css' %}?{% now "U" %}'>
     <style></style>
   </head>
 
@@ -42,36 +12,34 @@
       <a class="btn" href="/users/HomePageStudent/897{{student.user_id}}654"
         >דף הבית</a
       >
-      <a class="btn" href="#news"> שיעורי הבית שלי</a>
+      <a class="btn" href="/users/homework_Student/897{{student.user_id}}654">
+        שיעורי הבית שלי</a
+      >
       <a class="active" href="/users/PhoneStu/897{{student.user_id}}654"
         >דף קשר הכיתה שלי</a
       >
-      <a class="btn" href="#about">מדריך </a>
+      <a class="btn" href="">מדריך </a>
       <a class="btn" href="/users/massege_InStudent/897{{student.user_id}}654"
-        >מסרים הנהלה
+        >מסרים
       </a>
       <a class="btn" href="#about">שאלון תלמיד </a>
     </div>
-    <ul>
-      <center>
-        <h1>הנבחרת של הכיתה</h1>
-      </center>
-      <table id="tablestudent">
-        <tr>
-          <th>שם התלמיד</th>
-          <th>מספר פלאפון</th>
-        </tr>
-      </table>
-      {% for students in students %}
-      <table id="tablestudent">
-        <students class="student">
+    <center>
+      <ul>
+        <p style="color:white;"><h1>הנבחרת של הכיתה</h1></p>
+        <table id="tableTecher">
           <tr>
-            <td>{{students.name}}</td>
-            <td>{{students.phone_number}}</td>
+            <th>שם התלמיד</th>
+            <th>מספר פלאפון</th>
           </tr>
-        </students>
-      </table>
-      {% endfor %}
-    </ul>
+         {% for student in students %}
+            <tr class="student">
+              <td>{{student.name}}</td>
+              <td>{{student.phone_number}}</td>
+            </tr>
+        </table>
+        {% endfor %}
+     </ul>
+    </center>
   </body>
 </html>

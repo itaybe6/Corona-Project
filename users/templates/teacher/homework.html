@@ -2,28 +2,72 @@
 <html>
   <title>שיעורי בית</title>
   <head>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-    <style> </style>
-    <div class="topnav">
-      <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654"
-        >דף הבית</a
-      >
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href='{% static 'tech.css' %}?{% now "U" %}'>
+    <style>
+      .button2 {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      .button2 {
+        background-color: rgb(32, 136, 127);
+        color: rgb(245, 245, 245);
+        border: 2px solid rgb(201, 202, 198);
+      }
 
-      <a class="btn" href="/users/Phones/897{{teacher.user_id}}654"
-        >דף קשר {{teacher.my_class}}</a
-      >
-
-      <a class="active" href="#contact"> שיעורי בית </a>
-      <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}"
-        >נוכחות
-      </a>
-      <a
-        class="btn"
-        href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654"
-        >מסרים
-      </a>
-      <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
-    </div>
+      .button2:hover {
+        background-color: rgb(201, 202, 198);
+        color: white;
+      }
+     h1{
+      text-decoration: underline;
+     }
+     h2{
+      text-decoration: underline;
+     }
+    </style>
   </head>
+  <body dir="rtl">
+    <div class="topnav">
+      <a class="btn" href="/users/HomePageTeacher/897{{teacher.user_id}}654" >דף הבית</a >
+
+      <a class="btn" href="/users/Phones/897{{teacher.user_id}}654">דף קשר {{teacher.my_class}}</a>
+   
+      <a class="active" href="/users/homework_Teacher/897{{teacher.user_id}}654">  שיעורי בית </a>
+      <a class="btn" href="/users/mark_attendance/{{teacher.user_id}}">נוכחות </a>
+      <a class="btn" href="/users/massegesFromManagerInTeacher/897{{teacher.user_id}}654">מסרים </a>
+      <a class="btn" href="/users/massegeForStudentTeacher/897{{teacher.user_id}}654">מסר לכיתה </a>
+      <a href="/users/addStudent/{{teacher.user_id}}">תלמיד חדש </a>
+   
+    </div>
+
+    <center>
+      <p style="color:white;"><h1>שיעורי בית לתלמיד</h1></p>
+      <form class="container" action=" {% url 'users:submit_homeworkTeacher' teacher.user_id %} " method="post">
+        {% csrf_token %}
+ 
+        <label for="book"><h2>ספר הלימוד </h2> </label>
+        <input type="book" placeholder="הכנס את ספר הלימוד" name="book" required />
+         <br />
+        <label for="pages"><h2>עמודים</h2></label>
+        <input type="pages" placeholder="הכנס עמודים (1-100)" name="pages" required />
+        <br />
+        <label for="date_ToDone"><h2>תאריך סיום המטלה</h2></label>
+        <input type="date_ToDone" placeholder="הכנס תאריך סיום המטלה" name="date_ToDone" required />
+        <label for="remark"><h2>הערות</h2></label>
+        <br />
+        <textarea rows="15" cols="65" name="remark" id="remark" placeholder="הכנס הערות"></textarea>
+        <br />
+        <button type="submit_homeworkTeacher" class="botton button2">שלח</button>
+        <label>
+      </form>
+    </center>
+  </body>
 </html>
