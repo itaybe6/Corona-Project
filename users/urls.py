@@ -23,6 +23,7 @@ urlpatterns = [
     path('Phones/897<int:user_id>654/',views.Phones),
     path('PhonesT/897<int:user_id>654',views.PhonesTeacher,name = 'PhonesT'),
     path('PhoneStu/897<int:user_id>654',views.PhonesStudent, name = 'PhoneStu'),
+    path('StuAdministrativePhones/897<int:user_id>654',views.StuAdministrativePhones, name = 'StuAdministrativePhones'),
 
 
     #Home page between paths on the site

@@ -56,8 +56,10 @@
         <table id="tableTecher">
           <student class="students">
             <tr>
+              {% if student.name %}
               <td>{{student.name}}</td>
               <td>{{student.phone_number}}</td>
+              {% endif %}
             </tr>
           </student>
         </table>
