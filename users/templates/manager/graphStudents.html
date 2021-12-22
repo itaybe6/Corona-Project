@@ -57,11 +57,12 @@
     <table id="tableTecher">
       <tr class="students">
         {% for teacher in teachers %}
+        {% if teacher.name %}
         <th>{{teacher.name}}</th>
         <th>{{teacher.my_class}} </th>
         <th>{{teacher.count_red}} </th>
         <th>{{teacher.count_green}} </th>
-
+        {% endif %}
       </tr>
       {% endfor %}
   </body>

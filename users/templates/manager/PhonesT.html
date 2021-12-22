@@ -6,7 +6,6 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
     
-    
   </head>
 
   <body>
@@ -45,10 +44,11 @@
       {% for teacher in teacher %}
       <table id="tableTecher">
         <tr class="teacher">
-          
+          {% if teacher.name %}
           <td>{{teacher.name}}</td>
           <td>{{teacher.my_class}}</td>
           <td>{{teacher.phone_number}}</td>
+          {% endif %}
         </tr>
       </table>
       {% endfor %}

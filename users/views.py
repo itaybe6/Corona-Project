@@ -342,6 +342,7 @@ def submitMassegeForStudent_Manager(request,user_id):
 
     for student in Student.objects.all():
         student.massegeFromManager.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'manager/DoneM.html',{'manager' :manager })    
@@ -371,6 +372,7 @@ def submitMassegeForStudent_Teacher(request,user_id):
 
     for student in Student.objects.filter(teacher = teacher):
         student.massegeFromTeacher.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
@@ -404,6 +406,7 @@ def submit_homeworkTeacher(request,user_id):
 
     for student in students:
         student.homework.add(homeW)
+        student.read_homework = False
         student.save()
     
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
@@ -475,10 +478,11 @@ def mark_attendance(request,user_id):
 
         return render(request, 'teacher/attendance_form.html', context)
 
-#adad
+
 def whoNeedToGetQuiz(request,user_id):
-    teacher = Teacher.objects.get(user_id=user_id)
-    students = Student.objects.filter(teacher=teacher)
+    """this function returns list of students in the school that need to get quiz"""
+    manager = Manager.objects.get(user_id=user_id)
+    students = Student.objects.filter(manager=manager)
     today = datetime.today().date().strftime('%d-%m-%Y')
     yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
     the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
@@ -486,18 +490,57 @@ def whoNeedToGetQuiz(request,user_id):
 
     
     for student in students:
-        check1 = Attendance.objects.filter(teacher=teacher, date=today, student=student)
-        check2 = Attendance.objects.filter(teacher=teacher, date=yesterday, student=student)
-        check3 = Attendance.objects.filter(teacher=teacher, date=the_day_before_yesterday, student=student)
+        check1 = Attendance.objects.filter(date=today, student=student)
+        check2 = Attendance.objects.filter(date=yesterday, student=student)
+        check3 = Attendance.objects.filter(date=the_day_before_yesterday, student=student)
         if check1 and check2 and check3:  # not a quarySet
             if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
                 lst.append(student.user_id) # all the users id that need to get a quiz
 
                 
-
+#change the massege from the manager in teacher to read
 def changeToRead_Teacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     masseges = teacher.masseges.all()
     teacher.read = True
     teacher.save()
     return render(request, 'teacher/getMassege.html', {'teacher': teacher, 'masseges': masseges})
+
+
+#change the home work from teacher in student to read
+def changeToRead_Student_Homework(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    homework = student.homework.all()
+    student.read_homework = True
+    student.save()
+    return render(request,'student/homework.html',{'student' :student , 'homework' :homework})
+
+
+
+
+#change the massege from teacher and manager in student to read
+def changeToRead_Student_Massege(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    masseges_FromManager = student.massegeFromManager.all()
+    masseges_FromTeacher = student.massegeFromTeacher.all()
+    student.read_massege = True
+    student.save()
+    return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})
+
+
+def StuAdministrativePhones(request,user_id): 
+    """Students administrative contact page"""
+    student = Student.objects.get(user_id=user_id)
+    manager = student.manager
+    teacher = student.teacher
+    teachers = Teacher.objects.filter(manager = manager)
+    context = {
+        'student' : student,
+        'manager' : manager,
+        'my_teacher' : teacher,
+        'teachers' : teachers
+    }
+    return render(request,'student/administrativePhones.html',context)
+
+
+
