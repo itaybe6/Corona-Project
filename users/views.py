@@ -8,7 +8,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse ,Http404
 from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher,Homework
 from homepage import views
-from datetime import datetime,timedelta,date
+from datetime import datetime, timedelta, date
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import AttendanceForm
@@ -17,48 +17,54 @@ from .forms import AttendanceForm
 # Create your views here.
 
 def get_student_signup(request):
-    return render(request,'student/signup.html')
+    return render(request, 'student/signup.html')
+
 
 def get_teacher_signup(request):
-    return render(request,'teacher/signup.html')    
+    return render(request, 'teacher/signup.html')
+
 
 def get_manager_signup(request):
-    return render(request,'manager/signup.html') 
+    return render(request, 'manager/signup.html')
+
 
 def logout_user(request):
     logout(request)
     return redirect('/')
 
+
 def submit_Manager(request):
     user_id = request.POST['user_id']
-    try: CheckIfManagerExist(user_id)
-    except  Manager.DoesNotExist:
+    try:
+        CheckIfManagerExist(user_id)
+    except Manager.DoesNotExist:
         raise Http404(f'Manager with id {user_id} does not exist')
     name = request.POST['name']
     phone_number = request.POST['phone_number']
     school = request.POST['school']
     password = request.POST['password']
-    #לשרשום תנאי שאם יש למנהל שאנחנו מנסים לרשום סיסמא אז המנהל רשום ולשלוח לדף של משתמש כבר קיים
-    manager = Manager.objects.get(user_id = user_id) 
+    # לשרשום תנאי שאם יש למנהל שאנחנו מנסים לרשום סיסמא אז המנהל רשום ולשלוח לדף של משתמש כבר קיים
+    manager = Manager.objects.get(user_id=user_id)
     manager.name = name
     manager.password = password
     manager.phone_number = phone_number
-    manager.school=school
+    manager.school = school
     manager.save()
-    return render(request,'manager/signup_success.html') 
+    return render(request, 'manager/signup_success.html')
+
 
 def submit_Teacher(request):
     user_id = request.POST['user_id']
     try:
         CheckIfTeacherExist(user_id)
-    except  Teacher.DoesNotExist:
+    except Teacher.DoesNotExist:
         raise Http404(f'Teacher with id {user_id} does not exist')
     name = request.POST['name']
     phone_number = request.POST['phone_number']
     password = request.POST['password']
     my_class = request.POST['my_class']
-    manager = Teacher.objects.get(user_id= user_id).manager
-    teacher = Teacher.objects.get(user_id = user_id)
+    manager = Teacher.objects.get(user_id=user_id).manager
+    teacher = Teacher.objects.get(user_id=user_id)
     teacher.manager = manager
     teacher.name = name
     teacher.password = password
@@ -66,76 +72,78 @@ def submit_Teacher(request):
     teacher.phone_number = phone_number
     teacher.my_class = my_class
     teacher.save()
-    return render(request,'teacher/signup_success.html') 
+    return render(request, 'teacher/signup_success.html')
+
 
 def submit_Student(request):
     user_id = request.POST['user_id']
     try:
         CheckIfStudentExist(user_id)
-    except  Student.DoesNotExist:
+    except Student.DoesNotExist:
         raise Http404(f'Student with id {user_id} does not exist')
     name = request.POST['name']
     phone_number = request.POST['phone_number']
     password = request.POST['password']
-    manager = Student.objects.get(user_id= user_id).manager
-    teacher = Student.objects.get(user_id= user_id).teacher
-    student = Student.objects.get(user_id = user_id)
+    manager = Student.objects.get(user_id=user_id).manager
+    teacher = Student.objects.get(user_id=user_id).teacher
+    student = Student.objects.get(user_id=user_id)
     student.name = name
     student.password = password
     student.user_id = user_id
     student.phone_number = phone_number
-    student.teacher=teacher
-    student.manager=manager
+    student.teacher = teacher
+    student.manager = manager
     student.save()
-    return render(request,'student/signup_success.html')     
+    return render(request, 'student/signup_success.html')
+
 
 def get_chooseprofile(request):
-    return render(request,'chooseprofile.html')
+    return render(request, 'chooseprofile.html')
 
 
 def CheckIfManagerExist(user_id):
 
     for i in Manager.objects.all():
-        if i.user_id == user_id :
+        if i.user_id == user_id:
             return True
 
     return False
-            
+
 
 def CheckIfTeacherExist(user_id):
-    
+
     for i in Teacher.objects.all():
-        if i.user_id == user_id :
+        if i.user_id == user_id:
             return True
     return False
-            
+
 
 def CheckIfStudentExist(user_id):
 
     for i in Student.objects.all():
-        if i.user_id == user_id :
+        if i.user_id == user_id:
             return True
     return False
 
 
-def Conect_Man(user_id,password):  #Checks the username and password of an managerr
+def Conect_Man(user_id, password):  # Checks the username and password of an managerr
     for i in Manager.objects.all():
         if i.user_id == user_id and i.password == password:
-           return True
+            return True
     return False
 
 
-def Conect_Tec(user_id,password):  #Checks the username and password of an Teacher
+def Conect_Tec(user_id, password):  # Checks the username and password of an Teacher
     for i in Teacher.objects.all():
         if i.user_id == user_id and i.password == password:
-           return True
+            return True
     return False
 
 
-def Conect_Stu(user_id,password):  #Checks the username and password of an Student
+def Conect_Stu(user_id, password):  # Checks the username and password of an Student
     for i in Student.objects.all():
         if i.user_id == user_id and i.password == password:
-           return True
+            return True
     return False
 
 
@@ -143,170 +151,190 @@ def Conect(request):
     user_id = request.POST['user_id']
     password = request.POST['password']
 
-    if Conect_Man(user_id,password):             # Chack all the users
-       manager = Manager.objects.get(user_id = user_id)
-       teachers = Teacher.objects.filter(manager__user_id = user_id)
-       return render(request,'manager/Home.html',{'manager':manager ,'teachers' :teachers})
-       
-    elif Conect_Stu(user_id,password):
-        student = Student.objects.get(user_id = user_id)
-        return render(request,'student/Home.html',{'student':student})
-        
-    elif Conect_Tec(user_id,password):
+    if Conect_Man(user_id, password):             # Chack all the users
+        manager = Manager.objects.get(user_id=user_id)
+        teachers = Teacher.objects.filter(manager__user_id=user_id)
+        return render(request, 'manager/Home.html', {'manager': manager, 'teachers': teachers})
+
+    elif Conect_Stu(user_id, password):
+        student = Student.objects.get(user_id=user_id)
+        return render(request, 'student/Home.html', {'student': student})
+
+    elif Conect_Tec(user_id, password):
         teacher = Teacher.objects.get(user_id=user_id)
-        return render(request,'teacher/Home.html',{'teacher':teacher})
-        
+        return render(request, 'teacher/Home.html', {'teacher': teacher})
+
     else:
-        return render(request,'ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
-    
-    
-#Phones page for teacher
-def Phones(request,user_id): 
+        # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה
+        return render(request, 'ConnectError.html')
+
+
+# Phones page for teacher
+def Phones(request, user_id):
     teacher = Teacher.objects.get(user_id=user_id)
-    student = Student.objects.filter(teacher__user_id = user_id)
-    return render(request,'teacher/Phones.html' ,{'teacher':teacher, 'student':student})
+    student = Student.objects.filter(teacher__user_id=user_id)
+    return render(request, 'teacher/Phones.html', {'teacher': teacher, 'student': student})
 
-#Phones page for manager
-def PhonesTeacher(request,user_id): 
+# Phones page for manager
+
+
+def PhonesTeacher(request, user_id):
     manager = Manager.objects.get(user_id=user_id)
-    teacher = Teacher.objects.filter(manager__user_id = user_id)
-    return render(request,'manager/PhonesT.html', {'manager' : manager , 'teacher' : teacher})
+    teacher = Teacher.objects.filter(manager__user_id=user_id)
+    return render(request, 'manager/PhonesT.html', {'manager': manager, 'teacher': teacher})
 
-#Phones page for Student
-def PhonesStudent(request,user_id):
-    student = Student.objects.get(user_id = user_id)
-    Students = Student.objects.filter(teacher__user_id = student.teacher.user_id) #list of Student with same teacher
-    return render(request,'student/PhoneStu.html', {'Students' : Students , 'student' : student }) # send to func list of studnet and the student 
+# Phones page for Student
+
+
+def PhonesStudent(request, user_id):
+    student = Student.objects.get(user_id=user_id)
+    # list of Student with same teacher
+    Students = Student.objects.filter(teacher__user_id=student.teacher.user_id)
+    # send to func list of studnet and the student
+    return render(request, 'student/PhoneStu.html', {'Students': Students, 'student': student})
 
 
 # 3 functions for path on the site
-def HomePageBetweenPathTeacher(request,user_id):
-    teacher = Teacher.objects.get(user_id = user_id)
-    return render(request,'teacher/Home.html', {'teacher' : teacher})
+def HomePageBetweenPathTeacher(request, user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    return render(request, 'teacher/Home.html', {'teacher': teacher})
 
-def HomePageBetweenPathManager(request,user_id):
+
+def HomePageBetweenPathManager(request, user_id):
     manager = Manager.objects.get(user_id=user_id)
-    teachers = Teacher.objects.filter(manager__user_id = user_id)
-    return render(request,'manager/Home.html',{'manager' :manager ,'teachers' : teachers})
+    teachers = Teacher.objects.filter(manager__user_id=user_id)
+    return render(request, 'manager/Home.html', {'manager': manager, 'teachers': teachers})
 
-def HomePageBetweenPathStudent(request,user_id):
+
+def HomePageBetweenPathStudent(request, user_id):
     student = Student.objects.get(user_id=user_id)
-    return render(request,'student/Home.html',{'student' :student})
+    return render(request, 'student/Home.html', {'student': student})
 
-#שינוי סטטוס של תלמיד לפי הצהרת בריאות
-def ChanageStatusStudent(request,user_id):
-    student = Student.objects.get(user_id = user_id)
+# שינוי סטטוס של תלמיד לפי הצהרת בריאות
+
+
+def ChanageStatusStudent(request, user_id):
+    student = Student.objects.get(user_id=user_id)
     if(student.status == True):
         student.status = False
         student.save()
     elif(student.status == False):
         student.status = True
         student.save()
-    return render(request,'student/changeDoneS.html',{'student' :student})
+    return render(request, 'student/changeDoneS.html', {'student': student})
 
-def ChanageStatusTeacher(request,user_id):
-    teacher = Teacher.objects.get(user_id = user_id)
+
+def ChanageStatusTeacher(request, user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
     if(teacher.status == True):
         teacher.status = False
         teacher.save()
     elif(teacher.status == False):
         teacher.status = True
         teacher.save()
-    return render(request,'teacher/DoneT.html',{'teacher' :teacher})
+    return render(request, 'teacher/DoneT.html', {'teacher': teacher})
 
-def ChanageStatusManager(request,user_id):
-    manager = Manager.objects.get(user_id = user_id)
+
+def ChanageStatusManager(request, user_id):
+    manager = Manager.objects.get(user_id=user_id)
     if(manager.status == True):
         manager.status = False
         manager.save()
     elif(manager.status == False):
         manager.status = True
         manager.save()
-    return render(request,'manager/DoneM.html',{'manager' :manager})
+    return render(request, 'manager/DoneM.html', {'manager': manager})
 
 
-
-
-#graph of status student for manager
-def graphStudentStatus(request,user_id):
-    manager = Manager.objects.get(user_id = user_id)
-    teachers = Teacher.objects.filter(manager__user_id = user_id)
-    students = Student.objects.filter(manager__user_id = user_id)
+# graph of status student for manager
+def graphStudentStatus(request, user_id):
+    manager = Manager.objects.get(user_id=user_id)
+    teachers = Teacher.objects.filter(manager__user_id=user_id)
+    students = Student.objects.filter(manager__user_id=user_id)
 
     for teacher in teachers:
-        count_red=0
-        count_green=0
-        students_in_class = Student.objects.filter(teacher__user_id = teacher.user_id)
+        count_red = 0
+        count_green = 0
+        students_in_class = Student.objects.filter(
+            teacher__user_id=teacher.user_id)
         for j in students_in_class:
             if j.status == False:
                 count_red = count_red+1
             elif j.status == True:
-                count_green=count_green+1
+                count_green = count_green+1
         teacher.count_red = count_red
         teacher.count_green = count_green
 
-    return render(request,'manager/graphStudents.html',{'manager' :manager ,'students' : students ,'teachers' :teachers})
+    return render(request, 'manager/graphStudents.html', {'manager': manager, 'students': students, 'teachers': teachers})
 
 
-#change all the status of students in class to red
-def changeMyClassToRed(request,user_id):
-    teacher = Teacher.objects.get(user_id = user_id)
-    students = Student.objects.filter(teacher__user_id = user_id)
+# change all the status of students in class to red
+def changeMyClassToRed(request, user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    students = Student.objects.filter(teacher__user_id=user_id)
     for i in students:
         i.status = False
         i.save()
-    return render(request,'teacher/DoneT.html',{'teacher' :teacher})
+    return render(request, 'teacher/DoneT.html', {'teacher': teacher})
 
 
-#manager add teachers
-def addTeacher(request,user_id):
-    manager=Manager.objects.get(user_id = user_id)
-    return render(request,'manager/addTeacher.html',{'manager' : manager})
+# manager add teachers
+def addTeacher(request, user_id):
+    manager = Manager.objects.get(user_id=user_id)
+    return render(request, 'manager/addTeacher.html', {'manager': manager})
 
-def submitAddTeacher(request,user_id):
+
+def submitAddTeacher(request, user_id):
     teacher_user_id = request.POST['teach_user_id']
-    manager=Manager.objects.get(user_id = user_id)
-    check1 = list(Student.objects.filter(user_id = teacher_user_id)) #check if student with this id allready exist
-    check2 = list(Teacher.objects.filter(user_id = teacher_user_id)) #check for Teacher
-    check3 = list(Manager.objects.filter(user_id = teacher_user_id)) #check for Manager
-    if check1 == [] and check2 == [] and check3 == []: #A user with this id doesnt exist
-        new_teacher=Teacher(user_id=teacher_user_id,manager=manager)
+    manager = Manager.objects.get(user_id=user_id)
+    # check if student with this id allready exist
+    check1 = list(Student.objects.filter(user_id=teacher_user_id))
+    check2 = list(Teacher.objects.filter(
+        user_id=teacher_user_id))  # check for Teacher
+    check3 = list(Manager.objects.filter(
+        user_id=teacher_user_id))  # check for Manager
+    if check1 == [] and check2 == [] and check3 == []:  # A user with this id doesnt exist
+        new_teacher = Teacher(user_id=teacher_user_id, manager=manager)
         new_teacher.save()
-        teachers=Teacher.objects.filter(manager=manager) #for the print in the html file
-        return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})    
+        # for the print in the html file
+        teachers = Teacher.objects.filter(manager=manager)
+        return render(request, 'manager/add_success.html', {'manager': manager, 'teachers': teachers})
     else:
-        return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
+        return render(request, 'manager/cant_add.html', {'ID': teacher_user_id, 'manager': manager})
 
 
+# manager add new student
+def addStudent(request, user_id):
+    teacher = Teacher.objects.get(user_id=user_id)
+    return render(request, 'teacher/addStudent.html', {'teacher': teacher})
 
-#manager add new student
-def addStudent(request,user_id):
-    teacher=Teacher.objects.get(user_id = user_id)
-    return render(request,'teacher/addStudent.html',{'teacher' : teacher})
 
-
-def submitAddStudent(request,user_id):
+def submitAddStudent(request, user_id):
     student_user_id = request.POST['stu_user_id']
-    teacher=Teacher.objects.get(user_id = user_id)
-    check1 = list(Student.objects.filter(user_id = student_user_id)) #check if student with this id allready exist
-    check2 = list(Teacher.objects.filter(user_id = student_user_id)) #check for Teacher
-    check3 = list(Manager.objects.filter(user_id = student_user_id)) #check for Manager
-    if check1 == [] and check2 == [] and check3 == []: #A user with this id doesnt exist
-        manager=Manager.objects.get(teacher=teacher)
-        student=Student(user_id=student_user_id,teacher=teacher,manager=manager)
+    teacher = Teacher.objects.get(user_id=user_id)
+    # check if student with this id allready exist
+    check1 = list(Student.objects.filter(user_id=student_user_id))
+    check2 = list(Teacher.objects.filter(
+        user_id=student_user_id))  # check for Teacher
+    check3 = list(Manager.objects.filter(
+        user_id=student_user_id))  # check for Manager
+    if check1 == [] and check2 == [] and check3 == []:  # A user with this id doesnt exist
+        manager = Manager.objects.get(teacher=teacher)
+        student = Student(user_id=student_user_id,
+                          teacher=teacher, manager=manager)
         student.save()
-        students=Student.objects.filter(teacher=teacher)
-        return render(request,'teacher/add_success.html',{'students' :students, 'teacher':teacher})
+        students = Student.objects.filter(teacher=teacher)
+        return render(request, 'teacher/add_success.html', {'students': students, 'teacher': teacher})
     else:
-        return render(request,'teacher/cant_add.html',{'ID' : student_user_id , 'teacher' : teacher})
-       
+        return render(request, 'teacher/cant_add.html', {'ID': student_user_id, 'teacher': teacher})
 
 
+# send massege to teacher from manager
+def massegeForTeacher(request, user_id):
+    manager = Manager.objects.get(user_id=user_id)
+    return render(request, 'manager/massegeForT.html', {'manager': manager})
 
-#send massege to teacher from manager
-def massegeForTeacher(request,user_id):
-    manager = Manager.objects.get(user_id = user_id)
-    return render(request,'manager/massegeForT.html',{'manager' : manager})
+# send massege to teacher from Manager
 
 def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
@@ -314,21 +342,24 @@ def submitMassegeForTeacher(request,user_id):
     content = request.POST['content']
     subject = request.POST['subject']
     date_create = datetime.now()
-    massege = MassegeT(author = author,content = content,subject = subject,date_create = date_create)
+    massege = MassegeT(author=author, content=content,
+                       subject=subject, date_create=date_create)
     massege.save()
 
     for teacher in Teacher.objects.all():
         teacher.masseges.add(massege)
         teacher.save()
 
-    return render(request,'manager/DoneM.html',{'manager' :manager })    
+    return render(request, 'manager/DoneM.html', {'manager': manager})
 
 
+# send massege to student from manager
+def massegeForStudent_Manager(request, user_id):
+    manager = Manager.objects.get(user_id=user_id)
+    return render(request, 'manager/massegeForS.html', {'manager': manager})
 
-#send massege to student from manager
-def massegeForStudent_Manager(request,user_id):
-    manager = Manager.objects.get(user_id = user_id)
-    return render(request,'manager/massegeForS.html',{'manager' : manager})
+# send massege to student from manager
+
 
 def submitMassegeForStudent_Manager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
@@ -336,21 +367,22 @@ def submitMassegeForStudent_Manager(request,user_id):
     content = request.POST['content']
     subject = request.POST['subject']
     date_create = datetime.now()
-    massege = Massege_Student_FromManager(author = author,content = content,subject = subject,date_create = date_create)
+    massege = Massege_Student_FromManager(
+        author=author, content=content, subject=subject, date_create=date_create)
     massege.save()
 
     for student in Student.objects.all():
         student.massegeFromManager.add(massege)
         student.save()
 
-    return render(request,'manager/DoneM.html',{'manager' :manager })    
+    return render(request, 'manager/DoneM.html', {'manager': manager})
 
 
 #massege in teacher from manager
 def massegeFromManagerInTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     masseges = teacher.masseges.all()
-    return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
+    return render(request, 'teacher/getMassege.html', {'teacher': teacher, 'masseges': masseges})
 
 
 
@@ -415,97 +447,82 @@ def homework_Student(request,user_id):
     
 
 
-def quizManager(request,user_id):
-    #need to add
+def quizManager(request, user_id):
+    # need to add
     manager = Manager.objects.get(user_id=user_id)
-    return render(request,'manager/quizManager.html',{'manager' :manager})
+    return render(request, 'manager/quizManager.html', {'manager': manager})
 
 
-def mark_attendance(request,user_id):
+def mark_attendance(request, user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
-    count = students.count() #how many students
+    count = students.count()  # how many students
     attendance_formset = formset_factory(AttendanceForm, extra=count)
-    date = datetime.today().date().strftime('%d-%m-%Y')
-    attendance = None
+    date = datetime.today().date().strftime('%d-%m-%Y') #for print
 
     if request.method == 'POST':
         formset = attendance_formset(request.POST)
-        lst = zip(formset,students)
+        lst = zip(formset, students)
 
-        if formset.is_valid(): #for cleaned_data func
-            for form, student in zip(formset,students): #form->formset, student->students
+        if formset.is_valid():  # for cleaned_data func
+            for form, student in zip(formset, students):
                 date = datetime.today()
-                mark = form.cleaned_data['mark_attendance'] 
-                check_attendance = Attendance.objects.filter(teacher=teacher,date=date,student=student) #if checked
-                if check_attendance:
-                    attendance = Attendance.objects.get(student=student,teacher=teacher,date=date)
-                    if attendance.mark_attendance == 'Absent':
-                        student.absent = student.absent - 1
-                        student.save()
-                    elif attendance.mark_attendance == 'Present':
-                        student.present = student.present - 1
-                        student.save()
-                    attendance.mark_attendance = mark
-                    attendance.save()
-                else:  #if not check (check_attendance is QuarySet)->The student acsent and present wont change
-                    attendance = Attendance()
-                    attendance.teacher = teacher
-                    attendance.student = student
-                    attendance.date = date
-                    attendance.mark_attendance = mark
-                    attendance.save()
-
+                mark = form.cleaned_data['mark_attendance']
+                #check_attendance = Attendance.objects.filter(student=studentObj, teacher=teacher, date=date)  # if checked
                 if mark == 'Absent':
                     student.absent = student.absent + 1
                     student.save()
-                if mark == 'Present':
+                elif mark == 'Present':
                     student.present = student.present + 1
                     student.save()
-
 
             context = {
                 'students': students,
                 'teacher': teacher,
             }
-            return render(request, 'teacher/attendance_success.html', context) #attendance suuccess
-        else: #formset is not vaid->something went wrong (need to do the attendance again)
+            return render(request, 'teacher/attendance_success.html', context)
+        # formset is not vaid->something went wrong (need to do the attendance again)
+        else:
             context = {
                 'formset': formset,
                 'students': students,
                 'teacher': teacher,
                 'list': lst,
-                'date':date,
+                'date': date,
             }
             return render(request, 'teacher/attendance_form.html', context)
 
-    else: #the user want to start the attendance check (when press the attendance bottum)
+    # the user want to start the attendance check (when press the attendance bottum)
+    else:
         lst = zip(students, attendance_formset())
         context = {
             'formset': attendance_formset(),
             'students': students,
             'teacher': teacher,
             'list': lst,
-            'date':date,
+            'date': date,
         }
 
         return render(request, 'teacher/attendance_form.html', context)
 
-def whoNeedToGetQuiz(request,user_id):
+
+def whoNeedToGetQuiz(request, user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
     today = datetime.today().date().strftime('%d-%m-%Y')
     yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
-    the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
+    the_day_before_yesterday = (
+        date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
     lst = []
 
-    
     for student in students:
-        check1 = Attendance.objects.filter(teacher=teacher,date=today,student=student)
-        check2 = Attendance.objects.filter(teacher=teacher,date=yesterday,student=student)
-        check3 = Attendance.objects.filter(teacher=teacher,date=the_day_before_yesterday,student=student)
-        if check1 and check2 and check3: #not a quarySet
+        check1 = Attendance.objects.filter(
+            teacher=teacher, date=today, student=student)
+        check2 = Attendance.objects.filter(
+            teacher=teacher, date=yesterday, student=student)
+        check3 = Attendance.objects.filter(
+            teacher=teacher, date=the_day_before_yesterday, student=student)
+        if check1 and check2 and check3:  # not a quarySet
             if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
-                lst.append(student.user_id) #all the users id that need to get a quiz
-
-    
+                # all the users id that need to get a quiz
+                lst.append(student.user_id)
