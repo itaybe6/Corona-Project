@@ -266,3 +266,28 @@ a#id2 {
   margin: 0%;
   font-size: 15;
 }
+.manage {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  border: 2px solid;
+  border-color: #333333;
+  width: 15%;
+  font-size: 25px;
+  color: #333333;
+
+  text-align: center;
+  margin: px;
+  width: 15%;
+  text-decoration: none;
+  padding-right: 4%;
+  padding-left: 4%;
+  padding-top: 4px;
+  display: block;
+
+  box-shadow: 0 5px 7px #ccc;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 5px 5px 5px 5px #ccc;
+}
+

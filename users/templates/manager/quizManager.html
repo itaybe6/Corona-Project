@@ -2,9 +2,9 @@
 <html>
   <title>שאלון מנהל לתלמידים</title>
   <head>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-    <style> </style>
+    {% load static %} <link rel="stylesheet" type="text/css" href='{% static
+    'man.css' %}?{% now "U" %}'>
+    <style></style>
   </head>
   <body>
     <div class="topnav">
@@ -34,11 +34,34 @@
         >מורה חדש</a
       >
     </div>
-    <div class=beauty>
+    <div class="beauty">
       <center>
-        מנהל יקר ,באפשרותך לבנות שאלון עבור תלמידיך שנמצאים זמן ממושך בסטטוס אדום
+        מנהל יקר ,באפשרותך לבנות שאלון עבור תלמידיך שנמצאים זמן ממושך בסטטוס
+        אדום. אנא לחץ על הקישור שיעביר אותך לבניית שאלון ב - google docs ולאחר
+        מכן הדבק את כתובת הקישור לשאלון במקום הרלוונטי .
       </center>
-      
+
+      <a
+        id="id4"
+        href="https://docs.google.com/forms/d/1tsDlWbWdlVuZxBKrITcyeVfJEVIcIMilunL3SJSgyhU/edit"
+        target="blank"
+        >מעבר לבניית שאלון</a
+      >
+
+      <form action="{% url 'users:submitQuiz' manager.user_id %}" method="post">
+        {% csrf_token %}
+
+        <p>הכנס לכאן את כתובת הקישור</p>
+        <input
+          type="text"
+          name="link"
+          id="link"
+          placeholder="כתובת הקישור"
+          required
+        />
+
+        <button type="submitQuiz">שלח</button>
+      </form>
     </div>
   </body>
 </html>

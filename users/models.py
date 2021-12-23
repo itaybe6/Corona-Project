@@ -61,6 +61,9 @@ class Homework(models.Model):
     date_create = models.DateTimeField(auto_now_add=True)
     date_ToDone = models.CharField(max_length=200, null = True,default = None)
 
+class quiz(models.Model):
+    link = models.CharField(max_length=2000, null = True,default = None)
+
 
 class Student(models.Model):
     name = models.CharField(max_length=200, null = True,default = None)
@@ -72,12 +75,12 @@ class Student(models.Model):
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     massegeFromManager = models.ManyToManyField(Massege_Student_FromManager,default = None)
     massegeFromTeacher = models.ManyToManyField(Massege_Student_FromTeacher,default = None) 
+    quiz = models.ManyToManyField(quiz,default = None) 
     homework =  models.ManyToManyField(Homework,default = None)   
     present = models.IntegerField(null=True,default=0)    #for attendance
     absent = models.IntegerField(null=True,default=0)     #for attendance
     read_homework = models.BooleanField(null= True,default = True)
-    read_massege = models.BooleanField(null= True,default = True)
-
+    read_quiz =  models.BooleanField(null= True,default = True)
 
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'

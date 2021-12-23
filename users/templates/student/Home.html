@@ -52,17 +52,6 @@
     <h2>{{student.name}} קיבלת שיעורי בית מעודכנים , אנא כנס לתיבת שיעורי הבית </h2>
     {% endif %}
 
-
-    <br><br><br>
-
-    {% if student.read_massege == False %}
-    <h2>{{student.name}} קיבלת הודעה אנא כנס לתיבת המסרים </h2>
-    {% endif %}
-
-
-
-
-  
    </div>
    <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
   
