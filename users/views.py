@@ -529,7 +529,7 @@ def StuAdministrativePhones(request,user_id):
     return render(request,'student/administrativePhones.html',context)
 
 
-
+#send link to quiz from manager from re studenst
 def submitQuiz(request,user_id):
     manager = Manager.objects.get(user_id=user_id)
     students = Student.objects.filter(manager=manager)
