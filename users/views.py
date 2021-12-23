@@ -535,7 +535,8 @@ def submitQuiz(request,user_id):
     students = Student.objects.filter(manager=manager)
     students = students.filter(status = False)
     link = request.POST['link']
-    Quiz = quiz(link = link)
+    date_create = datetime.now()   
+    Quiz = quiz(link = link,date_create = date_create)
     Quiz.save()
     for student in students:
         student.quiz.add(Quiz)

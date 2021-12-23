@@ -63,6 +63,8 @@ class Homework(models.Model):
 
 class quiz(models.Model):
     link = models.CharField(max_length=2000, null = True,default = None)
+    date_create = models.DateTimeField(auto_now_add=True)
+
 
 
 class Student(models.Model):
