@@ -324,3 +324,29 @@ th {
   background-color: rgb(201, 202, 198);
   color: white;
 }
+.manage {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  border: 2px solid;
+  border-color: #333333;
+  width: 15%;
+  font-size: 18px;
+  color: #333333;
+  text-align: center;
+  margin: px;
+  width: 71%;
+  text-decoration: none;
+  padding-right: 4%;
+  padding-left: 4%;
+  padding-top: 4px;
+  display: block;
+  box-shadow: 0 5px 7px #ccc;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 5px 5px 5px 5px #ccc;
+  margin-top: 18%;
+  margin-left: -15%;
+  height: 0%;
+  background-color: yellow;
+}

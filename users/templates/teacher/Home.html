@@ -76,7 +76,11 @@
      
 
         {% if teacher.read == False %}
-            <h2> {{teacher.name}} קיבלת הודעות מהנהל , אנא פתח את תיבת המסרים </h2>
+        <div class=manage>
+
+           {{teacher.name}} קיבלת הודעות מהמנהל, אנא פתח את תיבת המסרים 
+        </div>
+           
         {% endif %}
   
       </div>
