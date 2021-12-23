@@ -76,12 +76,10 @@
 
         {% for teacher in teachers %}
 
-        {% if teacher.status %} 
-        {% if teacher.name %}
-       
-        <div class=linr>
+        {% if teacher.status  == False%} 
+          <div class=linr>
 
-         <th> {{teacher.name}} </th>
+          <th> {{teacher.name}} </th>
 
         </div>
 
@@ -93,8 +91,6 @@
 
 
 
-          {% else %}
-          {% endif %}
           {% endif %}
           
           {% endfor %}
