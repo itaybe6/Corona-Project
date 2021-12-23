@@ -260,13 +260,22 @@ a#id2 {
 
 #tableTecher td,
 th {
-  border: 3px solid;
-  border-color: rgb(7, 8, 8);
-  padding: 15px;
-  width: 45%;
-  background-color: beige;
-  float: center;
-  text-align: center;
+  
+ 
+    border: 3px solid;
+    border-color: rgb(7, 8, 8);
+    padding: 3px;
+    width: 6%;
+    background-color: beige;
+    float: center;
+    text-align: center;
+
+}
+.center{
+  
+    text-align: right;
+    float: revert;
+
 }
 #tableTecher tr:hover {
   background-color: #ddd;

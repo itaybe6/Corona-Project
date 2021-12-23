@@ -26,8 +26,8 @@
         border: 3px solid;
         border-color: rgb(7, 8, 8);
         padding: 3px;
-        width: 12%;
-        background-color: beige;
+        width: 6%;
+        background-color: rgb(115, 165, 157);
         float: center;
         text-align: center;
       }
@@ -88,11 +88,11 @@
         >
           {{ formset.management_form }} {% csrf_token %}
           <br />
-          <table class="tableAtten">
+          <table id="tableAtten">
             <tr>
-              <th>שם התלמיד:</th>
-              <th>סטטוס התלמיד:</th>
-              <th>סמן נוכחות:</th>
+              <td>שם התלמיד:</td>
+              <td>סטטוס התלמיד:</td>
+              <td>סמן נוכחות:</td>
             </tr>
           </table>
           {% for student,form in list %}
@@ -107,7 +107,9 @@
               {% else %}
               <td>סטטוס ירוק</td>
               {% endif %}
-              <td class="center">{% for i in form %} {{ i }} {% endfor %}</td>
+              <div class= center1>
+                <td >{% for i in form %} {{ i }} {% endfor %}</td>
+              </div>
             </tr>
             {% endfor %}
           </table>
