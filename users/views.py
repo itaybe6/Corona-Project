@@ -326,11 +326,13 @@ def submitMassegeForTeacher(request,user_id):
 
 
 
-#send massege to student from manager
+#move to page massege to student from manager
 def massegeForStudent_Manager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForS.html',{'manager' : manager})
 
+    
+#send massege to student from manager
 def submitMassegeForStudent_Manager(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
@@ -355,11 +357,13 @@ def massegeFromManagerInTeacher(request,user_id):
 
 
 
-#massege for all class from teacher
+#move to page massege to student from teacher(all the student on the class)
 def massegeForStudent_Teacher(request,user_id):
     teacher = Teacher.objects.get(user_id = user_id)
     return render(request,'teacher/massegeForS.html',{'teacher' : teacher})
 
+
+#massege for all class from teacher
 def submitMassegeForStudent_Teacher(request,user_id):
     teacher = Teacher.objects.get(user_id = user_id)
     author = teacher
@@ -385,11 +389,12 @@ def massege_InStudent(request,user_id):
     return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})
 
 
-#send homework to a
+#move to page home work for student from teacher
 def homework_Teacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     return render(request,'teacher/homework.html',{'teacher' :teacher })
 
+#send home work to student from teacher to all class
 def submit_homeworkTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher = teacher)
@@ -409,7 +414,7 @@ def submit_homeworkTeacher(request,user_id):
     
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
 
-
+#print home work from teacher in student
 def homework_Student(request,user_id):
     student = Student.objects.get(user_id=user_id)
     homework = student.homework.all()
@@ -422,7 +427,7 @@ def quizManager(request,user_id):
     manager = Manager.objects.get(user_id=user_id)
     return render(request,'manager/quizManager.html',{'manager' :manager})
 
-
+#attendece ro class
 def mark_attendance(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
     students = Student.objects.filter(teacher=teacher)
