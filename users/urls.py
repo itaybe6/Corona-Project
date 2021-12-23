@@ -78,7 +78,14 @@ urlpatterns = [
     path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),
     path('addTeacher/<int:user_id>/',views.addTeacher, name = 'addTeacher'),
     path('submitAddTeacher/<int:user_id>/',views.submitAddTeacher, name = 'submitAddTeacher'),
+
+
     path('quizManager/<int:user_id>/',views.quizManager, name = 'quizManager'),
+    path('submitQuiz/<int:user_id>/',views.submitQuiz, name = 'submitQuiz' ),
+
+
+
+
     path('mark_attendance/<int:user_id>/',views.mark_attendance, name='mark_attendance'),
 
 

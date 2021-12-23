@@ -6,7 +6,7 @@ from django.db.models.query import QuerySet
 from django.forms.formsets import formset_factory
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher,Homework
+from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher,Homework,quiz
 from homepage import views
 from datetime import datetime,timedelta,date
 from django.contrib.auth import authenticate, login, logout
@@ -482,23 +482,6 @@ def mark_attendance(request,user_id):
         return render(request, 'teacher/attendance_form.html', context)
 
 
-def whoNeedToGetQuiz(request,user_id):
-    """this function returns list of students in the school that need to get quiz"""
-    manager = Manager.objects.get(user_id=user_id)
-    students = Student.objects.filter(manager=manager)
-    today = datetime.today().date().strftime('%d-%m-%Y')
-    yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
-    the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
-    lst = []
-
-    
-    for student in students:
-        check1 = Attendance.objects.filter(date=today, student=student)
-        check2 = Attendance.objects.filter(date=yesterday, student=student)
-        check3 = Attendance.objects.filter(date=the_day_before_yesterday, student=student)
-        if check1 and check2 and check3:  # not a quarySet
-            if check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
-                lst.append(student.user_id) # all the users id that need to get a quiz
 
                 
 #change the massege from the manager in teacher to read
@@ -547,3 +530,36 @@ def StuAdministrativePhones(request,user_id):
 
 
 
+def submitQuiz(request,user_id):
+    manager = Manager.objects.get(user_id=user_id)
+    students = Student.objects.filter(manager=manager)
+    students = students.filter(status = False)
+    link = request.POST['link']
+    Quiz = quiz(link = link)
+    Quiz.save()
+    for student in students:
+        student.quiz.add(Quiz)
+        student.read_quiz = False
+        student.save()
+
+    return render(request,'manager/DoneM.html',{'manager' :manager })    
+
+
+
+
+
+
+
+
+
+        #check1 = Attendance.objects.filter(date=today, student=student)
+        #check2 = Attendance.objects.filter(date=yesterday, student=student)
+        #check3 = Attendance.objects.filter(date=the_day_before_yesterday, student=student)
+        #if check1 and check2 and check3:  # not a quarySet
+            #f check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
+             #   lst.append(student.user_id) # all the users id that need to get a quiz
+
+          #today = datetime.today().date().strftime('%d-%m-%Y')
+    #yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
+    #the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
+    #lst = []
