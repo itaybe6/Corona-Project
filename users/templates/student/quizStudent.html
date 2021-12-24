@@ -38,10 +38,13 @@
       <strong> ולאחר סיום השאלון לחץ על הכפתור</strong> עניתי על השאלון
     </h2>
 
-    {% for qu in quiz %} {{qu.date_create}} <br />
+    {% for qu in quiz %} <br />
+    {% if qu.read_quiz == False%} {{qu.date_create}}
     <a href="{{qu.link}}" target="blank"> קישור למילוי השאלון </a> <br /><br />
-    {% endfor %}
+    {% endif %} {% endfor %}
 
-    <a href="/users/answerQuiz/897{{student.user_id}}654/">מיליתי את השאלון</a>
+    <a href="/users/answerQuiz/897{{student.user_id}}654/"
+      >מילאתי את השאלונים</a
+    >
   </body>
 </html>

@@ -6,7 +6,7 @@ from django.db.models.query import QuerySet
 from django.forms.formsets import formset_factory
 from django.shortcuts import render,redirect,get_object_or_404 
 from django.http import HttpResponse ,Http404
-from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher,Homework,quiz
+from users.models import Manager,Teacher,Student,MassegeT, Attendance,Massege_Student_FromManager,Massege_Student_FromTeacher,Homework,Quiz
 from homepage import views
 from datetime import datetime,timedelta,date
 from django.contrib.auth import authenticate, login, logout
@@ -422,11 +422,6 @@ def homework_Student(request,user_id):
     
 
 
-def quizManager(request,user_id):
-    #need to add
-    manager = Manager.objects.get(user_id=user_id)
-    return render(request,'manager/quizManager.html',{'manager' :manager})
-
 #attendece ro class
 def mark_attendance(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
@@ -529,33 +524,41 @@ def StuAdministrativePhones(request,user_id):
     return render(request,'student/administrativePhones.html',context)
 
 
+
+##quiz##
+
+def quizManager(request,user_id):
+    manager = Manager.objects.get(user_id=user_id)
+    return render(request,'manager/quizManager.html',{'manager' :manager})
+
+
 #send link to quiz from manager from re studenst
 def submitQuiz(request,user_id):
     manager = Manager.objects.get(user_id=user_id)
-    students = Student.objects.filter(manager=manager)
-    students = students.filter(status = False)
+    students = Student.objects.filter(manager=manager,status = False)#all the student in red status in the school
     link = request.POST['link']
     date_create = datetime.now()   
-    Quiz = quiz(link = link,date_create = date_create)
-    Quiz.save()
+
     for student in students:
-        student.quiz.add(Quiz)
-        student.read_quiz = False
-        student.save()
+        quiz = Quiz(link = link,date_create = date_create,read_quiz=False,student=student)
+        quiz.save()
 
     return render(request,'manager/DoneM.html',{'manager' :manager })    
 
 
-#move to page quiz to studnt
+#move to page quiz to student
 def quizStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
-    quiz = student.quiz.all()
+    quiz = Quiz.objects.filter(student=student,read_quiz=False)
     return render(request,'student/quizStudent.html',{'student' :student , 'quiz' :quiz})
+
 
 def answerQuiz(request,user_id):
     student = Student.objects.get(user_id=user_id)
-    student.read_quiz = True
-    student.save()
+    quizs = Quiz.objects.filter(student=student)
+    for i in quizs:
+        i.read_quiz = True
+        i.save()
 
     return render(request,'student/Home.html',{'student' :student})
     
