@@ -17,7 +17,7 @@
 
      <a href="#about">מדריך </a>
      <a href="/users/massege_InStudent/897{{student.user_id}}654">מסרים </a>
-     <a href="#about">שאלון תלמיד </a>
+     <a href="/users/quizStudent/897{{student.user_id}}654">שאלון תלמיד </a>
 
     </div>
    <center>
@@ -52,9 +52,19 @@
     <h2>{{student.name}} קיבלת שיעורי בית מעודכנים , אנא כנס לתיבת שיעורי הבית </h2>
     {% endif %}
 
+
+    {% if student.read_quiz == False %}
+    <h2>{{student.name}} עלייך לענות על שאלון בריאות מטעם המנהל , אנא כנס לתיבת שאלון תלמיד </h2>
+    {% endif %}
+
+
+
    </div>
    <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
   
+
+
+
   </body>
 </html>
   
