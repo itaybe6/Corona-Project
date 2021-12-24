@@ -28,7 +28,20 @@
       <a class="btn" href="/users/massege_InStudent/897{{student.user_id}}654">
         מסרים
       </a>
-      <a class="active" href="#about">שאלון תלמיד </a>
+      <a class="active" href="/users/quizStudent/897{{student.user_id}}654"
+        >שאלון תלמיד
+      </a>
     </div>
+
+    <h2>
+      {{student.name}} עלייך למלא שאלון על מצבך הבריאותי , אנא כנס לקישור הנל
+      <strong> ולאחר סיום השאלון לחץ על הכפתור</strong> עניתי על השאלון
+    </h2>
+
+    {% for qu in quiz %} {{qu.date_create}} <br />
+    <a href="{{qu.link}}" target="blank"> קישור למילוי השאלון </a> <br /><br />
+    {% endfor %}
+
+    <a href="/users/answerQuiz/897{{student.user_id}}654/">מיליתי את השאלון</a>
   </body>
 </html>

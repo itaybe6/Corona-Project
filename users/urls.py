@@ -83,6 +83,9 @@ urlpatterns = [
     path('quizManager/<int:user_id>/',views.quizManager, name = 'quizManager'),
     path('submitQuiz/<int:user_id>/',views.submitQuiz, name = 'submitQuiz' ),
 
+    path('quizStudent/897<int:user_id>654/',views.quizStudent, name = 'quizStudent'),
+    path('answerQuiz/897<int:user_id>654/',views.answerQuiz, name = 'answerQuiz'),
+
 
 
 

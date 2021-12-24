@@ -546,7 +546,19 @@ def submitQuiz(request,user_id):
     return render(request,'manager/DoneM.html',{'manager' :manager })    
 
 
+#move to page quiz to studnt
+def quizStudent(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    quiz = student.quiz.all()
+    return render(request,'student/quizStudent.html',{'student' :student , 'quiz' :quiz})
 
+def answerQuiz(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    student.read_quiz = True
+    student.save()
+
+    return render(request,'student/Home.html',{'student' :student})
+    
 
 
 
