@@ -13,12 +13,12 @@ body {
   float: right;
   color: #f2f2f2;
   text-align: center;
-  margin: 24px;
-  width: 11%;
+  margin: 14px;
+  width: 10%;
   height: 2%;
   padding: 2px 4px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
 }
 .topnav a:hover {
   background-color: #ddd;
