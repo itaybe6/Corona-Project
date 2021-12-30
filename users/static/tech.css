@@ -7,38 +7,39 @@ body {
 }
 .topnav {
   overflow: hidden;
-  background-color: #333333;
+
+
 }
 
 .topnav a {
   float: right;
-  color: #f2f2f2;
+  color: #201919;
   text-align: center;
-  margin: 14px;
+  margin: 15px;
   width: 11%;
   height: 6%;
   padding: 1px 1px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 20px;
 }
 .topnav a:hover {
   background-color: #ddd;
-  color: black;
+  color: rgb(238, 139, 139);
 }
 
 .topnav a.active {
-  background-color: rgb(158, 215, 253);
+  background-color: rgb(136, 64, 80);
   color: white;
 }
 
 a {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
-  border: 2px solid;
+  border: 4px solid;
   border-color: #333333;
   width: 15%;
   font-size: 25px;
-  color: #333333;
+  color: #9c6666;
 
   text-align: center;
   margin: px;
@@ -49,22 +50,17 @@ a {
   padding-top: 4px;
   display: block;
 
-  box-shadow: 0 5px 7px #ccc;
   text-align: center;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   border-radius: 5px 5px 5px 5px;
-  box-shadow: 5px 5px 5px 5px #ccc;
 }
 
 p {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   border: 2px solid;
-  border-color: #333333;
   width: 15%;
-
-  color: #333333;
-
+  color: rgb(122, 79, 111);
   text-align: center;
   margin: 35px;
   width: 10%;
@@ -73,14 +69,13 @@ p {
   padding-left: 5%;
   padding-top: 5px;
   display: block;
-  color: rgb(79, 122, 119);
+  color: rgb(122, 79, 111);
 
   box-shadow: 0 5px 7px #ccc;
   text-align: center;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   border-radius: 5px 5px 5px 5px;
-  box-shadow: 5px 5px 5px 5px #ccc;
-  margin: 2 px;
+  margin: 2px;
 }
 
 a#id1 {
@@ -285,7 +280,7 @@ th {
   padding-bottom: 10px;
   text-align: center;
   background-color: #d4c677;
-  color: rgb(12, 14, 13);
+  color: rgb(12, 12, 14);
 }
 
 .beauty {
