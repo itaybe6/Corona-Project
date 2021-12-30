@@ -4,7 +4,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-image: url("1G.jpg") 30 fill / 30px / 30px space;
 }
+
+
+
 .topnav {
   overflow: hidden;
   background-color: #333333;
