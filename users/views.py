@@ -247,7 +247,7 @@ def graphStudentStatus(request,user_id):
         numberStudent +=1 
 
 
-    
+    #11
     #percent of the green and red student in the school
     manager.rad_percent = manager.rad_percent / numberStudent * 100
     manager.green_percent = manager.green_percent / numberStudent * 100 
