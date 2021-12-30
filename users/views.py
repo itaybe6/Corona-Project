@@ -232,6 +232,27 @@ def graphStudentStatus(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     teachers = Teacher.objects.filter(manager__user_id = user_id)
     students = Student.objects.filter(manager__user_id = user_id)
+    numberStudent = 0
+    manager.rad_percent = 0 
+    manager.green_percent = 0
+
+    for stu in Student.objects.filter(manager = manager):
+        if stu.status == False:
+            manager.rad_percent += 1
+            manager.save()
+        else : 
+            manager.green_percent +=1
+            manager.save()
+            
+        numberStudent +=1 
+
+
+    
+    #percent of the green and red student in the school
+    manager.rad_percent = manager.rad_percent / numberStudent * 100
+    manager.green_percent = manager.green_percent / numberStudent * 100 
+    manager.save()
+
 
     for teacher in teachers:
         count_red=0
@@ -242,6 +263,9 @@ def graphStudentStatus(request,user_id):
                 count_red = count_red+1
             elif j.status == True:
                 count_green=count_green+1
+
+        
+
         teacher.count_red = count_red
         teacher.count_green = count_green
 
@@ -344,6 +368,7 @@ def submitMassegeForStudent_Manager(request,user_id):
 
     for student in Student.objects.all():
         student.massegeFromManager.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'manager/DoneM.html',{'manager' :manager })    
@@ -375,6 +400,7 @@ def submitMassegeForStudent_Teacher(request,user_id):
 
     for student in Student.objects.filter(teacher = teacher):
         student.massegeFromTeacher.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    

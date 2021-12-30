@@ -12,6 +12,9 @@ class Manager(models.Model):
     phone_number = models.CharField(max_length=200, null=True, default = None)
     password = models.CharField(max_length=200, null=True, default = None)
     school = models.CharField(max_length=200, null=True, default = None)
+    rad_percent = models.IntegerField(null=True,default=0)
+    green_percent = models.IntegerField(null=True,default=0)
+
 
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'

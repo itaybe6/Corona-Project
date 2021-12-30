@@ -13,10 +13,17 @@ body {
   float: right;
   color: #f2f2f2;
   text-align: center;
+<<<<<<< HEAD
   margin: 14px;
   width: 10%;
   height: 2%;
   padding: 2px 4px;
+=======
+  margin: 16px;
+  width: 11%;
+  height: 3%;
+  padding: 4px 5px;
+>>>>>>> 469ee191d99a37013e5f1dbfb566db922deb21a9
   text-decoration: none;
   font-size: 14px;
 }
