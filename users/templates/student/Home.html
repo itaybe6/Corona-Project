@@ -57,6 +57,9 @@
     <h2>{{student.name}} עלייך לענות על שאלון בריאות מטעם המנהל , אנא כנס לתיבת שאלון תלמיד </h2>
     {% endif %}
 
+    {% if student.read_massege == False %}
+    <h2>{{student.name}}קיבלת הודעה , אנא כנס לתיבת המסרים   </h2>
+    {% endif %}
 
 
    </div>

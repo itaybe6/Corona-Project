@@ -2,12 +2,12 @@
 <html>
   <title>שאלון לתלמיד</title>
   <head>
-    {% load static %} <link rel="stylesheet" type="text/css" href='{% static
-    'stud.css' %}?{% now "U" %}'>
+    {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'stud.css' %}?{% now "U" %}'>
     <style></style>
   </head>
 
-  <body>
+  <body dir="rtl">
     <div class="topnav">
       <a class="btn" href="/users/HomePageStudent/897{{student.user_id}}654"
         >דף הבית</a
@@ -32,19 +32,22 @@
         >שאלון תלמיד
       </a>
     </div>
+    <center>
+      <h2>
+        {{student.name}} עלייך למלא שאלון על מצבך הבריאותי , אנא כנס לקישור הנל
+        <strong> ולאחר סיום השאלון לחץ על הכפתור</strong> עניתי על השאלון
+      </h2>
+      {% for qu in quiz %} <br />
+      {% if qu.read_quiz == False%} {{qu.date_create}}
+      <a href="{{qu.link}}" target="blank"> קישור למילוי השאלון </a>
+      <br /><br />
+      {% endif %} {% endfor %}
 
-    <h2>
-      {{student.name}} עלייך למלא שאלון על מצבך הבריאותי , אנא כנס לקישור הנל
-      <strong> ולאחר סיום השאלון לחץ על הכפתור</strong> עניתי על השאלון
-    </h2>
-
-    {% for qu in quiz %} <br />
-    {% if qu.read_quiz == False%} {{qu.date_create}}
-    <a href="{{qu.link}}" target="blank"> קישור למילוי השאלון </a> <br /><br />
-    {% endif %} {% endfor %}
-
-    <a href="/users/answerQuiz/897{{student.user_id}}654/"
-      >מילאתי את השאלונים</a
-    >
+      <a
+        href="/users/answerQuiz/897{{student.user_id}}654/"
+        class="botton button2"
+        >מילאתי את השאלונים</a
+      >
+    </center>
   </body>
 </html>
