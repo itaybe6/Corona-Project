@@ -344,6 +344,7 @@ def submitMassegeForStudent_Manager(request,user_id):
 
     for student in Student.objects.all():
         student.massegeFromManager.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'manager/DoneM.html',{'manager' :manager })    
@@ -375,6 +376,7 @@ def submitMassegeForStudent_Teacher(request,user_id):
 
     for student in Student.objects.filter(teacher = teacher):
         student.massegeFromTeacher.add(massege)
+        student.read_massege = False
         student.save()
 
     return render(request,'teacher/DoneT.html',{'teacher' :teacher })    
