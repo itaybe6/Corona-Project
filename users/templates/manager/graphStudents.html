@@ -12,7 +12,29 @@
       text-align: center;
       background-color: #c3a9a9;
       color: rgb(12, 14, 13);
-  } 
+      } 
+      .button2 {
+        border: none;
+        color: white;
+        padding: 10px 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 20px 10px;
+        cursor: pointer;
+      }
+      .button2 {
+        background-color: #c3a9a9;
+        color: rgb(245, 245, 245);
+        border: 2px solid rgb(201, 202, 198);
+      }
+
+      .button2:hover {
+        background-color: rgb(201, 202, 198);
+        color: white;
+        }
+
       </style>
 
   </head>
@@ -44,12 +66,14 @@
 
     <center>
       <h1>מדגם תלמידים לפי כיתות</h1>
+      <br />
+      <p class="botton button2">תלמידים אדומים בבית הספר {{manager.rad_percent}}%</p>
+    
+     <p class="botton button2">תלמידים ירוקים בבית הספר  {{manager.green_percent}}%</p>
+
     </center>
 
-    <h2>תלמידים אדומים בבית הספר %{{manager.rad_percent}}</h2>
     
-    <h2>תלמידים ירוקים בבית הספר % {{manager.green_percent}}</h2>
-
 
     <table id="tableTecher">
       <tr>
