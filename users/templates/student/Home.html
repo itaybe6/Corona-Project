@@ -48,21 +48,24 @@
      
      
 
-    
+    {% if student.read_homework == False %}
     <div class=message>
     {{student.name}} קיבלת שיעורי בית מעודכנים , אנא כנס לתיבת שיעורי הבית 
     </div>
-    
+    {% endif %}
 
 
+    {% if student.read_quiz == False %}
     <div class=message>
     {{student.name}} עלייך לענות על שאלון בריאות מטעם המנהל , אנא כנס לתיבת שאלון תלמיד 
   </div>
+    {% endif %}
 
-  <div class=message>
-    {{student.name}}קיבלת הודעה , אנא כנס לתיבת המסרים 
+    {% if student.read_massege == False %}
+    <div class=message>
+    {{student.name}} קיבלת הודעה , אנא כנס לתיבת המסרים  
   </div>
-
+    {% endif %}
 
    </div>
    <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
