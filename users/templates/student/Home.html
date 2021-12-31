@@ -48,18 +48,20 @@
      
      
 
-    {% if student.read_homework == False %}
-    <h2>{{student.name}} קיבלת שיעורי בית מעודכנים , אנא כנס לתיבת שיעורי הבית </h2>
-    {% endif %}
+    
+    <div class=message>
+    {{student.name}} קיבלת שיעורי בית מעודכנים , אנא כנס לתיבת שיעורי הבית 
+    </div>
+    
 
 
-    {% if student.read_quiz == False %}
-    <h2>{{student.name}} עלייך לענות על שאלון בריאות מטעם המנהל , אנא כנס לתיבת שאלון תלמיד </h2>
-    {% endif %}
+    <div class=message>
+    {{student.name}} עלייך לענות על שאלון בריאות מטעם המנהל , אנא כנס לתיבת שאלון תלמיד 
+  </div>
 
-    {% if student.read_massege == False %}
-    <h2>{{student.name}}קיבלת הודעה , אנא כנס לתיבת המסרים   </h2>
-    {% endif %}
+  <div class=message>
+    {{student.name}}קיבלת הודעה , אנא כנס לתיבת המסרים 
+  </div>
 
 
    </div>

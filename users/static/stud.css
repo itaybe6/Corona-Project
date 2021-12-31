@@ -13,8 +13,8 @@ body {
   float: right;
   color: #f2f2f2;
   text-align: center;
-  margin: 16px;
-  width: 11%;
+  margin: 13px;
+  width: 10%;
   height: 3%;
   padding: 4px 5px;
   text-decoration: none;
@@ -110,7 +110,7 @@ a#id1:hover {
 a#id3 {
   border: none;
   color: rgb(201, 202, 198);
-  padding: 16px 32px;
+  padding: 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -118,8 +118,8 @@ a#id3 {
   margin: 5px 614px;
   transition-duration: 0.4s;
   cursor: pointer;
-  margin-top: 120px;
-  margin-left: -0%;
+  margin-top: -108px;
+  margin-left: 1%;
 }
 
 a#id2 {
@@ -275,6 +275,21 @@ th {
   text-align: center;
   letter-spacing: 0.2rem;
   margin: 1rem auto;
+}
+.message {
+  background-color: rgb(206 235 212);
+  /* padding-top: 0.1rem; */
+  /* padding-bottom: 0.1rem; */
+  border-radius: 12px;
+  box-shadow: 4 5px 7px #ccc;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  margin: 2rem auto;
+  width: 345px;
+  margin: 142px;
+  margin-left: 0%;
+  margin-top: -9%;
+  padding-inline: inherit;
 }
 .button2 {
   border: none;
