@@ -138,23 +138,23 @@
     </div>
 
     <center>
-      <div class="beautyy">
-        תלמיד יקר ,בעמוד זה תקבל הודעות מהמורה ומהמנהלת 
-      </div>
+     
      <h1>מסרים</h1>
      
-    
+     <div class="beautyy">
+      <b>שם השולח :</b> {{mas.author.name}}
+    </div>
       
             {% for mas in masseges_FromManager %} 
             
      <div class="container">
       <div class="message-orange">
           
-            <b>שם השולח :</b> {{mas.author.name}}
+           
          
           <b>  נושא :</b> {{mas.subject}}
           
-            תוכן : {{mas.content}}
+          <b> תוכן :</b> {{mas.content}}
             <div class="message-timestamp-right">{{mas.date_create}}</div>
           </div>
       </div>
@@ -163,14 +163,17 @@
             {% endfor %}
        
            
-                  
+            <div class="beautyy">
+              <b>שם השולח :</b> {{mas.author.name}}
+             </div>     
             {% for mas in masseges_FromTeacher %} 
             <div class="container">
               <div class="message-blue">
-                שם השולח : {{mas.author.name}}
-            נושא : {{mas.subject}}
-           
-            תוכן : {{mas.content}}
+               
+         
+                <b>  נושא :</b> {{mas.subject}}
+                
+                <b> תוכן :</b> {{mas.content}}
             <div class="message-timestamp-right">{{mas.date_create}}</div>
           </div>
         </div>
