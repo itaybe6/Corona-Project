@@ -1,32 +1,158 @@
 <!DOCTYPE html>
+<title>דף בית תלמיד</title>
 <html>
-  <title>מדריך לתלמיד החדש</title>
-  <head>
-    {% load static %} <link rel="stylesheet" type="text/css" href='{% static
-    'stud.css' %}?{% now "U" %}'>
-    <style></style>
+
+ <head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href='{% static 'stud.css' %}?{% now "U" %}'>
+  <style> </style>
   </head>
 
-  <body>
-    <div class="topnav">
-      <a class="btn" href="/users/HomePageStudent/897{{student.user_id}}654"
-        >דף הבית</a
-      >
-      <a class="btn" href="#news"> שיעורי הבית שלי</a>
-      <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654"
-        >דף קשר הכיתה שלי</a
-      >
-      <a
-        class="btn"
-        href="/users/StuAdministrativePhones/897{{student.user_id}}654"
-        >דף קשר מנהלתי</a
-      >
+ <body>
+   <div class="topnav">
+     <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654" >דף הבית</a >
+     <a href="/users/homework_Student/897{{student.user_id}}654"> שיעורי הבית שלי</a>
+     <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654" >דף קשר הכיתה שלי</a>
+     <a class="btn" href="/users/StuAdministrativePhones/897{{student.user_id}}654" >דף קשר מנהלתי</a>
 
-      <a class="active" href="#about">מדריך </a>
-      <a class="btn" href="/users/massege_InStudent/897{{student.user_id}}654"
-        >מסרים הנהלה
-      </a>
-      <a class="btn" href="#about">שאלון תלמיד </a>
+     <a href="/users/guideToStudent/897{{student.user_id}}654">מדריך </a>
+     <a href="/users/massege_InStudent/897{{student.user_id}}654">מסרים </a>
+     <a href="/users/quizStudent/897{{student.user_id}}654">שאלון תלמיד </a>
+
     </div>
+   <center>
+     <p>
+     <h1>  שלום לתלמיד: {{student.name}}</h1>
+     </p>
+   </center>
+
+    <a id="id1" href="/users/ChanageStatusStudent/897{{student.user_id}}654/">שנה את הסטטוס שלי</a>
+    <div class=ha>
+      <center>
+         בלחיצה על שינוי סטטוס לירוק אני מתחייב שאני אינני מחויב בבידוד או מאובחן כחולה קורונה כמו כן
+   
+  
+        אין לי או לבני משפחתי המתגוררים עמנו, תסמיני קורונה (חום, שיעול, קושי
+        בנשימה או כל תסמין נשימתי אחר).
+      </center>
+  
+    </div>
+  
+  
+    {%if student.status == False%}
+    <p class=red> </p>
+    {%endif%}
+    {%if student.status == True%}
+    <p class=green> </p>
+    {%endif%}
+     
+     
+
+    {% if student.read_homework == False %}
+    <div class=message>
+    {{student.name}} קיבלת שיעורי בית מעודכנים , אנא כנס לתיבת שיעורי הבית 
+    </div>
+    {% endif %}
+
+
+    {% if student.read_quiz == False %}
+    <div class=message>
+    {{student.name}} עלייך לענות על שאלון בריאות מטעם המנהל , אנא כנס לתיבת שאלון תלמיד 
+  </div>
+    {% endif %}
+
+    {% if student.read_massege == False %}
+    <div class=message>
+    {{student.name}} קיבלת הודעה , אנא כנס לתיבת המסרים  
+  </div>
+    {% endif %}
+
+   </div>
+   <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
+  
+
+
+
   </body>
 </html>
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
