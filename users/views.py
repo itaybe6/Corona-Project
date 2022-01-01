@@ -605,3 +605,7 @@ def answerQuiz(request,user_id):
     #yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
     #the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
     #lst = []
+
+def guideToStudent(request,user_id):
+    student = Student.objects.get(user_id=user_id)
+    return render(request,'student/guide.html',{'student' :student})

@@ -93,6 +93,7 @@ urlpatterns = [
 
 
     path('mark_attendance/<int:user_id>/',views.mark_attendance, name='mark_attendance'),
+    path('guideToStudent/897<int:user_id>654/',views.guideToStudent,name ='guideToStudent'),
 
 
 ]
