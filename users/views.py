@@ -29,6 +29,7 @@ def logout_user(request):
     logout(request)
     return redirect('/')
 
+#register to manager 
 def submit_Manager(request):
     user_id = request.POST['user_id']
     try: CheckIfManagerExist(user_id)
@@ -46,6 +47,7 @@ def submit_Manager(request):
     manager.save()
     return render(request,'manager/signup_success.html') 
 
+#register to teacher 
 def submit_Teacher(request):
     user_id = request.POST['user_id']
     try:
@@ -67,6 +69,7 @@ def submit_Teacher(request):
     teacher.save()
     return render(request,'teacher/signup_success.html') 
 
+#register to teacher 
 def submit_Student(request):
     user_id = request.POST['user_id']
     try:

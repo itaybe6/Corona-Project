@@ -20,6 +20,7 @@ class Manager(models.Model):
         return f'Name: {self.name}, ID: {self.user_id}'
 
 
+#class massege from manager in teacher
 class MassegeT(models.Model):
     author = models.ForeignKey(Manager ,on_delete =models.CASCADE,default = None)
     subject = models.CharField(max_length = 255)

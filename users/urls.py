@@ -11,9 +11,13 @@ app_name = 'users'
 urlpatterns = [
     url(r'^logout/$', views.logout_user, name='logout_user'),
     path('chooseprofile',views.get_chooseprofile, name = 'chooseprofile'),
+
+    #move to register page 
     path('student/signup',views.get_student_signup, name = 'student_signup'),
     path('teacher/signup',views.get_teacher_signup,name = 'teacher_signup'),
     path(r'manager/signup',views.get_manager_signup, name = 'manager_signup'),
+
+    #register for manager,teacher and student
     path(r'manager/signup_success',views.submit_Manager, name = 'submit_Manager'),
     path(r'teacher/signup_success',views.submit_Teacher, name = 'submit_Teacher'),
     path(r'student/signup_success',views.submit_Student, name = 'submit_Student'),
