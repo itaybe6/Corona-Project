@@ -589,6 +589,7 @@ def answerQuiz(request,user_id):
 
     return render(request,'student/Home.html',{'student' :student})
     
+#guide on the site to studnets
 def guideToStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
     return render(request,'student/guide.html',{'student' :student})

@@ -279,3 +279,36 @@ class UsersTestCase(TestCase):
         self.assertNotEqual(response.status_code,404)#check not equal for wrong page
         self.assertEqual(man.status,True) #after the function - change to False
 
+
+    def test_massegeForTeacher(self):
+        """move to path in manager to send massege for teacher """
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        self.client = Client()
+        response = self.client.post('/users/massegeForTeacher/897123456654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertEqual(man.status,True) #after the function - change to False
+
+
+    def test_massegeForStudentManager(self):
+        """move to path in manager to send massege for all the students in the school """
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        self.client = Client()
+        response = self.client.post('/users/massegeForStudentManager/897123456654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertEqual(man.status,True) #after the function - change to False
+
+
+    def test_massegeForStudentTeacher(self):
+        """move to path in teacher to send massege for all the students in the class """
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        self.client = Client()
+        response = self.client.post('/users/massegeForStudentTeacher/89711111654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertEqual(man.status,True) #after the function - change to False
