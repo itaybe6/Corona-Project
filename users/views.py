@@ -330,6 +330,7 @@ def massegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForT.html',{'manager' : manager})
 
+#send massege for teacher in student
 def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager

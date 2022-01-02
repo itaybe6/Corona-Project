@@ -77,9 +77,9 @@ class UsersTestCase(TestCase):
     def test_CheckIfManagerExist(self):
         man = Manager(user_id='123456')
         man.save()
-        self.assertTrue(views.CheckIfManagerExist('123456'),True)
-        self.assertFalse(views.CheckIfManagerExist('1'),False)
-        self.assertNotEqual(views.CheckIfManagerExist('2'),views.CheckIfManagerExist('123456'),True)
+        self.assertTrue(views.CheckIfManagerExist('123456'),True)#check if the manager with uer_id 123456 exist
+        self.assertFalse(views.CheckIfManagerExist('1'),False)#check if the manager with uer_id 1 exist
+        self.assertNotEqual(views.CheckIfManagerExist('2'),views.CheckIfManagerExist('123456'),True)#check not equal for manager exist and no exist
 
         man.delete()
 
@@ -89,11 +89,11 @@ class UsersTestCase(TestCase):
         man.save()
         tea = Teacher(user_id='987',manager = man)
         tea.save()
-        self.assertTrue(views.CheckIfTeacherExist('987'),True)
-        self.assertFalse(views.CheckIfTeacherExist('96'),False)
-        self.assertNotEqual(views.CheckIfTeacherExist('2'),views.CheckIfTeacherExist('987'),True)
+        self.assertTrue(views.CheckIfTeacherExist('987'),True)#check if the teacher with uer_id 987 exist
+        self.assertFalse(views.CheckIfTeacherExist('96'),False)#check if the teacher with uer_id 96 exist
+        self.assertNotEqual(views.CheckIfTeacherExist('2'),views.CheckIfTeacherExist('987'),True)#check not equal for teacher exist and no exist
 
-        tea.delete()
+        tea.delete() 
         man.delete()
 
 
@@ -104,9 +104,10 @@ class UsersTestCase(TestCase):
         tea.save()
         stu = Student(user_id = '111', manager = man , teacher = tea)
         stu.save()
-        self.assertTrue(views.CheckIfStudentExist('111'),True)
-        self.assertFalse(views.CheckIfStudentExist('8'),False)
-        self.assertNotEqual(views.CheckIfStudentExist('2'),views.CheckIfStudentExist('111'),True)
+        self.assertTrue(views.CheckIfStudentExist('111'),True)#check if the student with uer_id 111 exist
+        self.assertFalse(views.CheckIfStudentExist('8'),False)#check if the student with uer_id 8 exist
+        self.assertNotEqual(views.CheckIfStudentExist('2'),views.CheckIfStudentExist('111'),True)#check not equal for student exist and no exist
+
 
         stu.delete()
         tea.delete()

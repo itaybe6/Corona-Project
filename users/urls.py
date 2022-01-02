@@ -42,7 +42,7 @@ urlpatterns = [
     path('ChanageStatusTeacher/897<int:user_id>654/',views.ChanageStatusTeacher , name = 'ChanageStatusTeacher'),
     path('ChanageStatusManager/897<int:user_id>654/',views.ChanageStatusManager , name = 'ChanageStatusManager'),
 
-    #graph of student for manager
+    #graph of student status in manager
     path('graphStudentStatus/897<int:user_id>654/',views.graphStudentStatus, name = 'graphStudentStatus'),
 
     #change all the status of students in class to red
@@ -83,8 +83,11 @@ urlpatterns = [
     #change the massege from teacher and manager in student to read
     path('changeToRead_Student_Massege/897<int:user_id>654/',views.changeToRead_Student_Massege, name = "changeToRead_Student_Massege"),
 
+    #add student in teacher 
     path('addStudent/<int:user_id>/',views.addStudent, name = 'addStudent'),
     path('submitAddStudent/<int:user_id>/',views.submitAddStudent, name = 'submitAddStudent'),
+
+    #add teacher in manager
     path('addTeacher/<int:user_id>/',views.addTeacher, name = 'addTeacher'),
     path('submitAddTeacher/<int:user_id>/',views.submitAddTeacher, name = 'submitAddTeacher'),
 

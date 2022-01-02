@@ -91,7 +91,7 @@ class Student(models.Model):
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
 
-
+#quiz for student from manager
 class Quiz(models.Model):
     link = models.CharField(max_length=2000, null = True,default = None)
     date_create = models.DateTimeField(auto_now_add=True)
@@ -105,7 +105,7 @@ class_attendance = (
     ('Present','Present'),
     ('Absent','Absent'),
 )
-
+#attendence to class from teacher
 class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete = models.CASCADE,null=True,default = None)
     teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE,null=True,default = None)
