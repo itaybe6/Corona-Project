@@ -75,7 +75,7 @@
       </div>
       <h1>שיעורי הבית שלי</h1>
 
-      {% for hw in homework %}
+      {% for hw in homework.reverse %}
       <div class="container">
         <div class="message-blue">
           <b> ספר :</b> {{hw.book}}

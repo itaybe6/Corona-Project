@@ -249,8 +249,10 @@ def graphStudentStatus(request,user_id):
 
     #11
     #percent of the green and red student in the school
-    manager.rad_percent = manager.rad_percent / numberStudent * 100
-    manager.green_percent = manager.green_percent / numberStudent * 100 
+    manager.rad_percent = (manager.rad_percent / numberStudent * 100)
+    manager.rad_percent= round(manager.rad_percent,2) #leave only the 2 decimal places
+    manager.green_percent = (manager.green_percent / numberStudent * 100)
+    manager.green_percent= round(manager.green_percent,2) #leave only the 2 decimal places
     manager.save()
 
 
@@ -377,7 +379,7 @@ def submitMassegeForStudent_Manager(request,user_id):
 #massege in teacher from manager
 def massegeFromManagerInTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
-    masseges = teacher.masseges.all()
+    masseges = teacher.masseges.all().order_by('date_create')
     return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
 
 
@@ -410,8 +412,8 @@ def submitMassegeForStudent_Teacher(request,user_id):
 #all the massege in student (from mananger and teacher)
 def massege_InStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
-    masseges_FromManager = student.massegeFromManager.all()
-    masseges_FromTeacher = student.massegeFromTeacher.all()
+    masseges_FromManager = student.massegeFromManager.all().order_by('date_create')
+    masseges_FromTeacher = student.massegeFromTeacher.all().order_by('date_create')
     return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})
 
 
@@ -443,7 +445,7 @@ def submit_homeworkTeacher(request,user_id):
 #print home work from teacher in student
 def homework_Student(request,user_id):
     student = Student.objects.get(user_id=user_id)
-    homework = student.homework.all()
+    homework = student.homework.all().order_by('date_create')
     return render(request,'student/homework.html',{'student' :student , 'homework' :homework})
     
 
@@ -588,24 +590,6 @@ def answerQuiz(request,user_id):
 
     return render(request,'student/Home.html',{'student' :student})
     
-
-
-
-
-
-
-        #check1 = Attendance.objects.filter(date=today, student=student)
-        #check2 = Attendance.objects.filter(date=yesterday, student=student)
-        #check3 = Attendance.objects.filter(date=the_day_before_yesterday, student=student)
-        #if check1 and check2 and check3:  # not a quarySet
-            #f check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
-             #   lst.append(student.user_id) # all the users id that need to get a quiz
-
-          #today = datetime.today().date().strftime('%d-%m-%Y')
-    #yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
-    #the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
-    #lst = []
-
 def guideToStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
     return render(request,'student/guide.html',{'student' :student})
