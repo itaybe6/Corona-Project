@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <title>בוצע בהצלחה</title>
+  <title>שינוי בוצע בהצלחה</title>
   <head>
     {% load static %} <link rel="stylesheet" type="text/css" href='{% static
     'man.css' %}?{% now "U" %}'>
     <style>
       p {
-        width: 51%;
+        width: 52%;
         height: 0%;
         margin-top: 4%;
-        margin-left: 23%;
+        margin-left: 24%;
         color: black;
         font-size: large;
+      }
+      .w3-row-padding img {
+        margin-bottom: 12px;
+      }
+      .w3-bar .w3-bar-item {
+        padding: 8px 16px;
+        float: left;
+        width: auto;
+        border: none;
+        display: block;
+        outline: 0;
+        background-color: rgb(255, 228, 196);
+      }
+      .w3-padding-32 {
+        padding-top: 32px !important;
+        padding-bottom: 32px !important;
+        background-color: rgb(255, 255, 255);
       }
     </style>
   </head>
@@ -25,20 +42,25 @@
   />
 
   <body>
-    <div class="w3-content" style="max-width: 1500px">
-      <header class="w3-panel w3-center w3-opacity" style="padding: 128px 16px">
-        <p>בוצע בהצלחה</p>
+    <center>
+      <div class="w3-content" style="max-width: 1500px">
+        <header
+          class="w3-panel w3-center w3-opacity"
+          style="padding: 128px 16px"
+        >
+          <h2>!בוצע בהצלחה</h2>
 
-        <div class="w3-padding-32">
-          <div class="w3-bar w3-border">
-            <a
-              href="/users/HomePageManager/897{{manager.user_id}}654"
-              class="w3-bar-item w3-button"
-              >חזרה לדף הבית</a
-            >
+          <div class="w3-padding-32">
+            <div class="w3-bar w3-border">
+              <a
+                href="/users/HomePageManager/897{{manager.user_id}}654"
+                class="w3-bar-item w3-button"
+                >חזרה לדף הבית</a
+              >
+            </div>
           </div>
-        </div>
-      </header>
-    </div>
+        </header>
+      </div>
+    </center>
   </body>
 </html>

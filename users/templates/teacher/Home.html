@@ -19,7 +19,7 @@
         margin-top: 29%;
         margin-left: -13%;
         height: 14%;
-        width: 156px;
+        width: 250px;
       }   
     </style>
   </head>
@@ -80,9 +80,10 @@
           מורה יקר על מנת לשמור על סדר לימודים תקין , אנא הפוך את כיתתך לאדומה מידיי שבוע במוצאי השבת על מנת שכל תלמידי כיתתך יצטרכו למלא הצהרת בריאות 
         </div>
             
-
+        <br />
+        <br />
         {% if teacher.read == False %}
-        <div class=manage>
+        <div class=message>
 
            {{teacher.name}} קיבלת הודעות מהמנהל, אנא פתח את תיבת המסרים 
         </div>
@@ -91,7 +92,6 @@
   
       </div>
       <a id="id3" href="{% url 'users:logout_user' %}"  target="_self">התנתקות</a>
-  
   </body>
 </html>
   
