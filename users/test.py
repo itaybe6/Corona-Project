@@ -277,7 +277,7 @@ class UsersTestCase(TestCase):
         HTTP_ACCEPT='application/json')
         self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)#check not equal for wrong page
-        self.assertEqual(man.status,True) #after the function - change to False
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
 
 
     def test_massegeForTeacher(self):
@@ -288,7 +288,7 @@ class UsersTestCase(TestCase):
         HTTP_ACCEPT='application/json')
         self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)#check not equal for wrong page
-        self.assertEqual(man.status,True) #after the function - change to False
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
 
 
     def test_massegeForStudentManager(self):
@@ -299,7 +299,7 @@ class UsersTestCase(TestCase):
         HTTP_ACCEPT='application/json')
         self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)#check not equal for wrong page
-        self.assertEqual(man.status,True) #after the function - change to False
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
 
 
     def test_massegeForStudentTeacher(self):
@@ -311,4 +311,66 @@ class UsersTestCase(TestCase):
         HTTP_ACCEPT='application/json')
         self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)#check not equal for wrong page
-        self.assertEqual(man.status,True) #after the function - change to False
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
+
+
+
+    def test_massegesFromManagerInTeacher(self):
+        """move to path in teacher that get massege from manager"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        self.client = Client()
+        response = self.client.post('/users/massegeForStudentTeacher/89711111654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
+
+
+    def test_massege_InStudent(self):
+        """move to path in student to get massege from manager and teacher"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        student = Student.objects.create(user_id='20997765', manager=man,teacher=teach) #build a temporary obj
+        self.client = Client()
+        response = self.client.post('/users/massege_InStudent/89720997765654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
+
+
+    def test_homework_Teacher(self):
+        """move to path in teacher to send home work to all the student with red status """
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        self.client = Client()
+        response = self.client.post('/users/homework_Teacher/89711111654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
+
+    
+    def test_homework_Student(self):
+        """move to path in student with the rad status to get home work from teacher"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        student = Student.objects.create(user_id='20997765', manager=man,teacher=teach) #build a temporary obj
+        self.client = Client()
+        response = self.client.post('/users/homework_Student/89720997765654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(student.status,False)#check rad status (only student with rad status get home work)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+
+    def test_addStudent(self):
+        """move to path in teacher that the teacher add student to class"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        self.client = Client()
+        response = self.client.post('/users/homework_Teacher/89711111654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
