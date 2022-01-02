@@ -374,3 +374,50 @@ class UsersTestCase(TestCase):
         self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)#check not equal for wrong page
         self.assertNotEqual(response.status_code,400)#check not equal for wrong page
+    
+
+    def test_addTeacher(self):
+        """move to path in manager that the manager add teacher to school"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        self.client = Client()
+        response = self.client.post('/users/addTeacher/123456/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
+
+    def test_quizManager(self):
+        """move to path in manager to send quiz for the rad student """
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        self.client = Client()
+        response = self.client.post('/users/quizManager/123456/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertNotEqual(response.status_code,400)#check not equal for wrong page
+
+
+    def test_quizStudent(self):
+        """move to path in student with rad status to get quiz from manager"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        student = Student.objects.create(user_id='20997765', manager=man,teacher=teach) #build a temporary obj
+        self.client = Client()
+        response = self.client.post('/users/quizStudent/89720997765654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(student.status,False)#check rad status (only student with rad status get home work)
+        self.assertNotEqual(student.status,True)#check rad status (only student with rad status get home work)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+
+
+    def text_guideToStudent(self):
+        """move to path in student to get guide of the site"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        teach = Teacher.objects.create(user_id='11111', manager=man) #build a temporary obj of teacher
+        student = Student.objects.create(user_id='20997765', manager=man,teacher=teach) #build a temporary obj
+        self.client = Client()
+        response = self.client.post('/users/guideToStudent/89720997765654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
