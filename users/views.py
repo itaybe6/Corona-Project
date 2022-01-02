@@ -286,6 +286,7 @@ def addTeacher(request,user_id):
     manager=Manager.objects.get(user_id = user_id)
     return render(request,'manager/addTeacher.html',{'manager' : manager})
 
+#submit the add teacher from manager
 def submitAddTeacher(request,user_id):
     teacher_user_id = request.POST['teach_user_id']
     manager=Manager.objects.get(user_id = user_id)

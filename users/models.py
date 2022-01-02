@@ -39,7 +39,7 @@ class Teacher(models.Model):
     my_class= models.CharField(max_length=200, null=True,default = None)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     masseges = models.ManyToManyField(MassegeT,default = None)
-    read = models.BooleanField(null= True,default = True)
+    read = models.BooleanField(null= True,default = True)#for notifications
 
 
     def __str__(self):
@@ -84,8 +84,8 @@ class Student(models.Model):
     homework =  models.ManyToManyField(Homework,default = None)   
     present = models.IntegerField(null=True,default=0)    #for attendance
     absent = models.IntegerField(null=True,default=0)     #for attendance
-    read_homework = models.BooleanField(null= True,default = True)
-    read_massege = models.BooleanField(null= True,default = True)
+    read_homework = models.BooleanField(null= True,default = True) #for notifications
+    read_massege = models.BooleanField(null= True,default = True)#for notifications
 
 
     def __str__(self):

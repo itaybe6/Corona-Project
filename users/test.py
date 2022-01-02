@@ -121,8 +121,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/chooseprofile', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
 
     def test_get_student_signup(self):
@@ -132,8 +132,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/student/signup', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
 
     def test_get_teacher_signup(self):
@@ -143,8 +143,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/teacher/signup', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
 
     def test_get_manager_signup(self):
@@ -154,8 +154,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/manager/signup', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
     
 
     def test_logout_user(self):
@@ -164,8 +164,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
     def test_Phones(self):
         """check if Phones buttom takes us to the phones page of the teacher"""
@@ -175,8 +175,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/Phones/89711111654/', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
     def test_PhonesTeacher(self):
         """check if Phones buttom takes us to the phones page of the manager"""
@@ -185,8 +185,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/PhonesT/897123456654', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
     def test_PhonesStudent(self):
         """check if Phones buttom takes us to the phones page of the teacher"""
@@ -198,8 +198,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/PhoneStu/89720997765654', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
 
     def test_StuAdministrativePhones(self):
@@ -212,8 +212,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/StuAdministrativePhones/89720997765654', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
 
     def test_HomePageBetweenPathTeacher(self):
@@ -224,8 +224,8 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/HomePageTeacher/89711111654/', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
-        self.assertNotEqual(response.status_code,404)
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
     def test_HomePageBetweenPathManager(self):
         """check if the manager user can get to the home page"""
@@ -235,7 +235,7 @@ class UsersTestCase(TestCase):
         HTTP_ACCEPT='application/json')
 
         self.assertEqual(response.status_code,200)#check if move to path
-        self.assertNotEqual(response.status_code,404)
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
 
     def test_HomePageBetweenPathStudent(self):
@@ -249,7 +249,7 @@ class UsersTestCase(TestCase):
         HTTP_ACCEPT='application/json')
 
         self.assertEqual(response.status_code,200)#check if move to path
-        self.assertNotEqual(response.status_code,404)
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
 
 
     def test_ChanageStatusManager(self):
@@ -265,5 +265,5 @@ class UsersTestCase(TestCase):
         HTTP_ACCEPT='application/json')
 
         self.assertEqual(response.status_code,200)#check if move to path
-        self.assertNotEqual(response.status_code,404)
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
         self.assertEqual(man.status,True) #after the function - change to False

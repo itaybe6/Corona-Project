@@ -91,14 +91,13 @@ urlpatterns = [
     path('addTeacher/<int:user_id>/',views.addTeacher, name = 'addTeacher'),
     path('submitAddTeacher/<int:user_id>/',views.submitAddTeacher, name = 'submitAddTeacher'),
 
-
+    #quiz to student in manager
     path('quizManager/<int:user_id>/',views.quizManager, name = 'quizManager'),
     path('submitQuiz/<int:user_id>/',views.submitQuiz, name = 'submitQuiz' ),
 
+    #quiz from manager in student
     path('quizStudent/897<int:user_id>654/',views.quizStudent, name = 'quizStudent'),
     path('answerQuiz/897<int:user_id>654/',views.answerQuiz, name = 'answerQuiz'),
-
-
 
 
     path('mark_attendance/<int:user_id>/',views.mark_attendance, name='mark_attendance'),
