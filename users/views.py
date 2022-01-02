@@ -38,7 +38,6 @@ def submit_Manager(request):
     phone_number = request.POST['phone_number']
     school = request.POST['school']
     password = request.POST['password']
-    #לשרשום תנאי שאם יש למנהל שאנחנו מנסים לרשום סיסמא אז המנהל רשום ולשלוח לדף של משתמש כבר קיים
     manager = Manager.objects.get(user_id = user_id) 
     manager.name = name
     manager.password = password
@@ -157,7 +156,7 @@ def Conect(request):
         return render(request,'teacher/Home.html',{'teacher':teacher})
         
     else:
-        return render(request,'ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
+        return render(request,'ConnectError.html')
     
     
 #Phones page for teacher
@@ -193,7 +192,7 @@ def HomePageBetweenPathStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
     return render(request,'student/Home.html',{'student' :student})
 
-#שינוי סטטוס של תלמיד לפי הצהרת בריאות
+#change the student status by health declaration approval
 def ChanageStatusStudent(request,user_id):
     student = Student.objects.get(user_id = user_id)
     if(student.status == True):
@@ -266,8 +265,6 @@ def graphStudentStatus(request,user_id):
             elif j.status == True:
                 count_green=count_green+1
 
-        
-
         teacher.count_red = count_red
         teacher.count_green = count_green
 
@@ -302,7 +299,6 @@ def submitAddTeacher(request,user_id):
         return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})    
     else:
         return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
-
 
 
 #manager add new student
