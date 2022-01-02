@@ -7,8 +7,6 @@ body {
   border-image: url("1G.jpg") 30 fill / 30px / 30px space;
 }
 
-
-
 .topnav {
   overflow: hidden;
   background-color: #333333;
@@ -26,7 +24,7 @@ th {
   border-color: rgb(7, 8, 8);
   padding: 15px;
   width: 30%;
-  background-color: beige;
+  background-color: rgb(245, 245, 220);
   float: right;
   text-align: center;
 }
@@ -38,7 +36,7 @@ th {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
-  background-color: #d4c677;
+  background-color: rgb(247, 247, 206);
   color: rgb(12, 14, 13);
 }
 
@@ -109,7 +107,7 @@ p {
 
   text-align: center;
   margin: 35px;
-  width: 10%;
+  width: 20%;
   text-decoration: none;
   padding-right: 5%;
   padding-left: 5%;
@@ -161,7 +159,7 @@ a#id3 {
   margin: 5px 614px;
   transition-duration: 0.4s;
   cursor: pointer;
-  margin-top: 77px;
+  margin-top: 300px;
   margin-left: -0%;
 }
 
