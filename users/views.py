@@ -248,11 +248,12 @@ def graphStudentStatus(request,user_id):
 
     #11
     #percent of the green and red student in the school
-    manager.rad_percent = (manager.rad_percent / numberStudent * 100)
-    manager.rad_percent= round(manager.rad_percent,2) #leave only the 2 decimal places
-    manager.green_percent = (manager.green_percent / numberStudent * 100)
-    manager.green_percent= round(manager.green_percent,2) #leave only the 2 decimal places
-    manager.save()
+    if numberStudent != 0 :
+        manager.rad_percent = (manager.rad_percent / numberStudent * 100)
+        manager.rad_percent= round(manager.rad_percent,2) #leave only the 2 decimal places
+        manager.green_percent = (manager.green_percent / numberStudent * 100)
+        manager.green_percent= round(manager.green_percent,2) #leave only the 2 decimal places
+        manager.save()
 
 
     for teacher in teachers:

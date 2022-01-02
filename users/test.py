@@ -267,3 +267,15 @@ class UsersTestCase(TestCase):
         self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)#check not equal for wrong page
         self.assertEqual(man.status,True) #after the function - change to False
+
+
+    def test_GraphInManager(self):
+        """check if the manager gets the graph for all the status students"""
+        man = Manager.objects.create(user_id='123456') #build a temporary obj of manager for the teacher
+        self.client = Client()
+        response = self.client.post('/users/graphStudentStatus/897123456654/', 
+        HTTP_ACCEPT='application/json')
+        self.assertEqual(response.status_code,200)#check if move to path
+        self.assertNotEqual(response.status_code,404)#check not equal for wrong page
+        self.assertEqual(man.status,True) #after the function - change to False
+
