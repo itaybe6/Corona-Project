@@ -45,13 +45,14 @@ class Teacher(models.Model):
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
         
+#massege from manager in student 
 class Massege_Student_FromManager(models.Model):
     author = models.ForeignKey(Manager ,on_delete =models.CASCADE,default = None,blank = True)
     subject = models.CharField(max_length = 255)
     content = models.TextField(max_length = 2500,null = True)
     date_create = models.DateTimeField(auto_now_add=True)
 
-
+#massege from teacher in student
 class Massege_Student_FromTeacher(models.Model):
     author = models.ForeignKey(Teacher ,on_delete =models.CASCADE,default = None,blank = True)
     subject = models.CharField(max_length = 255)

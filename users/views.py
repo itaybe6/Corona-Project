@@ -96,7 +96,6 @@ def get_chooseprofile(request):
 
 
 def CheckIfManagerExist(user_id):
-
     for i in Manager.objects.all():
         if i.user_id == user_id :
             return True
@@ -105,7 +104,6 @@ def CheckIfManagerExist(user_id):
             
 
 def CheckIfTeacherExist(user_id):
-    
     for i in Teacher.objects.all():
         if i.user_id == user_id :
             return True
@@ -113,7 +111,6 @@ def CheckIfTeacherExist(user_id):
             
 
 def CheckIfStudentExist(user_id):
-
     for i in Student.objects.all():
         if i.user_id == user_id :
             return True
