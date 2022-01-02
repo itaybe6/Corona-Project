@@ -116,28 +116,28 @@ def CheckIfStudentExist(user_id):
             return True
     return False
 
-
-def Conect_Man(user_id,password):  #Checks the username and password of an managerr
+#Checks the username and password of an managerr
+def Conect_Man(user_id,password): 
     for i in Manager.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
-def Conect_Tec(user_id,password):  #Checks the username and password of an Teacher
+#Checks the username and password of an Teacher
+def Conect_Tec(user_id,password):  
     for i in Teacher.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
-def Conect_Stu(user_id,password):  #Checks the username and password of an Student
+#Checks the username and password of an Student
+def Conect_Stu(user_id,password):  
     for i in Student.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
+#func conect to all the users
 def Conect(request):
     user_id = request.POST['user_id']
     password = request.POST['password']

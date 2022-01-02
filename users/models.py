@@ -59,6 +59,7 @@ class Massege_Student_FromTeacher(models.Model):
     content = models.TextField(max_length = 2500,null = True)
     date_create = models.DateTimeField(auto_now_add=True)
 
+#class to send homework
 class Homework(models.Model):
     book = models.CharField(max_length=200, null = True,default = None)
     pages = models.CharField(max_length=200, null = True,default = None)
