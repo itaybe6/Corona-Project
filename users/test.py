@@ -234,7 +234,7 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/HomePageManager/897123456654/', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)
 
 
@@ -248,7 +248,7 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/HomePageStudent/89720997765654/', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)
 
 
@@ -264,6 +264,6 @@ class UsersTestCase(TestCase):
         response = self.client.post('/users/ChanageStatusManager/897123456654/', 
         HTTP_ACCEPT='application/json')
 
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,200)#check if move to path
         self.assertNotEqual(response.status_code,404)
         self.assertEqual(man.status,True) #after the function - change to False
