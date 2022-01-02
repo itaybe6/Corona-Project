@@ -5,71 +5,177 @@
  <head>
   {% load static %}
   <link rel="stylesheet" type="text/css" href='{% static 'stud.css' %}?{% now "U" %}'>
-  <style> </style>
+  <style>
+   .container {
+        width: 400px;
+        padding: 10px;
+      }
+      .message-blue {
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color: #fcf2a0;
+    width: 678px;
+    height: 65px;
+    text-align: right;
+    font: 400 0.9em "Open Sans", sans-serif;
+    border: 1px solid #A8DDFD;
+    border-radius: 0px;
+}
+      .message-blue1 {
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color: #A8DDFD;
+    width: 616px;
+    height: 12px;
+    text-align: right;
+    font: 400 0.9em "Open Sans", sans-serif;
+    /* border: 1px solid #fcf2a0; */
+    border-radius: 0px;
+}
+.message-blue2 {
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color:#fcf2a0;
+    width: 616px;
+    height: 12px;
+    text-align: right;
+    font: 400 0.9em "Open Sans", sans-serif;
+    /* border: 1px solid #fcf2a0; */
+    border-radius: 0px;
+}
+      .message-blue:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 0px solid #fcf2a0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        top: 0;
+        left: -15px;
+      }
+
+      .message-blue:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 0px solid #fcf2a0;
+        border-left: 16px solid transparent;
+        border-right: 16px solid transparent;
+        top: -1px;
+        left: -17px;
+        
+      }
+  
+      .beautyy {
+    background-color: rgb(211 183 186);
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    border-radius: 5px;
+    box-shadow: 0 5px 7px #ccc;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    margin: 1rem auto;
+}
+  </style>
   </head>
 
  <body>
    <div class="topnav">
-     <a class="active" href="/users/HomePageStudent/897{{student.user_id}}654" >דף הבית</a >
+     <a class="btn" href="/users/HomePageStudent/897{{student.user_id}}654" >דף הבית</a >
      <a href="/users/homework_Student/897{{student.user_id}}654"> שיעורי הבית שלי</a>
      <a class="btn" href="/users/PhoneStu/897{{student.user_id}}654" >דף קשר הכיתה שלי</a>
      <a class="btn" href="/users/StuAdministrativePhones/897{{student.user_id}}654" >דף קשר מנהלתי</a>
 
-     <a href="/users/guideToStudent/897{{student.user_id}}654">מדריך </a>
+     <a class ="active" href="/users/guideToStudent/897{{student.user_id}}654">מדריך </a>
      <a href="/users/massege_InStudent/897{{student.user_id}}654">מסרים </a>
      <a href="/users/quizStudent/897{{student.user_id}}654">שאלון תלמיד </a>
 
     </div>
-   <center>
-     <p>
-     <h1>  שלום לתלמיד: {{student.name}}</h1>
-     </p>
-   </center>
+<center>
 
-    <a id="id1" href="/users/ChanageStatusStudent/897{{student.user_id}}654/">שנה את הסטטוס שלי</a>
-    <div class=ha>
-      <center>
-         בלחיצה על שינוי סטטוס לירוק אני מתחייב שאני אינני מחויב בבידוד או מאובחן כחולה קורונה כמו כן
+  <h1> מדריך לאתר </h1>
+  <h3> יש לשים לב כי הפתורים בעמוד זה הם נועדו להמחשה תצוגתית בלבד</h3>
+</center>
+<div class=beautyy>
+תלמיד יקר בתחילת כל עמוד יופיע לך סרגל שמאפשר לך לבחור את העמוד שבו תרצה להשתמש 
+הסרגל נראה כך
+</div>
+    <div class="topnav">
+      <a class="btn"  >דף הבית</a >
+      <a  >שיעורי הבית שלי</a>
+      <a class= >דף קשר הכיתה שלי</a>
+      <a class="btn"  >דף קשר מנהלתי</a>
+ 
+      <a > מדריך </a>
+      <a >מסרים </a>
+      <a >שאלון תלמיד </a>
+ 
+     </div>
+
+     <div class=beautyy>
+   <b>  דף הבית</b>
+    ובו יוצג עבורך כפתור שנה סטטוס לחיצה על כפתור זה תשנה את הסטטוס שלך מאדום לירוק או מירוק לאדום, יש לשים
+     לב שי שינוי הסטטוס הוא הליך חשוב ומרכזי ושינוי זה יאפשר למורה שלך ולמנהל לדעת שאתה ב"סטטוס אדום"- משמעו אינך 
+     רשאי להגיע לכיתה או "סטטוס ירוק" שפירושו שהינך יכול להגיע בבטחה לכיתה
+     אנו מבקשים להקפיד ולעדכן סטטוס זה ,שים לב עם לחיצת שינוי הסטטוס תקבל הודעה שהסטטוס שונה בהצלחה
+    </div>
+    <center>
+      <a id="id1" href=>שנה את הסטטוס שלי</a>
+    </center>
+      <br>
+      <br>
+      <br>
+      
+    <br>
+     <div class=beautyy>
+      <b>  שיעורי הבית שלי</b>
+     בלחיצה על שיעורי הבית שלי יוצגו עבורך שיעורי הבית המעודכנים הכוללים ספר,עמודים,ותאריך להגשה 
+    </div>
+    <br>
+    <center>
+    <div class="container">
+      <div class="message-blue">
+        <b> :ספר </b> 
+        <br />
+        <b> :עמודים </b>
+        <br /> 
+        <b> :הערות </b> 
+        <br />
+        <b> :תאריך הגשה </b>  <br /><br /><br /><br />
+      </div>
+    </div>
    
-  
-        אין לי או לבני משפחתי המתגוררים עמנו, תסמיני קורונה (חום, שיעול, קושי
-        בנשימה או כל תסמין נשימתי אחר).
-      </center>
-  
+   
+    <div class=beautyy>
+      <b>בדפי הקשר</b>
+      יוצג עבורך מספרי הטלפון של הכיתה ושל הצוות בהתאמה
     </div>
-  
-  
-    {%if student.status == False%}
-    <p class=red> </p>
-    {%endif%}
-    {%if student.status == True%}
-    <p class=green> </p>
-    {%endif%}
-     
-     
+      <div class=beautyy>
+        <b> מסרים</b>
+        במסרים תוכל לצפות במספרים שהשאירו עבורך המורה והמנהלת
+      </div>
+        <div class="message-blue1">
+         בצבע כחול יופיעו ההודעות מאת המורה 
 
-    {% if student.read_homework == False %}
-    <div class=message>
-    {{student.name}} קיבלת שיעורי בית מעודכנים , אנא כנס לתיבת שיעורי הבית 
+      </div>
+      <div class="message-blue2">
+     בצבע צהוב יופיעו ההודעות מאת המנהלת 
+        
+     </div>
+     <div class=beautyy>
+      <b>בניית שאלון</b>
+      שים לב במידה וקיים עבורך שאלון הוא ימתין לך בדף זה עליך להכנס דרך הקישור המוצג ולמלא את השאלון
     </div>
-    {% endif %}
+</center>
 
-
-    {% if student.read_quiz == False %}
-    <div class=message>
-    {{student.name}} עלייך לענות על שאלון בריאות מטעם המנהל , אנא כנס לתיבת שאלון תלמיד 
-  </div>
-    {% endif %}
-
-    {% if student.read_massege == False %}
-    <div class=message>
-    {{student.name}} קיבלת הודעה , אנא כנס לתיבת המסרים  
-  </div>
-    {% endif %}
-
-   </div>
-   <a id="id3" href="{% url 'users:logout_user' %}" class="nav-link" target="_self">התנתקות</a>
-  
 
 
 
