@@ -20,7 +20,7 @@
     background-color: #A8DDFD;
     width: 858px;
     height: 70px;
-    text-align: left;
+    text-align: right;
     font: 400 0.9em 'Open Sans', sans-serif;
     border: 1px solid #97C6E3;
     border-radius: 10px;
@@ -31,7 +31,7 @@
     margin: 0%;
     border: 0;
     padding-left: 0%;
-    padding-top: 0%;
+    padding-top: 1%;
     text-align: right;
     border-radius: unset;
     box-shadow: none;
@@ -103,19 +103,19 @@
         מורה יקר ,באפשרותך לקרוא הודעות ששלח אליך המנהל
       </div>
      <h1>הודעות מנהל</h1>
-            {% for mas in masseges %}
+            {% for mas in masseges.reverse %}
             <div class="message-blue"> 
               <P class="orginal"><b>  {{mas.subject}}  </b>
                 <br />
                 {{mas.content}}</p>
-              <div class="message-timestamp-left">{{mas.date_create}}</div>
+              <div class="message-timestamp-right">{{mas.date_create}}</div>
           </div>
       </div>
   
             {% endfor %}
         
             {% if teacher.read == False %}
-            <a id="id4" href="/users/changeToRead_Teacher/897{{teacher.user_id}}654/">סמן כנקרא</a>
+            <a href="/users/changeToRead_Teacher/897{{teacher.user_id}}654/" class="botton button2">סמן כנקרא</a>
           {% endif %}
       
     </center>

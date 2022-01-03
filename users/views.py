@@ -29,6 +29,7 @@ def logout_user(request):
     logout(request)
     return redirect('/')
 
+#register to manager 
 def submit_Manager(request):
     user_id = request.POST['user_id']
     try: CheckIfManagerExist(user_id)
@@ -38,7 +39,6 @@ def submit_Manager(request):
     phone_number = request.POST['phone_number']
     school = request.POST['school']
     password = request.POST['password']
-    #לשרשום תנאי שאם יש למנהל שאנחנו מנסים לרשום סיסמא אז המנהל רשום ולשלוח לדף של משתמש כבר קיים
     manager = Manager.objects.get(user_id = user_id) 
     manager.name = name
     manager.password = password
@@ -47,6 +47,7 @@ def submit_Manager(request):
     manager.save()
     return render(request,'manager/signup_success.html') 
 
+#register to teacher 
 def submit_Teacher(request):
     user_id = request.POST['user_id']
     try:
@@ -68,6 +69,7 @@ def submit_Teacher(request):
     teacher.save()
     return render(request,'teacher/signup_success.html') 
 
+#register to teacher 
 def submit_Student(request):
     user_id = request.POST['user_id']
     try:
@@ -94,7 +96,6 @@ def get_chooseprofile(request):
 
 
 def CheckIfManagerExist(user_id):
-
     for i in Manager.objects.all():
         if i.user_id == user_id :
             return True
@@ -103,7 +104,6 @@ def CheckIfManagerExist(user_id):
             
 
 def CheckIfTeacherExist(user_id):
-    
     for i in Teacher.objects.all():
         if i.user_id == user_id :
             return True
@@ -111,34 +111,33 @@ def CheckIfTeacherExist(user_id):
             
 
 def CheckIfStudentExist(user_id):
-
     for i in Student.objects.all():
         if i.user_id == user_id :
             return True
     return False
 
-
-def Conect_Man(user_id,password):  #Checks the username and password of an managerr
+#Checks the username and password of an managerr
+def Conect_Man(user_id,password): 
     for i in Manager.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
-def Conect_Tec(user_id,password):  #Checks the username and password of an Teacher
+#Checks the username and password of an Teacher
+def Conect_Tec(user_id,password):  
     for i in Teacher.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
-def Conect_Stu(user_id,password):  #Checks the username and password of an Student
+#Checks the username and password of an Student
+def Conect_Stu(user_id,password):  
     for i in Student.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
+#func conect to all the users
 def Conect(request):
     user_id = request.POST['user_id']
     password = request.POST['password']
@@ -157,7 +156,7 @@ def Conect(request):
         return render(request,'teacher/Home.html',{'teacher':teacher})
         
     else:
-        return render(request,'ConnectError.html') # אותו דף בית רק עם הודעה של סיסמא שגויה - להוסיף קישור לדף התחברות עם סיסמא שגוייה 
+        return render(request,'ConnectError.html')
     
     
 #Phones page for teacher
@@ -193,7 +192,7 @@ def HomePageBetweenPathStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
     return render(request,'student/Home.html',{'student' :student})
 
-#שינוי סטטוס של תלמיד לפי הצהרת בריאות
+#change the student status by health declaration approval
 def ChanageStatusStudent(request,user_id):
     student = Student.objects.get(user_id = user_id)
     if(student.status == True):
@@ -249,9 +248,12 @@ def graphStudentStatus(request,user_id):
 
     #11
     #percent of the green and red student in the school
-    manager.rad_percent = manager.rad_percent / numberStudent * 100
-    manager.green_percent = manager.green_percent / numberStudent * 100 
-    manager.save()
+    if numberStudent != 0 :
+        manager.rad_percent = (manager.rad_percent / numberStudent * 100)
+        manager.rad_percent= round(manager.rad_percent,2) #leave only the 2 decimal places
+        manager.green_percent = (manager.green_percent / numberStudent * 100)
+        manager.green_percent= round(manager.green_percent,2) #leave only the 2 decimal places
+        manager.save()
 
 
     for teacher in teachers:
@@ -263,8 +265,6 @@ def graphStudentStatus(request,user_id):
                 count_red = count_red+1
             elif j.status == True:
                 count_green=count_green+1
-
-        
 
         teacher.count_red = count_red
         teacher.count_green = count_green
@@ -287,6 +287,7 @@ def addTeacher(request,user_id):
     manager=Manager.objects.get(user_id = user_id)
     return render(request,'manager/addTeacher.html',{'manager' : manager})
 
+#submit the add teacher from manager
 def submitAddTeacher(request,user_id):
     teacher_user_id = request.POST['teach_user_id']
     manager=Manager.objects.get(user_id = user_id)
@@ -300,7 +301,6 @@ def submitAddTeacher(request,user_id):
         return render(request,'manager/add_success.html',{'manager' :manager, 'teachers':teachers})    
     else:
         return render(request,'manager/cant_add.html',{'ID' : teacher_user_id , 'manager' : manager})
-
 
 
 #manager add new student
@@ -332,6 +332,7 @@ def massegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForT.html',{'manager' : manager})
 
+#send massege for teacher in student
 def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
@@ -377,7 +378,7 @@ def submitMassegeForStudent_Manager(request,user_id):
 #massege in teacher from manager
 def massegeFromManagerInTeacher(request,user_id):
     teacher = Teacher.objects.get(user_id=user_id)
-    masseges = teacher.masseges.all()
+    masseges = teacher.masseges.all().order_by('date_create')
     return render(request,'teacher/getMassege.html',{'teacher' :teacher , 'masseges' : masseges}) 
 
 
@@ -410,8 +411,8 @@ def submitMassegeForStudent_Teacher(request,user_id):
 #all the massege in student (from mananger and teacher)
 def massege_InStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
-    masseges_FromManager = student.massegeFromManager.all()
-    masseges_FromTeacher = student.massegeFromTeacher.all()
+    masseges_FromManager = student.massegeFromManager.all().order_by('date_create')
+    masseges_FromTeacher = student.massegeFromTeacher.all().order_by('date_create')
     return render(request,'student/massege.html',{'student' :student , 'masseges_FromManager' : masseges_FromManager , 'masseges_FromTeacher' :masseges_FromTeacher})
 
 
@@ -443,7 +444,7 @@ def submit_homeworkTeacher(request,user_id):
 #print home work from teacher in student
 def homework_Student(request,user_id):
     student = Student.objects.get(user_id=user_id)
-    homework = student.homework.all()
+    homework = student.homework.all().order_by('date_create')
     return render(request,'student/homework.html',{'student' :student , 'homework' :homework})
     
 
@@ -588,24 +589,7 @@ def answerQuiz(request,user_id):
 
     return render(request,'student/Home.html',{'student' :student})
     
-
-
-
-
-
-
-        #check1 = Attendance.objects.filter(date=today, student=student)
-        #check2 = Attendance.objects.filter(date=yesterday, student=student)
-        #check3 = Attendance.objects.filter(date=the_day_before_yesterday, student=student)
-        #if check1 and check2 and check3:  # not a quarySet
-            #f check1.mark_attendance == 'Absent' and check2.mark_attendance == 'Absent' and check3.mark_attendance == 'Absent' and student.status == False:
-             #   lst.append(student.user_id) # all the users id that need to get a quiz
-
-          #today = datetime.today().date().strftime('%d-%m-%Y')
-    #yesterday = (date.today() - timedelta(days=1)).strftime('%d-%m-%Y')
-    #the_day_before_yesterday = (date.today() - timedelta(days=2)).strftime('%d-%m-%Y')
-    #lst = []
-
+#guide on the site to studnets
 def guideToStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
     return render(request,'student/guide.html',{'student' :student})

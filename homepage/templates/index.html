@@ -36,18 +36,26 @@
       
       input[type="id"],
       input[type="password"] {
-        width: 19%;
-        padding: 12px 20px;
-        margin: 26px -1px;
+        width: 66%;
+        padding: 9px 10px;
+        margin: 26px 84px;
         display: inline-block;
         border: 1px solid #ccc;
         box-sizing: border-box;
       }
       input[type="id"]:focus,
       input[type="password"]:focus {
-        background-color: rgb(255, 249, 197);
         outline: none;
       }
+      .formEntryy {
+        display: block;
+        margin: 30px auto;
+        min-width: 300px;
+        padding: 10px;
+        border-radius: 2px;
+        border: none;
+        transition: all 0.5s ease 0s;
+     }
 
       button {
         background-color: #303030;
@@ -146,7 +154,7 @@ body {
 
 .email {
   background-color: #ebebeb;
-  height: 2em;
+  height: 3em;
 }
 
 .email:hover {
@@ -249,22 +257,20 @@ body {
 
   <body dir="rtl">
     
-    
-    
-
-    
       <form class="form" action = " {% url 'users:Conect' %} " method = "post">
 
         {% csrf_token %}
         <div class="wrapper">
           
             <div class="pageTitle title">Corona-School </div>
-        
+            <center>
+              <p id = title1><h3>הישאר מעודכן ושמור על עצמך</h3> </p>
+            </center>
 
         <input type="text" class="name formEntry" placeholder="הכנס תעודת זהות" name="user_id" required />
 
         
-        <input type="text" class="email formEntry" placeholder="הכנס סיסמה" name="password" required />
+        <input type="password" class="email formEntryy" placeholder="הכנס סיסמה" name="password" required />
 
         <button class="submit formEntry">התחבר</button>
        

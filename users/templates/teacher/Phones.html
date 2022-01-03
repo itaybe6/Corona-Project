@@ -5,18 +5,16 @@
     {% load static %} {% load static %} <link rel="stylesheet" type="text/css"
     href='{% static 'tech.css' %}?{% now "U" %}'>
     <style>
-#tableTecher td, th {
-    border: 3px solid;
-    border-color: rgb(7, 8, 8);
-    padding: 3px;
-    width: 13%;
-    background-color: beige;
-    float: center;
-    text-align: center;
-}
-
-
-
+      #tableTecher td,
+      th {
+        border: 3px solid;
+        border-color: rgb(7, 8, 8);
+        padding: 10px;
+        width: 14%;
+        background-color: beige;
+        float: center;
+        text-align: center;
+      }
     </style>
   </head>
 
@@ -51,14 +49,13 @@
 
     <center>
       <ul>
-        <div class=beautyy>
+        <div class="beautyy">
           <center>
-          מורה יקר ,מוצג בפניך מספרי הטלפון של התלמידים בכיתתך לנוחיותך
+            מורה יקר ,מוצג בפניך מספרי הטלפון של התלמידים בכיתתך לנוחיותך
           </center>
-        </div> 
-        <p style="color:white;"><h1>הנבחרת של הכיתה</h1></p>
-        
-        
+        </div>
+        <h1>דף קשר כיתתי</h1>
+
         <table id="tableTecher">
           <tr>
             <th>שם התלמיד</th>

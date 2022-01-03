@@ -63,7 +63,9 @@
         >דף קשר מנהלתי</a
       >
 
-      <a class="btn" href="/users/guideToStudent/897{{student.user_id}}654">מדריך </a>
+      <a class="btn" href="/users/guideToStudent/897{{student.user_id}}654"
+        >מדריך
+      </a>
       <a class="btn" href="/users/massege_InStudent/897{{student.user_id}}654"
         >מסרים
       </a>
@@ -75,7 +77,7 @@
       </div>
       <h1>שיעורי הבית שלי</h1>
 
-      {% for hw in homework %}
+      {% for hw in homework.reverse %}
       <div class="container">
         <div class="message-blue">
           <b> ספר :</b> {{hw.book}}
@@ -94,7 +96,7 @@
         id="id4"
         href="/users/changeToRead_Student_Homework/897{{student.user_id}}654/"
         class="botton button2"
-        >סמן כנקרא</a
+        >סמן כבוצע</a
       >
       {% endif %}
     </center>
