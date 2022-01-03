@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <title>דף שאלון לתלמידים</title>
+  
   <head>
     {% load static %} {% load static %}<link rel="stylesheet" type="text/css"
     href='{% static 'man.css' %}?{% now "U" %}'>
@@ -79,11 +80,17 @@
         
       </form>
       <div class="beauty">
-       הדרכה לנוחיותך
+        הדרכה על השימוש ב
+       docs
       </div>
      
     </center>
-    <img src=url("1G.jpg") width="460" height="345">
-
+    <center>
+      
+    {% load static %} <img src="{% static "images/3G.jpg" %}" alt="Home" />
+    {% load static %} <img src="{% static "images/2G.jpg" %}" alt="Home" /> 
+    {% load static %} <img src="{% static "images/1G.jpg" %}" alt="Home" />
+  </center>
+    
   </body>
 </html>
