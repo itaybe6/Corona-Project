@@ -20,6 +20,7 @@ class Manager(models.Model):
         return f'Name: {self.name}, ID: {self.user_id}'
 
 
+#class massege from manager in teacher
 class MassegeT(models.Model):
     author = models.ForeignKey(Manager ,on_delete =models.CASCADE,default = None)
     subject = models.CharField(max_length = 255)
@@ -38,25 +39,27 @@ class Teacher(models.Model):
     my_class= models.CharField(max_length=200, null=True,default = None)
     manager = models.ForeignKey(Manager, on_delete = models.CASCADE,default = None)
     masseges = models.ManyToManyField(MassegeT,default = None)
-    read = models.BooleanField(null= True,default = True)
+    read = models.BooleanField(null= True,default = True)#for notifications
 
 
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
         
+#massege from manager in student 
 class Massege_Student_FromManager(models.Model):
     author = models.ForeignKey(Manager ,on_delete =models.CASCADE,default = None,blank = True)
     subject = models.CharField(max_length = 255)
     content = models.TextField(max_length = 2500,null = True)
     date_create = models.DateTimeField(auto_now_add=True)
 
-
+#massege from teacher in student
 class Massege_Student_FromTeacher(models.Model):
     author = models.ForeignKey(Teacher ,on_delete =models.CASCADE,default = None,blank = True)
     subject = models.CharField(max_length = 255)
     content = models.TextField(max_length = 2500,null = True)
     date_create = models.DateTimeField(auto_now_add=True)
 
+#class to send homework
 class Homework(models.Model):
     book = models.CharField(max_length=200, null = True,default = None)
     pages = models.CharField(max_length=200, null = True,default = None)
@@ -81,14 +84,14 @@ class Student(models.Model):
     homework =  models.ManyToManyField(Homework,default = None)   
     present = models.IntegerField(null=True,default=0)    #for attendance
     absent = models.IntegerField(null=True,default=0)     #for attendance
-    read_homework = models.BooleanField(null= True,default = True)
-    read_massege = models.BooleanField(null= True,default = True)
+    read_homework = models.BooleanField(null= True,default = True) #for notifications
+    read_massege = models.BooleanField(null= True,default = True)#for notifications
 
 
     def __str__(self):
         return f'Name: {self.name}, ID: {self.user_id}'
 
-
+#quiz for student from manager
 class Quiz(models.Model):
     link = models.CharField(max_length=2000, null = True,default = None)
     date_create = models.DateTimeField(auto_now_add=True)
@@ -102,7 +105,7 @@ class_attendance = (
     ('Present','Present'),
     ('Absent','Absent'),
 )
-
+#attendence to class from teacher
 class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete = models.CASCADE,null=True,default = None)
     teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE,null=True,default = None)

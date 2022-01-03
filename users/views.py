@@ -29,6 +29,7 @@ def logout_user(request):
     logout(request)
     return redirect('/')
 
+#register to manager 
 def submit_Manager(request):
     user_id = request.POST['user_id']
     try: CheckIfManagerExist(user_id)
@@ -46,6 +47,7 @@ def submit_Manager(request):
     manager.save()
     return render(request,'manager/signup_success.html') 
 
+#register to teacher 
 def submit_Teacher(request):
     user_id = request.POST['user_id']
     try:
@@ -67,6 +69,7 @@ def submit_Teacher(request):
     teacher.save()
     return render(request,'teacher/signup_success.html') 
 
+#register to teacher 
 def submit_Student(request):
     user_id = request.POST['user_id']
     try:
@@ -93,7 +96,6 @@ def get_chooseprofile(request):
 
 
 def CheckIfManagerExist(user_id):
-
     for i in Manager.objects.all():
         if i.user_id == user_id :
             return True
@@ -102,7 +104,6 @@ def CheckIfManagerExist(user_id):
             
 
 def CheckIfTeacherExist(user_id):
-    
     for i in Teacher.objects.all():
         if i.user_id == user_id :
             return True
@@ -110,34 +111,33 @@ def CheckIfTeacherExist(user_id):
             
 
 def CheckIfStudentExist(user_id):
-
     for i in Student.objects.all():
         if i.user_id == user_id :
             return True
     return False
 
-
-def Conect_Man(user_id,password):  #Checks the username and password of an managerr
+#Checks the username and password of an managerr
+def Conect_Man(user_id,password): 
     for i in Manager.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
-def Conect_Tec(user_id,password):  #Checks the username and password of an Teacher
+#Checks the username and password of an Teacher
+def Conect_Tec(user_id,password):  
     for i in Teacher.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
-def Conect_Stu(user_id,password):  #Checks the username and password of an Student
+#Checks the username and password of an Student
+def Conect_Stu(user_id,password):  
     for i in Student.objects.all():
         if i.user_id == user_id and i.password == password:
            return True
     return False
 
-
+#func conect to all the users
 def Conect(request):
     user_id = request.POST['user_id']
     password = request.POST['password']
@@ -248,11 +248,12 @@ def graphStudentStatus(request,user_id):
 
     #11
     #percent of the green and red student in the school
-    manager.rad_percent = (manager.rad_percent / numberStudent * 100)
-    manager.rad_percent= round(manager.rad_percent,2) #leave only the 2 decimal places
-    manager.green_percent = (manager.green_percent / numberStudent * 100)
-    manager.green_percent= round(manager.green_percent,2) #leave only the 2 decimal places
-    manager.save()
+    if numberStudent != 0 :
+        manager.rad_percent = (manager.rad_percent / numberStudent * 100)
+        manager.rad_percent= round(manager.rad_percent,2) #leave only the 2 decimal places
+        manager.green_percent = (manager.green_percent / numberStudent * 100)
+        manager.green_percent= round(manager.green_percent,2) #leave only the 2 decimal places
+        manager.save()
 
 
     for teacher in teachers:
@@ -286,6 +287,7 @@ def addTeacher(request,user_id):
     manager=Manager.objects.get(user_id = user_id)
     return render(request,'manager/addTeacher.html',{'manager' : manager})
 
+#submit the add teacher from manager
 def submitAddTeacher(request,user_id):
     teacher_user_id = request.POST['teach_user_id']
     manager=Manager.objects.get(user_id = user_id)
@@ -330,6 +332,7 @@ def massegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     return render(request,'manager/massegeForT.html',{'manager' : manager})
 
+#send massege for teacher in student
 def submitMassegeForTeacher(request,user_id):
     manager = Manager.objects.get(user_id = user_id)
     author = manager
@@ -586,6 +589,7 @@ def answerQuiz(request,user_id):
 
     return render(request,'student/Home.html',{'student' :student})
     
+#guide on the site to studnets
 def guideToStudent(request,user_id):
     student = Student.objects.get(user_id=user_id)
     return render(request,'student/guide.html',{'student' :student})

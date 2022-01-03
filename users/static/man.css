@@ -2,14 +2,19 @@ body {
   background-image: url("images/logo.jpg");
   height: 900px;
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
   border-image: url("1G.jpg") 30 fill / 30px / 30px space;
 }
 
+.imagedim{ 
+  width:150px; 
+  height:150px; 
+  src: url("images/1G.jpg");
+  } 
+  
 .topnav {
   overflow: hidden;
-  background-color: #333333;
+ 
 }
 
 #tableTecher {
@@ -67,7 +72,7 @@ th {
 }
 
 .topnav a.active {
-  background-color: rgb(158, 215, 253);
+  background-color: rgb(182, 180, 162);
   color: white;
 }
 
