@@ -6,15 +6,12 @@ body {
   border-image: url("1G.jpg") 30 fill / 30px / 30px space;
 }
 
-<<<<<<< HEAD
 .imagedim{ 
   width:150px; 
   height:150px; 
   src: url("images/1G.jpg");
   } 
   
-=======
->>>>>>> 986a6cce477d57efbdf7ba931521fd446cfc9967
 .topnav {
   overflow: hidden;
  
