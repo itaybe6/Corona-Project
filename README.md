@@ -19,4 +19,17 @@ Explain who to register to the site:
 
 First, the manager should buy the site and we need to add his ID to the data base so he can register
 
-we are currently registering a manager with the ID 123456789, teachers with the ID 120-129, students with the ID 220-229
+we are currently registering a manager with the ID 123456789
+teachers with ID's:20998866,963852741
+Students of a teacher with an ID 20998866:
+20118899
+20118877
+20118866
+20118855
+Students of a teacher with an ID 963852741:
+147258369
+20118844
+20118833
+20881133
+20118822
+After you login to the web you can see all the function you can do with Permissions.
