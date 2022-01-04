@@ -22,14 +22,25 @@ First, the manager should buy the site and we need to add his ID to the data bas
 we are currently registering a manager with the ID 123456789
 teachers with ID's:20998866,963852741
 Students of a teacher with an ID 20998866:
-20118899
-20118877
-20118866
-20118855
+
+Student.1:20118899
+
+Student.2:20118877
+
+Student.3:20118866
+
+Student.4:20118855
+
 Students of a teacher with an ID 963852741:
-147258369
-20118844
-20118833
-20881133
-20118822
+
+Student.1:147258369
+
+Student.2:20118844
+
+Student.3:20118833
+
+Student.4:20881133
+
+Student.5:20118822
+
 After you login to the web you can see all the function you can do with Permissions.
