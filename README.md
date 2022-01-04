@@ -44,3 +44,14 @@ Student.4:20881133
 Student.5:20118822
 
 After you login to the web you can see all the function you can do with Permissions.
+After the acton we realized that we need to make some changes and add system requirements to improve it and bring the project to a better and better quality state so we added requirements and changes
+And these are the changes:
+New requirements:
+After the acton following the theoretical step and the suggestions we made for the additions we chose to add a requirement that allows the principal to add a tutor to the site. That is, a requirement that allows the principal to enter an identity card for a new teacher admitted to the system, this addition will allow the teacher to register on the site and automatically belong to his school (this requirement was also added in (meister task)
+We also added disengagement buttons for each of the participants - teacher and student supervisor a total of 3 requirements.
+Additions to existing requirements:
+* Attendance - Adding an attendance report at the end of each attendance reading - so that the teacher has an indication of his students' submissions, adding the student's status (red / green) next to each line in attendance so that the teacher knows why the student missed - in addition to checking that no student is in status Edom did not come to school
+* Sample of red students by the principal - to this requirement is added a graph showing the percentage of green and red students in the school (in addition to printing how many red and green students there are in each class)
+* Student homework - an option has been added to the requirement to indicate that homework has been done and thus he will not have a highlighted notice on the home page about homework.
+* Principal - status of all teachers in red - it was decided that it would be printed on the home screen and not on a dedicated button because it is important that the principal sees which of his teachers are red directly at each login to the system
+* Administrator - Questionnaire for students in red status - it was decided to add to the principal a guide on how to insert a Google Forms link + add a link that will take it directly to Google Forms, so that he can quickly send the link after filling in the questionnaire fields.
