@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html>
-
   <title>דף קשר צוות מורים</title>
   <head>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href='{% static 'man.css' %}?{% now "U" %}'>
-    
+    {% load static %}{% load static %} <link rel="stylesheet" type="text/css"
+    href='{% static 'man.css' %}?{% now "U" %}'>
   </head>
 
   <body>
+    <div class="topnav">
+      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/"
+        >דף הבית</a
+      >
+      <a class="active" href="/users/PhonesT/897{{manager.user_id}}654">
+        דף קשר צוות
+      </a>
+      <a class="btn" href="/users/graphStudentStatus/897{{manager.user_id}}654">
+        מדגם תלמידים אדומים
+      </a>
+      <a class="btn" href="/users/quizManager/{{manager.user_id}}"
+        >בניית שאלון</a
+      >
 
-   <div class="topnav">
-      <a class="btn" href="/users/HomePageManager/897{{manager.user_id}}654/">דף הבית</a>
-      <a class="active"href="/users/PhonesT/897{{manager.user_id}}654"> דף קשר צוות </a>
-      <a class="btn"href="/users/graphStudentStatus/897{{manager.user_id}}654"> מדגם תלמידים אדומים </a>
-      <a class="btn" href="/users/quizManager/{{manager.user_id}}">בניית שאלון</a>
-
-      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654">מסרים למורים</a>
-      <a class="btn" href="/users/massegeForStudentManager/897{{manager.user_id}}654">מסרים לתלמידים</a>
-      <a class="btn" href="/users/addTeacher/{{manager.user_id}}" target="_self">מורה חדש</a>
-      
+      <a class="btn" href="/users/massegeForTeacher/897{{manager.user_id}}654"
+        >מסרים למורים</a
+      >
+      <a
+        class="btn"
+        href="/users/massegeForStudentManager/897{{manager.user_id}}654"
+        >מסרים לתלמידים</a
+      >
+      <a class="btn" href="/users/addTeacher/{{manager.user_id}}" target="_self"
+        >מורה חדש</a
+      >
     </div>
- 
-   
+
     <ul>
-      <div class=beauty>
+      <div class="beauty">
         <center>
-        מנהל יקר ,מוצג בפניך מספרי הטלפון של המורים בבית ספרך לנוחיותך
+          מנהל יקר ,מוצג בפניך מספרי הטלפון של המורים בבית ספרך לנוחיותך
         </center>
       </div>
       <center>
-        <h1>:דף קשר צוות</h1>
+        <h1>דף קשר צוות</h1>
       </center>
 
       <table id="tableTecher">
@@ -52,6 +63,5 @@
       </table>
       {% endfor %}
     </ul>
- 
   </body>
 </html>

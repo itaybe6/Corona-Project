@@ -18,38 +18,46 @@
       <a class="active" href="/users/PhoneStu/897{{student.user_id}}654"
         >דף קשר הכיתה שלי</a
       >
-      <a class="btn" href="/users/StuAdministrativePhones/897{{student.user_id}}654" >דף קשר מנהלתי</a>
+      <a
+        class="btn"
+        href="/users/StuAdministrativePhones/897{{student.user_id}}654"
+        >דף קשר מנהלתי</a
+      >
 
-      <a class="btn" href="/users/guideToStudent/897{{student.user_id}}654">מדריך </a>
+      <a class="btn" href="/users/guideToStudent/897{{student.user_id}}654"
+        >מדריך
+      </a>
       <a class="btn" href="/users/massege_InStudent/897{{student.user_id}}654"
         >מסרים
       </a>
-      <a class="btn" href="/users/quizStudent/897{{student.user_id}}654">שאלון תלמיד </a>
+      <a class="btn" href="/users/quizStudent/897{{student.user_id}}654"
+        >שאלון תלמיד
+      </a>
     </div>
     <center>
       <div class="beautyy">
-        תלמיד יקר ,בעמוד זה ישנם מספרי פלאפון של חבריך לכיתה 
+        תלמיד יקר ,בעמוד זה ישנם מספרי פלאפון של חבריך לכיתה
       </div>
       <ul>
-       <h1> דף קשר הכיתה שלי:</h1>
+        <h1>דף קשר הכיתה שלי</h1>
 
         <table id="tableTecher">
           <tr>
             <th>שם התלמיד</th>
             <th>מספר פלאפון</th>
           </tr>
-        </table>  
+        </table>
         {% for student in Students %}
-           <table id="tableTecher">
-              <tr>
-                {% if student.name %}
-                <td>{{student.name}}</td>
-                <td>{{student.phone_number}}</td>
-                {% endif %}
-              </tr>
-           </table>
+        <table id="tableTecher">
+          <tr>
+            {% if student.name %}
+            <td>{{student.name}}</td>
+            <td>{{student.phone_number}}</td>
+            {% endif %}
+          </tr>
+        </table>
         {% endfor %}
-     </ul>
+      </ul>
     </center>
   </body>
 </html>
