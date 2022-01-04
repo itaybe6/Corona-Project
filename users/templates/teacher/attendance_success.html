@@ -25,6 +25,16 @@
       .w3-row-padding img {
         margin-bottom: 15px;
       }
+      .beautyy {
+    background-color: rgb(228, 220, 221);
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    border-radius: 5px;
+    box-shadow: 0 5px 7px #ccc;
+    text-align: right;
+    letter-spacing: 0.2rem;
+    margin: 1rem auto;
+}
     </style>
   </head>
   <body>
@@ -33,15 +43,15 @@
         <center><h1>הנוכחות התבצעה בהצלחה</h1>
 
         <div class="w3-padding-32">
-          <div class="w3-bar w3-border">
+          <div class="beautyy">
             {% for student in students %}
             <tr>
             {% if student.name%}
-              <center> <h2>{{ student.name }}: סהכ&nbsp;נוכח: {{ student.present }}</h2>
-              <center> <h2>סהכ&nbsp;החסיר: {{ student.absent }}</h2>
+               <h2>{{ student.name }} <h3>סהכ&nbsp;נכח: {{ student.present }} סהכ&nbsp;החסיר: {{ student.absent }}</h3>
+             
             {% else %}
-               <center> <h2>{{ student.user_id }}: סהכ&nbsp;נוכח: {{ student.present }}</h2>
-               <center> <h2>סהכ&nbsp;החסיר: {{ student.absent }}</h2>
+               <h2>{{ student.user_id }}<h3>סהכ&nbsp;נכח: {{ student.present }} סהכ&nbsp;החסיר: {{ student.absent }}</h3>
+             
             {% endif %}
             {% endfor %}
             </tr>
